@@ -1,0 +1,661 @@
+﻿/* Stylesheet required for responsiveness with all selectors :)*/
+
+/*Samrtphones (to 599px)*/
+@media (max-width: 599px) {
+
+    /*Change images*/
+    .block1 {
+        background-image: url("images/smartphone/pizza-block1.jpeg");
+    }
+
+    .block3 {
+        background-image: url("images/smartphone/pizza-block3.jpeg");
+    }
+
+    .block5 {
+        background-image: url("images/smartphone/restaurant-block5.jpg");
+    }
+
+    /*Block 1 - Header Title*/
+    .header h1 {
+        font-size: 40px;
+    }
+
+    /*Block 2 - Gallery*/
+    .block2 > p {
+        font-size: 13px;
+        margin: 0 5% 0 5%;
+    }
+
+    .gallery p {
+        font-size: 13px;
+        margin: 0.5% 5% 0 5%;
+    }
+
+    .galleryimages img, .galleryview {
+        width: 210px;
+    }
+
+        .galleryview .arrow {
+            top: 29%;
+        }
+
+        .galleryview #left {
+            right: 84%;
+        }
+
+        .galleryview #right {
+            left: 84%;
+        }
+
+    /*Block 3 - Menu*/
+    .menuitem {
+        width: 40%;
+    }
+
+        .menuitem > ul {
+            font-size: 10px;
+            padding-left: 13%;
+        }
+
+        .menuitem h1 {
+            font-size: 13px;
+        }
+
+        .menuitem:nth-last-of-type(-n+2), .menuitem ul li:not(:nth-of-type(-n+10)) { 
+            display: none;
+        }
+
+        .textarr {
+            font-size: 15px;
+        }
+
+
+    /*Block 4 - Gallery*/
+    .block4 img {
+        width: 75%;
+    }
+
+    .block4 p {
+        font-size: 13px;
+        margin: 0 3% 0 3%;
+    }
+
+    /*Block 5 - Contact & Form*/
+    .boxes {
+        justify-content: center;
+    }
+
+    .boxmsg {
+        width: 80%;
+    }
+
+        .boxmsg:first-child {
+            display: none;
+        }
+
+        .boxmsg img {
+            width: 100%;
+        }
+
+        .boxmsg > .map {
+            height: 250px
+        }
+
+    .contact {
+        font-size: 23px;
+    }
+}
+
+
+/*Tablets (600px - 900px)*/
+@media (min-width: 600px) and (max-width: 900px) {
+
+    /*Change images*/
+    .block1 {
+        background-image: url("images/tablets/pizza-block1.jpeg");
+    }
+
+    .block3 {
+        background-image: url("images/tablets/pizza-block3.jpeg");
+    }
+
+    .block5 {
+        background-image: url("images/tablets/restaurant-block5.jpg");
+    }
+
+    /*Block 1 - Header Title*/
+    .header h1 {
+        font-size: 70px;
+    }
+
+    /*Block 2 - Gallery*/
+    .block2 > p {
+        font-size: 15px;
+        margin: 0 15% 0 15%;
+    }
+
+    .gallery p {
+        font-size: 13px;
+        margin: 0.5% 15% 0 15%;
+    }
+
+    .galleryimages img, .galleryview {
+        width: 390px;
+    }
+
+        .galleryview .arrow {
+            top: 36%;
+        }
+
+        .galleryview #left {
+            right: 75vw;
+        }
+
+        .galleryview #right {
+            left: 75vw;
+        }
+
+    /*Block 3 - Menu*/
+    .menuitem {
+        width: 26%;
+    }
+
+        .menuitem > ul {
+            font-size: 10px;
+            padding-left: 13%;
+        }
+
+        .menuitem h1 {
+            font-size: 18px;
+        }
+
+        .menuitem:nth-last-of-type(-n+2) {
+            display: none;
+        }
+
+    .textarr {
+        font-size: 19px;
+    }
+
+    /*Block 4 - Gallery*/
+    .block4 p {
+        font-size: 17px;
+        margin: 0 5% 0 5%;
+    }
+
+    /*Block 5 - Contact & Form*/
+    div.boxmsg {
+        width: 40%;
+    }
+
+    .boxmsg h1 {
+        font-size: 18px;
+    }
+
+    .boxmsg > form p {
+        font-size: 13px;
+    }
+
+    .boxmsg:first-child {
+        width: 30%;
+    }
+
+    .boxmsg > form input[type="text"], .boxmsg > form input[type="email"] {
+        height: 18px;
+    }
+
+    .boxmsg > form textarea, .boxmsg > form input[type="text"], .boxmsg > form input[type="email"] {
+        font-size: 12px;
+    }
+
+    .boxmsg > .map {
+        height: 250px;
+    }
+
+    .contact {
+        font-size: 18px;
+    }
+}
+
+/*Laptops & Low PC (901px - 1359px)*/
+@media (min-width: 901px) and (max-width: 1359px) {
+
+    /*Change images*/
+    .block1 {
+        background-image: url("images/laptops/pizza-block1.jpeg");
+    }
+
+    .block3 {
+        background-image: url("images/laptops/pizza-block3.jpeg");
+    }
+
+    .block5 {
+        background-image: url("images/laptops/restaurant-block5.jpg");
+    }
+
+    /*Block 1 - Header Title*/
+    .header h1 {
+        font-size: 90px;
+    }
+
+    /*Block 2 - Gallery*/
+    .block2 > p {
+        font-size: 18px;
+        margin: 0 15% 0 15%;
+    }
+
+    .gallery p {
+        margin: 0.5% 20% 0 20%;
+    }
+
+    .galleryimages img, .galleryview {
+        width: 500px;
+    }
+
+        .galleryview .arrow {
+            top: 36%;
+        }
+
+        .galleryview #left {
+            right: 65vw;
+        }
+
+        .galleryview #right {
+            left: 65vw;
+        }
+
+    /*Block 3 - Menu*/
+    .menuitem {
+        width: 21%;
+    }
+
+        .menuitem > ul {
+            font-size: 14px;
+            padding-left: 14.5%;
+        }
+
+        .menuitem h1 {
+            font-size: 23px;
+        }
+
+    .textarr {
+        font-size: 22px;
+    }
+
+    /*Block 4 - Gallery*/
+    .block4 p {
+        font-size: 19px;
+        margin: 0 5% 0 5%;
+    }
+
+    /*Block 5 - Contact & Form*/
+    .boxmsg {
+        width: 30%;
+    }       
+
+    .boxmsg h1 {
+        font-size: 21px;
+    }
+
+        .boxmsg > form p {
+            font-size: 15px;
+        }
+
+        .boxmsg:first-child {
+            width: 25%;
+        }
+
+        .boxmsg > form input[type="text"], .boxmsg > form input[type="email"] {
+            height: 18px;
+        }
+
+        .boxmsg > form textarea, .boxmsg > form input[type="text"], .boxmsg > form input[type="email"] {
+            font-size: 13px;
+        }
+
+        .boxmsg > .map {
+            height: 300px;
+        }
+
+    .contact {
+        font-size: 18px;
+    }   
+}
+
+/*Normal PC (1360px - 1919px)*/
+@media (min-width: 1360px) and (max-width: 1919px) {
+
+    /*Change images*/
+    .block1 {
+        background-image: url("images/NormalPC/pizza-block1.jpeg");
+    }
+
+    .block3 {
+        background-image: url("images/NormalPC/pizza-block3.jpeg");
+    }
+
+    .block5 {
+        background-image: url("images/NormalPC/restaurant-block5.jpg");
+    }
+
+    /*Block 1 - Header Title*/
+    .header h1 {
+        font-size: 120px;
+    }
+
+
+    /*Block 2 - Gallery*/
+    .block2 > p {
+        font-size: 18px;
+        margin: 0 15% 0 15%;
+    }
+
+    .gallery p {
+        margin: 0.5% 25% 0 25%;
+    }
+
+    .galleryimages img, .galleryview {
+        width: 669px;
+    }
+
+        .galleryview .arrow {
+            top: 36%;
+        }
+
+        .galleryview #left {
+            right: 55vw;
+        }
+
+        .galleryview #right {
+            left: 55vw;
+        }
+
+    /*Block 3 - Menu*/
+    .menuitem {
+        width: 21%;
+    }
+
+        .menuitem > ul {
+            font-size: 17px;
+            padding-left: 13%;
+        }
+
+        .menuitem h1 {
+            font-size: 27px;
+        }
+
+    .textarr {
+        font-size: 25px;
+    }
+
+
+    /*Block 4 - Gallery*/
+    .block4 p {
+        font-size: 20px;
+        margin: 0 5% 0 5%;
+    }
+
+    /*Block 5 - Contact & Form*/
+    .boxmsg {
+        width: 30%;
+    }
+
+        .boxmsg:first-child {
+            width: 25%;
+        }
+
+        .boxmsg > form p {
+            font-size: 17px;
+        }
+
+        .boxmsg h1 {
+            font-size: 26px;
+        }
+
+        .boxmsg > form input[type="text"], .boxmsg > form input[type="email"] {
+            height: 21px;
+        }
+
+        .boxmsg > form textarea, .boxmsg > form input[type="text"], .boxmsg > form input[type="email"] {
+            font-size: 15px;
+        }       
+
+        .boxmsg > .map {
+            height: 350px;
+        }
+
+    .contact {
+        font-size: 22px;
+    }
+}
+
+
+/*Full HD - 2K (1920px - 2199px)*/
+@media (min-width: 1920px) and (max-width: 2199px) {
+
+    /*Change images*/
+    .block1 {
+        background-image: url("images/FullHD2K/pizza-block1.jpeg");
+    }
+
+    .block3 {
+        background-image: url("images/FullHD2K/pizza-block3.jpeg");
+    }
+
+    .block5 {
+        background-image: url("images/FullHD2K/restaurant-block5.jpg");
+    }
+
+    /*Block 1 - Header Title*/
+    .header h1 {
+        font-size: 140px;
+    }
+
+    /*Block 2 - Gallery*/
+    .block2 > p {
+        font-size: 20.5px;
+        margin: 0 15% 0 15%;
+    }
+
+    .gallery img {
+        width: 35%;
+    }
+
+    .gallery p {
+        margin: 0.5% 35% 0 35%;
+    }
+
+    .galleryimages img, .galleryview {
+        width: 735px;
+    }
+
+        .galleryview .arrow {
+            top: 36%;
+        }
+
+        .galleryview #left {
+            right: 47vw;
+        }
+
+        .galleryview #right {
+            left: 47vw;
+        }
+
+
+    /*Block 3 - Menu*/
+    .menuitem {
+        width: 21%;
+    }
+
+        .menuitem > ul {
+            font-size: 18px;
+            padding-left: 10%;
+        }
+
+        .menuitem h1 {
+            font-size: 30px;
+        }
+
+    p.price {
+        width: 12%;
+    }
+
+    p.item {
+        width: 80%;
+    }
+
+    .textarr {
+        font-size: 29px;
+    }
+
+    /*Block 4 - Gallery*/
+    .block4 p {
+        font-size: 22px;
+        margin: 0 5% 0 5%;
+    }
+
+    /*Block 5 - Contact & Form*/
+    .boxmsg {
+        width: 20%;
+    }
+
+        .boxmsg:first-child {
+            width: 18%;
+        }
+
+
+        .boxmsg > form p {
+            font-size: 19px;
+        }
+
+        .boxmsg h1 {
+            font-size: 30px;
+        }
+
+        .boxmsg > form input[type="text"], .boxmsg > form input[type="email"] {
+            height: 21px;
+        }
+
+        .boxmsg > .map {
+            height: 400px;
+        }
+
+    .contact {
+        font-size: 24px;
+    }
+}
+
+/*2K > (up to 2200px)*/
+@media (min-width: 2200px) {
+
+    /*Change images*/
+    .block1 {
+        background-image: url("images/4k+/pizza-block1.jpeg");
+    }
+
+    .block3 {
+        background-image: url("images/4k+/pizza-block3.jpeg");
+    }
+
+    .block5 {
+        background-image: url("images/4k+/restaurant-block5.jpg");
+    }
+
+    /*Block 1 - Header Title*/
+    .header h1 {
+        font-size: 170px;
+    }
+
+    /*Block 2 - Gallery*/
+    .block2 > p {
+        font-size: 27px;
+        margin: 0 15% 0 15%;
+    }
+
+    .galleryimages img, .galleryview {
+        width: 1186px;
+    }
+
+    .gallery p {
+        margin: 0.5% 35% 0 35%;
+    }
+
+    .galleryview .arrow {
+        top: 36%;
+    }
+
+    .galleryview #left {
+        right: 47vw;
+    }
+
+    .galleryview #right {
+        left: 47vw;
+    }
+
+    /*Block 3 - Menu*/
+    .menuitem {
+        width: 13.5%;
+    }
+
+        .menuitem > ul {
+            font-size: 18px;
+            padding-left: 10%;
+        }
+
+        .menuitem h1 {
+            font-size: 32px;
+        }
+
+    p.price {
+        width: 12%;
+    }
+
+    p.item {
+        width: 80%;
+    }
+
+    .textarr {
+        font-size: 32px;
+    }
+
+    /*Block 4 - Gallery*/
+    .block4 p {
+        font-size: 26px;
+        margin: 0 5% 0 5%;
+    }
+
+    /*Block 5 - Contact & Form*/
+    .boxmsg {
+        width: 20%;
+    }
+
+        .boxmsg > form input[type="text"], .boxmsg > form input[type="email"] {
+            height: 23px;
+            width: 35%;
+        }
+
+        .boxmsg > form textarea, .boxmsg > form input[type="text"], .boxmsg > form input[type="email"] {
+            font-size: 18px;
+        }
+            
+            .boxmsg:first-child {
+                width: 15%;
+            }
+
+        .boxmsg > form p {
+            font-size: 22px;
+        }
+
+        .boxmsg h1 {
+            font-size: 33px;
+        }
+
+        .boxmsg > .map {
+            height: 75%;
+        }
+
+    .contact {
+        font-size: 28px;
+    }
+}
