@@ -10,6 +10,7 @@ class MenuItemManager implements IEntityManager {
 		$newMenu = new MenuItem();
 		foreach($options as $k => $v)
 			$functionManager->excetuteBasicMethod($newMenu, "set", $k, $v);
+		$functionManager->excetuteBasicMethod($newMenu, "set", "ID", $queryBuild->getLastID());
 		return $newMenu;
 	}
 	

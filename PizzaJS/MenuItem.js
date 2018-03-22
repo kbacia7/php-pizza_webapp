@@ -17,8 +17,18 @@ function menuItemHandle() {
     });
 
     $("body").on('click', ".remove-menu", function () {
+        console.log("check~");
         let elementToRemove = $(this).parents(".list-group-item").first();
         menuItemRemove(elementToRemove);
+    });
+
+    $("body").on('click', ".no-remove-menu", function() {
+        $(this).parents(".remove-menu-content").first().fadeOut(300);
+    });
+    
+    $("body").on('click', '.remove-menu-item-button', function() {
+        console.log("check~");
+        $(this).siblings(".remove-menu-content").first().fadeIn(300);
     });
 }
 
@@ -29,7 +39,11 @@ function menuItemLoad(parent, id) {
             console.log(this);
             let e = menuItemAdd(parent);
             $(e).find(".menu-name-input").first().val(this['title']);
+            $(e).find(".menu-name-input").first().text(this['title']);
+        
             $(e).find(".menu-name-price").first().val(this['price']);
+            $(e).find(".menu-name-price").first().text(this['price']);
+            
             $(e).find(".menu-price > .badge").text(this['price'] + "$");
             $(e).attr("data-itemID", this['ID']);
         });
@@ -80,14 +94,17 @@ function menuItemEditMode(item) {
     $(parentRoot).find(".edit-mode-menu-buttons").fadeIn(300);
     let newMenuPriceInput = $(parentRoot).find(".menu-price-input").first();
     let badgePrice = $(parentRoot).find(".menu-price > .badge").first();
-    let aPrice = $(badgePrice).text();
+    let aPrice = $(badgePrice).text().slice(0, -1);
     let inputTitleMenu = $(parentRoot).find(".menu-name-input");
     let aTitle = $(inputTitleMenu).val();
 
-    input_set_prev_value(inputTitleMenu, aTitle);
-    input_set_prev_value(newMenuPriceInput, aPrice.slice(0, -1));
+    if (is_valid_menu_title(aTitle)) 
+        input_set_prev_value(inputTitleMenu, aTitle); 
 
-    $(newMenuPriceInput).attr("value", aPrice.slice(0, -1));
+    if(is_valid_menu_price(aPrice)) 
+        input_set_prev_value(newMenuPriceInput, aPrice);
+
+    $(newMenuPriceInput).attr("value", aPrice);
 
     $(badgePrice).css("display", "none");
     $(newMenuPriceInput).fadeIn(200);
@@ -95,6 +112,7 @@ function menuItemEditMode(item) {
 
 function menuItemRemove(item) {
     $(item).fadeOut(400);
+    menuItemAjaxRemove($(item).attr("data-itemid"));
 }
 
 function menuItemAdd(parent, ajaxSupport) {
@@ -109,12 +127,14 @@ function menuItemAdd(parent, ajaxSupport) {
             parent: $(parent).attr("data-categoryID")
         }
 		console.log(parent);
-        menuItemAjaxAdd(dataAdd);
+        menuItemAjaxAdd(dataAdd, function(data) {
+            $(cloneNewMenu).attr("data-itemid", data['ID']);
+        });
     }
     return cloneNewMenu;
 }
 
-function menuItemAjaxAdd(data) //data - {title: "title", price: 3.95, "parent": 1}
+function menuItemAjaxAdd(data, callback) //data - {title: "title", price: 3.95, "parent": 1}
 {
     $.ajax({
         url: "PizzaCore/AJAX/MenuItem/menuitem_add.php",
@@ -127,6 +147,7 @@ function menuItemAjaxAdd(data) //data - {title: "title", price: 3.95, "parent": 
                 ajax_is_allowed();
             else {
                 //error handle?
+               callback(jsonRealData['object']);
 
             }
         }

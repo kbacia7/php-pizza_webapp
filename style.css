@@ -202,13 +202,13 @@ html, body {
 
 
 .price {
-    width: 15%;
+    width: 21%;
     float: left;
     overflow: hidden;
 }
 
 .item {
-    width: 70%;
+    width: 60%;
     float: left;
     overflow: hidden;
     white-space: nowrap

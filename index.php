@@ -1,39 +1,82 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <style>
-		[data-dialog="true"] label, input { display:block; }
-		[data-dialog="true"] input.text { margin-bottom:12px; width:95%; padding: .4em; }
-		[data-dialog="true"] fieldset { padding:0; border:0; }
-		[data-dialog="true"] h1 { font-size: 1.2em; margin: .6em 0; }
-		[data-dialog="true"] div#users-contain { width: 350px; margin: 20px 0; }
-		[data-dialog="true"] div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
-		[data-dialog="true"]div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
-		[data-dialog="true"] .ui-dialog .ui-state-error { padding: .3em; }
-		[data-dialog="true"] .validateTips { border: 1px solid transparent; padding: 0.3em; }
-		[data-dialog="true"] .error { color: #FF0000; font-weight: bold; }
-	</style>
+        [data-dialog="true"] label,
+        input {
+            display: block;
+        }
+
+        [data-dialog="true"] input.text {
+            margin-bottom: 12px;
+            width: 95%;
+            padding: .4em;
+        }
+
+        [data-dialog="true"] fieldset {
+            padding: 0;
+            border: 0;
+        }
+
+        [data-dialog="true"] h1 {
+            font-size: 1.2em;
+            margin: .6em 0;
+        }
+
+        [data-dialog="true"] div#users-contain {
+            width: 350px;
+            margin: 20px 0;
+        }
+
+        [data-dialog="true"] div#users-contain table {
+            margin: 1em 0;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        [data-dialog="true"]div#users-contain table td,
+        div#users-contain table th {
+            border: 1px solid #eee;
+            padding: .6em 10px;
+            text-align: left;
+        }
+
+        [data-dialog="true"] .ui-dialog .ui-state-error {
+            padding: .3em;
+        }
+
+        [data-dialog="true"] .validateTips {
+            border: 1px solid transparent;
+            padding: 0.3em;
+        }
+
+        [data-dialog="true"] .error {
+            color: #FF0000;
+            font-weight: bold;
+        }
+    </style>
     <link rel="icon" href="images/pizzaicon.png">
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="rwd.css" />
     <link href="https://fonts.googleapis.com/css?family=Courgette|Montserrat|Roboto|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.0/css/swiper.min.css">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3BFv03xXDii2HzbPZraRkHvSEnb9rCMg">
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.js"
-            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-            crossorigin="anonymous"></script>
-    <script src="jquery-mobile.js"></script> <!-- Only touch support -->
-    <script
-		  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
-		  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
-		  crossorigin="anonymous">
-	</script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="jquery-mobile.js"></script>
+    <!-- Only touch support -->
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+        crossorigin="anonymous">
+        </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="PizzaJS/MenuItem.js"></script>
+    <script src="PizzaJS/MenuCategory.js"></script>
     <title>Your pizzeria</title>
 </head>
+
 <body>
     <div class="block1">
         <div class="header">
@@ -41,7 +84,9 @@
         </div>
     </div>
     <div class="block2">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo vel purus interdum ultrices. Suspendisse sit amet aliquam sem. Pellentesque vel nibh nisl. Nulla sed neque sit amet quam ultricies porttitor at vitae mauris. Donec nec magna et nisl ullamcorper mattis sodales at est</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo vel purus interdum ultrices. Suspendisse sit
+            amet aliquam sem. Pellentesque vel nibh nisl. Nulla sed neque sit amet quam ultricies porttitor at vitae mauris.
+            Donec nec magna et nisl ullamcorper mattis sodales at est</p>
         <div class="gallery">
             <div class="galleryview">
                 <img id="left" class="arrow" src="images/arrow.png" />
@@ -52,399 +97,83 @@
                          images/laptops/gallery1/pizza-block2_gallery1.jpeg 500w,
                          images/NormalPC/gallery1/pizza-block2_gallery1.jpeg 669w,
                          images/FullHD2K/gallery1/pizza-block2_gallery1.jpeg 735w,
-                         images/4k+/gallery1/pizza-block2_gallery1.jpeg 1186w" 
-                         sizes="(max-width: 599px) 210px, (min-width: 600px) and (max-width: 900px) 390px, (min-width: 901px) and (max-width: 1359px) 500px, (min-width: 1360px) and (max-width: 1919px) 669px, (min-width: 1920px) and (max-width: 2199px) 735px, (min-width: 2200px) 1186px" 
-                         data-description="Nunc id semper leo. Cras dictum vulputate libero, nec dictum felis. Etiam rhoncus viverra velit ut mollis. Sed consectetur accumsan turpis, sed semper erat mattis eu1_1_!_1"/>
+                         images/4k+/gallery1/pizza-block2_gallery1.jpeg 1186w" sizes="(max-width: 599px) 210px, (min-width: 600px) and (max-width: 900px) 390px, (min-width: 901px) and (max-width: 1359px) 500px, (min-width: 1360px) and (max-width: 1919px) 669px, (min-width: 1920px) and (max-width: 2199px) 735px, (min-width: 2200px) 1186px"
+                        data-description="Nunc id semper leo. Cras dictum vulputate libero, nec dictum felis. Etiam rhoncus viverra velit ut mollis. Sed consectetur accumsan turpis, sed semper erat mattis eu1_1_!_1"
+                    />
                     <img src="images/4k+/gallery1/pizza-block2_gallery2.jpeg" srcset="images/smartphone/gallery1/pizza-block2_gallery2.jpeg 210w, 
                          images/tablets/gallery1/pizza-block2_gallery2.jpeg 390w,
                          images/laptops/gallery1/pizza-block2_gallery2.jpeg 500w,
                          images/NormalPC/gallery1/pizza-block2_gallery2.jpeg 669w,
                          images/FullHD2K/gallery1/pizza-block2_gallery2.jpeg 735w,
-                         images/4k+/gallery1/pizza-block2_gallery2.jpeg 1186w" 
-                         sizes="(max-width: 599px) 210px, (min-width: 600px) and (max-width: 900px) 390px, (min-width: 901px) and (max-width: 1359px) 500px, (min-width: 1360px) and (max-width: 1919px) 669px, (min-width: 1920px) and (max-width: 2199px) 735px, (min-width: 2200px) 1186px" 
-                         data-description="Nunc id semper leo. Cras dictum vulputate libero, nec dictum felis. Etiam rhoncus viverra velit ut mollis. Sed consectetur accumsan turpis, sed semper erat mattis eu2@@@@2"/>
+                         images/4k+/gallery1/pizza-block2_gallery2.jpeg 1186w" sizes="(max-width: 599px) 210px, (min-width: 600px) and (max-width: 900px) 390px, (min-width: 901px) and (max-width: 1359px) 500px, (min-width: 1360px) and (max-width: 1919px) 669px, (min-width: 1920px) and (max-width: 2199px) 735px, (min-width: 2200px) 1186px"
+                        data-description="Nunc id semper leo. Cras dictum vulputate libero, nec dictum felis. Etiam rhoncus viverra velit ut mollis. Sed consectetur accumsan turpis, sed semper erat mattis eu2@@@@2"
+                    />
                     <img src="images/4k+/gallery1/pizza-block2_gallery3.jpeg" srcset="images/smartphone/gallery1/pizza-block2_gallery3.jpg 210w, 
                          images/tablets/gallery1/pizza-block2_gallery3.jpg 390w,
                          images/laptops/gallery1/pizza-block2_gallery3.jpg 500w,
                          images/NormalPC/gallery1/pizza-block2_gallery3.jpg 669w,
                          images/FullHD2K/gallery1/pizza-block2_gallery3.jpg 735w,
-                         images/4k+/gallery1/pizza-block2_gallery3.jpg 1186w" 
-                         sizes="(max-width: 599px) 210px, (min-width: 600px) and (max-width: 900px) 390px, (min-width: 901px) and (max-width: 1359px) 500px, (min-width: 1360px) and (max-width: 1919px) 669px, (min-width: 1920px) and (max-width: 2199px) 735px, (min-width: 2200px) 1186px" 
-                         data-description="Nunc id semper leo. Cras dictum vulputate libero, nec dictum felis. Etiam rhoncus viverra velit ut mollis. Sed consectetur accumsan turpis, sed semper erat mattis eu3333"/>
+                         images/4k+/gallery1/pizza-block2_gallery3.jpg 1186w" sizes="(max-width: 599px) 210px, (min-width: 600px) and (max-width: 900px) 390px, (min-width: 901px) and (max-width: 1359px) 500px, (min-width: 1360px) and (max-width: 1919px) 669px, (min-width: 1920px) and (max-width: 2199px) 735px, (min-width: 2200px) 1186px"
+                        data-description="Nunc id semper leo. Cras dictum vulputate libero, nec dictum felis. Etiam rhoncus viverra velit ut mollis. Sed consectetur accumsan turpis, sed semper erat mattis eu3333"
+                    />
                 </div>
 
-                
+
             </div>
-            <p id="desc">Nunc id semper leo. Cras dictum vulputate libero, nec dictum felis. Etiam rhoncus viverra velit ut mollis. Sed consectetur accumsan turpis, sed semper erat mattis eu</p>
+            <p id="desc">Nunc id semper leo. Cras dictum vulputate libero, nec dictum felis. Etiam rhoncus viverra velit ut mollis. Sed
+                consectetur accumsan turpis, sed semper erat mattis eu</p>
         </div>
     </div>
     <div class="block3">
         <div class="fade"></div>
         <div class="menu">
-                <div class="menuitem">
-                    <h1>Category 1</h1>
-                    <ul class="slider">
-                        <li>
-                            <p class="item">Item 1</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 2</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 3</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 4</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 5</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 6</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 7</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 8</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 9</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 10</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 11</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 12</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 13</p>
-                            <p class="price">10$</p>
-                        </li>
-                        <li>
-                            <p class="item">Item 14</p>
-                            <p class="price">10$</p>
-                        </li>
-                    </ul>
-                    <p class="textarr"><</p>
-                    <p class="textarr">></p> 
-                </div>
-            
-            <div class="menuitem">
-                <h1>Category 2</h1>
-                <ul>
-                    <li>
-                        <p class="item">Item 1</p>
-                        <p class="price">10$</p>
+            <div class="menuitem menu-category-hidden" style="display: none;">
+                <h1 class="menu-title-position">Category 4</h1>
+                <ul class="slider list-group">
+                    <li class="list-group-item unused-never-use-menu" style="display: none">
+                        <p class="item menu-name-input">Item 1</p>
+                        <p class="price menu-name-price">10$</p>
                     </li>
-                    <li>
-                        <p class="item">Item 2</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 3</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 4</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 5</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 6</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 7</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 8</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 9</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 10</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 11</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 12</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 13</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 14</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 15</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 16</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 17</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 18</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 19</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 20</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 21</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 22</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 23</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 24</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 25</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 26</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 27</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 28</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 29</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 30</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 31</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 32</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 33</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 34</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 35</p>
-                        <p class="price">10$</p>
+                    <li class="list-group-item" style="display: none">
+                        <div class="add-new-menu"></div>
                     </li>
                 </ul>
-                <p class="textarr"><</p>
-                <p class="textarr">></p> 
+                <p class="textarr">
+                    <</p>
+                        <p class="textarr">></p>
             </div>
-            <div class="menuitem">
-                <h1>Category 3</h1>
-                <ul>
-                    <li>
-                        <p class="item">Item 1</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 2</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 3</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 4</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 5</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 6</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 7</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 8</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 9</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 10</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 11</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 12</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 13</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 14</p>
-                        <p class="price">10$</p>
-                    </li>
-                </ul>
-                <p class="textarr"><</p>
-                <p class="textarr">></p> 
-            </div>
-            <div class="menuitem">
-                <h1>Category 4</h1>
-                <ul>
-                    <li>
-                        <p class="item">Item 1</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 2</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 3</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 4</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 5</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 6</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 7</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 8</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 9</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 10</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 11</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 12</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 13</p>
-                        <p class="price">10$</p>
-                    </li>
-                    <li>
-                        <p class="item">Item 14</p>
-                        <p class="price">10$</p>
-                    </li>
-                </ul>
-                <p class="textarr"><</p>
-                <p class="textarr">></p> 
-            </div>
-            </div>
+            <div class="add-new-category-button"></div>
+        </div>
     </div>
     <div class="block4">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo vel purus interdum ultrices. Suspendisse sit amet aliquam sem. Pellentesque vel nibh nisl. Nulla sed neque sit amet quam ultricies porttitor at vitae mauris. Donec nec magna et nisl ullamcorper mattis sodales at est. Aliquam iaculis scelerisque sem, eu faucibus justo dictum quis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis et risus tortor</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo vel purus interdum ultrices. Suspendisse sit
+            amet aliquam sem. Pellentesque vel nibh nisl. Nulla sed neque sit amet quam ultricies porttitor at vitae mauris.
+            Donec nec magna et nisl ullamcorper mattis sodales at est. Aliquam iaculis scelerisque sem, eu faucibus justo
+            dictum quis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis et
+            risus tortor</p>
         <img id="active" src="images/4k+/gallery2/restaurant-block4_gallery1.jpg" srcset="images/smartphone/gallery2/restaurant-block4_gallery1.jpg 440w,
              images/tablets/gallery2/restaurant-block4_gallery1.jpg 586w,
              images/laptops/gallery2/restaurant-block4_gallery1.jpg 884w,
              images/NormalPC/gallery2/restaurant-block4_gallery1.jpg 1248w,
              images/FullHD2K/gallery2/restaurant-block4_gallery1.jpg 1430w,
-             images/4k+/gallery2/restaurant-block4_gallery1.jpg 1800w" 
-                         sizes="(max-width: 599px) 440px, (min-width: 600px) and (max-width: 900px) 586px, (min-width: 901px) and (max-width: 1359px) 884px, (min-width: 1360px) and (max-width: 1919px) 1248px, (min-width: 1920px) and (max-width: 2199px) 1430px, (min-width: 2200px) 1800px"  />
+             images/4k+/gallery2/restaurant-block4_gallery1.jpg 1800w" sizes="(max-width: 599px) 440px, (min-width: 600px) and (max-width: 900px) 586px, (min-width: 901px) and (max-width: 1359px) 884px, (min-width: 1360px) and (max-width: 1919px) 1248px, (min-width: 1920px) and (max-width: 2199px) 1430px, (min-width: 2200px) 1800px"
+        />
 
         <img src="images/4k+/gallery2/restaurant-block4_gallery2.jpg" srcset="images/smartphone/gallery2/restaurant-block4_gallery2.jpg 440w,
              images/tablets/gallery2/restaurant-block4_gallery2.jpg 586w,
              images/laptops/gallery2/restaurant-block4_gallery2.jpg 884w,
              images/NormalPC/gallery2/restaurant-block4_gallery2.jpg 1248w,
              images/FullHD2K/gallery2/restaurant-block4_gallery2.jpg 1430w,
-             images/4k+/gallery2/restaurant-block4_gallery2.jpg 1800w"
-             sizes="(max-width: 599px) 440px, (min-width: 600px) and (max-width: 900px) 586px, (min-width: 901px) and (max-width: 1359px) 884px, (min-width: 1360px) and (max-width: 1919px) 1248px, (min-width: 1920px) and (max-width: 2199px) 1430px, (min-width: 2200px) 1800px" />
+             images/4k+/gallery2/restaurant-block4_gallery2.jpg 1800w" sizes="(max-width: 599px) 440px, (min-width: 600px) and (max-width: 900px) 586px, (min-width: 901px) and (max-width: 1359px) 884px, (min-width: 1360px) and (max-width: 1919px) 1248px, (min-width: 1920px) and (max-width: 2199px) 1430px, (min-width: 2200px) 1800px"
+        />
 
         <img src="images/4k+/gallery2/restaurant-block4_gallery3.jpg" srcset="images/smartphone/gallery2/restaurant-block4_gallery3.jpg 440w,
              images/tablets/gallery2/restaurant-block4_gallery3.jpg 586w,
              images/laptops/gallery2/restaurant-block4_gallery3.jpg 884w,
              images/NormalPC/gallery2/restaurant-block4_gallery3.jpg 1248w,
              images/FullHD2K/gallery2/restaurant-block4_gallery3.jpg 1430w,
-             images/4k+/gallery2/restaurant-block4_gallery3.jpg 1800w"
-             sizes="(max-width: 599px) 440px, (min-width: 600px) and (max-width: 900px) 586px, (min-width: 901px) and (max-width: 1359px) 884px, (min-width: 1360px) and (max-width: 1919px) 1248px, (min-width: 1920px) and (max-width: 2199px) 1430px, (min-width: 2200px) 1800px" />
+             images/4k+/gallery2/restaurant-block4_gallery3.jpg 1800w" sizes="(max-width: 599px) 440px, (min-width: 600px) and (max-width: 900px) 586px, (min-width: 901px) and (max-width: 1359px) 884px, (min-width: 1360px) and (max-width: 1919px) 1248px, (min-width: 1920px) and (max-width: 2199px) 1430px, (min-width: 2200px) 1800px"
+        />
 
 
     </div>
@@ -453,7 +182,7 @@
         <div class="boxes">
             <div class="boxmsg">
                 <h1>Contact</h1>
-				<?php
+                <?php
 					if(isset($_POST['button']))
 					{
 						$fName = $_POST['firstName'];
@@ -468,31 +197,31 @@
 						}
 					}
 				?>
-                <form method="POST">
-                    <div class="input">
-                        <p>First Name</p>
-                        <input name="firstName" type="text" required />
-                    </div>
-                    <div class="input">
-                        <p>Last Name</p>
-                        <input name="lastName" type="text" required />
-                    </div>
-                    <div class="input">
-                        <p>E-mail</p>
-                        <input name="mail" type="email" required />
-                    </div>
-                    <div class="input">
-                        <p>Topic</p>
-                        <input name="topic" type="text" required />
-                    </div>
-                    <div class="input">
-                        <p>Message</p>
-                        <textarea name="val" required></textarea>
-                    </div>
-                    <div class="input">
-                        <input name="button" type="submit" value="SEND" />
-                    </div>
-                </form>
+                    <form method="POST">
+                        <div class="input">
+                            <p>First Name</p>
+                            <input name="firstName" type="text" required />
+                        </div>
+                        <div class="input">
+                            <p>Last Name</p>
+                            <input name="lastName" type="text" required />
+                        </div>
+                        <div class="input">
+                            <p>E-mail</p>
+                            <input name="mail" type="email" required />
+                        </div>
+                        <div class="input">
+                            <p>Topic</p>
+                            <input name="topic" type="text" required />
+                        </div>
+                        <div class="input">
+                            <p>Message</p>
+                            <textarea name="val" required></textarea>
+                        </div>
+                        <div class="input">
+                            <input name="button" type="submit" value="SEND" />
+                        </div>
+                    </form>
             </div>
             <div class="boxmsg">
                 <div class="map"></div>
@@ -507,18 +236,18 @@
     </div>
 
     <div id="dialog" title="Logowanie" data-dialog="true">
-		<p class="validateTips">Aby otrzymać dostep do panelu administratora musisz się zalogować</p>
-		<p class="validateTips error"></p>
+        <p class="validateTips">Aby otrzymać dostep do panelu administratora musisz się zalogować</p>
+        <p class="validateTips error"></p>
 
-		<form id="login_form">
-			<fieldset>
-				<label for="login">Login</label>
-				<input type="text" name="login" id="login" class="text ui-widget-content ui-corner-all">
-				<label for="password">Password</label>
-				<input type="password" name="password" id="password" class="text ui-widget-content ui-corner-all">
-			</fieldset>
-		</form>
-	</div>
+        <form id="login_form">
+            <fieldset>
+                <label for="login">Login</label>
+                <input type="text" name="login" id="login" class="text ui-widget-content ui-corner-all">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="text ui-widget-content ui-corner-all">
+            </fieldset>
+        </form>
+    </div>
 
     <script type="text/javascript">
         /*
@@ -537,9 +266,10 @@
         var blockArrow = false;
         var firstSrcImg = {};
         var dialog;
-        $(window).resize(function () { location.reload(); }); //Reload page after resize because 
+        $(window).resize(function () { location.reload(); }); //Reload page after resize 
         $(document).ready(function () {
             setSettings().then(function () {
+                loadMenuItems();
                 mapLoad();
                 swipeMenuItems();
                 swipeMenuItemsData();
@@ -794,7 +524,6 @@
            
         }
 
-
         /*
             Function Name: swipeMenuItems
             Arguments: 0
@@ -803,12 +532,13 @@
         function swipeMenuItems()
         {
             var saveMenuItems = new Array();
-            saveMenuItems[0] = $(".menuitem"); //All elements .menuitem
+            saveMenuItems[0] = $(".menuitem:not('.menu-category-hidden')").not(".unused-never-use-menu"); //All elements .menuitem
             saveMenuItems[1] = 1; //Current page
-            saveMenuItems[2] = $(".menuitem:visible"); //Visible elements .menuitem
+            saveMenuItems[2] = $(".menuitem:visible:not('.menu-category-hidden')"); //Visible elements .menuitem
             var minIndex = saveMenuItems[2].length * saveMenuItems[1];
+            console.log(saveMenuItems);
             if ($(".menuitem").find(":hidden").not("script").length > 0) { //if any hidden .menuitem exists
-
+               
                 //Next menu items
                 $(".fade").on("swiperight", function (ev) { 
                     saveMenuItems[2] = $(".menuitem:visible");
@@ -837,8 +567,6 @@
                 });
             }
         }
-
-        
 
         /*
             Function Name: nextMenuItemPage
@@ -924,6 +652,12 @@
                 }
             });
             return minLen;
+        }
+
+        function loadMenuItems() {
+            menuLoadAll().then(function(i__) {
+                console.log(i__);
+            });
         }
     </script>
    

@@ -6,7 +6,8 @@ RequirePath::include_();
 $title = isset($_POST['title']) ? ($_POST['title']) : null;
 $response = array(
 	'complete' => false,
-	'allowed' => false
+	'allowed' => false,
+	'object' => null
 );
 if($title != null)
 {
@@ -17,7 +18,7 @@ if($title != null)
 			$settings = array(
 				'title' => $title
 			);
-			$menu_category = MenuCategoryManager::create($settings);
+			$response['object'] = MenuCategoryManager::create($settings);
 			$response['complete'] = true;	
 		}
 	}

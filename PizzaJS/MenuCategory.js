@@ -4,15 +4,28 @@ function menuCategoryHandle() {
     });
 
     $("body").on("click", '.menu-title-position-cancel-edit', function () {
-        menuCategoryCancelEdit($(this));
+        menuCategoryCancelEdit($(this), true);
     });
 
     $("body").on("click", '.menu-title-position-save-edit', function () {
         menuCategorySaveEdit($(this));
     });
 
-    $("body").on("click", ".add-menu-category", function() {
+    $("body").on("click", ".add-menu-category", function () {
         menuCategoryAdd($(document), true);
+    });
+
+    $("body").on("click", ".remove-menu-category-button", function () {
+        $(this).siblings(".remove-menucategory-content").first().fadeIn(300);
+    });
+
+    $("body").on('click', ".no-remove-menucategory", function () {
+        $(this).parents(".remove-menucategory-content").first().fadeOut(300);
+    });
+
+    $("body").on("click", ".remove-menucategory", function () {
+        let elementToRemove = $(this).parents(".global-menu-root").first();
+        menuCategoryRemove(elementToRemove);
     });
 
     menuLoadAll();
@@ -20,27 +33,37 @@ function menuCategoryHandle() {
 }
 
 function menuLoadAll() {
-    menuCategoryAjaxLoad("*", function(data) {
-        $(data['objects']).each(function() {
-            let e = menuCategoryAdd($(document));
-            $(e).find(".menu-title-position").text(this['title']);
-			$(e).find("ul.list-group").first().attr("data-categoryID", this['ID']);
-            console.log(this);
-            menuItemLoad($(e).find("ul.list-group").first(), this['ID']);
+    return new Promise(function(resolve) {
+        var actions = [];
+        menuCategoryAjaxLoad("*").then(function(data) {
+            actions = data['objects'].map(menuCategoryLoad);
+            resolve(actions);
         });
     });
-    
+}
+
+function menuCategoryLoad(o) {
+    return new Promise(function(resolve) {
+        let e = menuCategoryAdd($(document));
+        $(e).find(".menu-title-position").text(o['title']);
+        $(e).find("ul.list-group").first().attr("data-categoryID", o['ID']);
+        console.log(o);
+        menuItemLoad($(e).find("ul.list-group").first(), o['ID']);
+        resolve(o['ID']);
+    });
 }
 
 function menuCategoryEditMode(item) {
     let parentRoot = $(item).parents(".list-group-item").first();
     $(parentRoot).find(".edit-mode-menu-buttons").fadeIn(300);
     let menuTitleInput = $(parentRoot).find(".menu-title-position-input").first();
-
-    input_set_prev_value(menuTitleInput);
-
     let actuallyTitle = $(parentRoot).find(".menu-title-position").first();
     let titleText = $(actuallyTitle).text();
+
+    if (is_valid_menu_title(titleText)) 
+        input_set_prev_value(menuTitleInput, titleText);
+
+   
     $(menuTitleInput).val(titleText);
     $(actuallyTitle).css("display", "none");
     $(menuTitleInput).fadeIn(200);
@@ -52,22 +75,48 @@ function menuCategoryAdd(parent, AJAX) {
     $(cloneNewMenuCategory).removeClass("menu-category-hidden").insertBefore(addNewButton);
     $(cloneNewMenuCategory).fadeIn(300);
 
-    if(AJAX)
-    { 
+    if (AJAX) {
         let dataAdd = {
             title: $(cloneNewMenuCategory).find(".menu-title-position").text(),
         }
-        console.log(dataAdd);
-        menuCategoryAjaxAdd(dataAdd);
+        menuCategoryAjaxAdd(dataAdd, function (d) {
+            console.log(d);
+            $(cloneNewMenuCategory).find("ul").first().attr("data-categoryID", d['ID']);
+        });
     }
     return cloneNewMenuCategory;
 }
 
-function menuCategoryCancelEdit(item) {
+function menuCategoryRemove(element) {
+
+    $(element).fadeOut(400);
+    let pointCount = 0;
+    let categoriesArray = $(element).find("li");
+    console.log(categoriesArray.length);
+    function menuCategoryRemoveLoop()  //async -> sync
+    {
+        if (pointCount < categoriesArray.length - 1) {
+            if ($(categoriesArray[pointCount]).attr("data-itemid") !== undefined)
+                menuItemAjaxRemove($(categoriesArray[pointCount]).attr("data-itemid"));
+            pointCount++;
+            menuCategoryRemoveLoop();
+        }
+        else
+            menuCategoryAjaxRemove($(element).find("ul").first().attr("data-categoryid"));
+    }
+    menuCategoryRemoveLoop();
+}
+
+
+function menuCategoryCancelEdit(item, restore) {
     let parentRoot = $(item).parents(".list-group-item").first();
     let menuTitleInput = $(parentRoot).find(".menu-title-position-input");
     $(menuTitleInput).fadeOut(200);
-    restore_prev_value(menuTitleInput);
+    $(menuTitleInput).removeClass("text-danger");
+
+    if(restore)
+        restore_prev_value(menuTitleInput);
+
     $(parentRoot).find(".menu-title-position").fadeIn(200);
     $(parentRoot).find(".edit-mode-menu-buttons").fadeOut(100);
 }
@@ -75,12 +124,19 @@ function menuCategoryCancelEdit(item) {
 function menuCategorySaveEdit(item) {
     let parentRoot = $(item).parents(".list-group-item").first();
     let newTitle = $(parentRoot).find(".menu-title-position-input").attr("value");
-    $(parentRoot).find(".menu-title-position").text(newTitle);
-	menuCategoryAjaxUpdate($(parentRoot).parents("ul.list-group").attr("data-categoryid"), {"title": newTitle});
-    menuCategoryCancelEdit(item);
+    let inputTitle = $(parentRoot).find(".menu-title-position-input");
+    if(is_valid_menu_title(newTitle))
+    {
+        $(parentRoot).find(".menu-title-position").text(newTitle);
+        menuCategoryAjaxUpdate($(parentRoot).parents("ul.list-group").attr("data-categoryid"), { "title": newTitle });
+        menuCategoryCancelEdit(item, false);
+    }
+    else 
+        $(inputTitle).addClass('text-danger');
+    
 }
 
-function menuCategoryAjaxAdd(data) //data - {title: "title"}
+function menuCategoryAjaxAdd(data, callback) //data - {title: "title"}
 {
     $.ajax({
         url: "PizzaCore/AJAX/MenuCategory/menucategory_add.php",
@@ -91,26 +147,27 @@ function menuCategoryAjaxAdd(data) //data - {title: "title"}
             if (jsonRealData['alllowed'] === false) //shortcut !jsonRealData['allowed'] didn't work :(
                 ajax_is_allowed();
             else {
-                //error handle?
-
+                callback(jsonRealData['object']);
             }
         }
     });
 }
 
-function menuCategoryAjaxLoad(ID, callback) {
-    $.ajax({
-        url: "PizzaCore/AJAX/MenuCategory/menucategory_load.php",
-        type: "POST",
-        data: { ID: ID },
-        complete: function (jData) {
-            var jsonRealData = JSON.parse(jData['responseText']);
-            if (jsonRealData['alllowed'] === false)
-                ajax_is_allowed();
-            else {
-                callback(jsonRealData);
+function menuCategoryAjaxLoad(ID) {
+    return new Promise(function(resolve) {
+        $.ajax({
+            url: "PizzaCore/AJAX/MenuCategory/menucategory_load.php",
+            type: "POST",
+            data: { ID: ID },
+            complete: function (jData) {
+                var jsonRealData = JSON.parse(jData['responseText']);
+                if (jsonRealData['alllowed'] === false)
+                    ajax_is_allowed();
+                else {
+                    resolve(jsonRealData);
+                }
             }
-        }
+        });
     });
 }
 
@@ -136,7 +193,7 @@ function menuCategoryAjaxUpdate(ID, data) {
         type: "POST",
         data: { ID: ID, data: data },
         complete: function (jData) {
-			console.log(jData);
+            console.log(jData);
             var jsonRealData = JSON.parse(jData['responseText']);
             if (jsonRealData['alllowed'] === false)
                 ajax_is_allowed();

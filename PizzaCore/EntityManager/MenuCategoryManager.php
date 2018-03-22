@@ -10,6 +10,7 @@ class MenuCategoryManager implements IEntityManager {
 		$newMenu = new MenuCategory();
 		foreach($options as $k => $v)
 			$functionManager->excetuteBasicMethod($newMenu, "set", $k, $v);
+		$functionManager->excetuteBasicMethod($newMenu, "set", "ID", $queryBuild->getLastID());
 		return $newMenu;
 	}
 	

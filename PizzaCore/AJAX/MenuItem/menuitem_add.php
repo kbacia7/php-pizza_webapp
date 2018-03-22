@@ -8,7 +8,8 @@ $price = isset($_POST['price']) ? ($_POST['price']) : null;
 $parent = isset($_POST['parent']) ? ($_POST['parent']) : null;
 $response = array(
 	'complete' => false,
-	'allowed' => false
+	'allowed' => false,
+	'object' => null
 );
 
 if($title != null && $price != null && $parent != null)
@@ -22,7 +23,7 @@ if($title != null && $price != null && $parent != null)
 				'price' => $price,
 				'parent' => $parent
 			);
-			$menu_item = MenuItemManager::create($settings);
+			$response['object'] = MenuItemManager::create($settings);
 			$response['complete'] = true;	
 		}
 	}

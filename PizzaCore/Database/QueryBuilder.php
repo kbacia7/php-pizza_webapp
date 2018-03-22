@@ -2,6 +2,12 @@
 
 class QueryBuilder 
 {
+	public function getLastID()
+	{
+		$connection = DB::getConnection();
+		return $connection->lastInsertId();
+	}
+
 	public function insert($tableName, $options)
 	{
 		$connection = DB::getConnection();
