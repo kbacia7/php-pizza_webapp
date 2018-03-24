@@ -31,5 +31,11 @@ if($title != null && $price != null && $parent != null)
 		$response['complete'] = false;
 	}
 }
+else if($title == null)
+	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoTitle);
+else if($price == null)
+	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoPrice);
+else 
+	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoParent);
 echo json_encode($response);
 ?>

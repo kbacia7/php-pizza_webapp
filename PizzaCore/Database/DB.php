@@ -19,7 +19,6 @@ class DB
 				PDO::ATTR_PERSISTENT => true,
 				PDO::ERRMODE_EXCEPTION => true,
 				PDO::ATTR_ERRMODE => true
-				
 			));
 			
 			//Testing

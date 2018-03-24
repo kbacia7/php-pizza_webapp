@@ -24,5 +24,7 @@ if($ID != null)
 		$response['complete'] = false;
 	}
 }
+else
+	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuCategory_NoExists);
 echo json_encode($response);
 ?>

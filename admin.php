@@ -30,7 +30,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src="PizzaJS/MenuItem.js"></script>
     <script src="PizzaJS/MenuCategory.js"></script>
-    
+    <script src="PizzaJS/Error.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Your pizzeria</title>
 </head>

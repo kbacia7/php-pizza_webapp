@@ -26,5 +26,7 @@ if($title != null)
 		$response['complete'] = false;
 	}
 }
+else
+	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuCategoryCreate_NoTitle);
 echo json_encode($response);
 ?>

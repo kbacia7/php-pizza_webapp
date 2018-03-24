@@ -268,33 +268,35 @@
         var dialog;
         $(window).resize(function () { location.reload(); }); //Reload page after resize 
         $(document).ready(function () {
-            setSettings().then(function () {
-                loadMenuItems();
-                mapLoad();
-                swipeMenuItems();
-                swipeMenuItemsData();
-                
-                firstSrcImg["src"] = $(".block4 #active").attr("src");
-                firstSrcImg["srcset"] = $(".block4 #active").attr("srcset");
-                imgGallWidth = $("#active").width();
-                $("#desc").text($(".galleryimages img").first().attr("data-description"));
+            loadMenuItems().then(function () {   
+                setSettings().then(function () {
+                        
+                    mapLoad();
+                    swipeMenuItems();
+                    swipeMenuItemsData();
+                    
+                    firstSrcImg["src"] = $(".block4 #active").attr("src");
+                    firstSrcImg["srcset"] = $(".block4 #active").attr("srcset");
+                    imgGallWidth = $("#active").width();
+                    $("#desc").text($(".galleryimages img").first().attr("data-description"));
 
-                //Add last gallery image with first
-                var lGimg = $(".galleryimages img").last();
-                lGimg.css("margin-left", -imgGallWidth);
-                lGimg.insertBefore($(".galleryimages img").first());
+                    //Add last gallery image with first
+                    var lGimg = $(".galleryimages img").last();
+                    lGimg.css("margin-left", -imgGallWidth);
+                    lGimg.insertBefore($(".galleryimages img").first());
 
-                $("#right").click(function () {
-                    if (!blockArrow)
-                        gallSwipeLeft();
+                    $("#right").click(function () {
+                        if (!blockArrow)
+                            gallSwipeLeft();
+                    });
+
+                    $("#left").click(function () {
+                        if (!blockArrow)
+                            gallSwiperRight();
+                    });
+
+                    setTimeout(fadeImageGallery, secGallImg * 1000);
                 });
-
-                $("#left").click(function () {
-                    if (!blockArrow)
-                        gallSwiperRight();
-                });
-
-                setTimeout(fadeImageGallery, secGallImg * 1000);
             });
 
             dialog = $( "#dialog" ).dialog({
@@ -369,7 +371,7 @@
             Function load the settings (from the variables at the top of the code) and configures the web page
         */
         function setSettings() {
-            return new Promise(function (resolve, reject) { //Add .done()
+            return new Promise(function (resolve, reject) { 
                 if (FIXED_MENU_ITEM) {
                     var mL = minLength(".menuitem");
                     $(".menuitem ul li:not(:nth-of-type(-n+" + mL + "))").css("display", "none");
@@ -509,7 +511,7 @@
                $(".textarr").on("click", function (ev) {
                    if ($(ev.target).text() == ">")
                    {
-                       nextMenuItemPage($(ev.target).parent(".menuitem"));
+                       nextMenuItemPage($(ev.target).pareadmin.phpnt(".menuitem"));
                    }
                    else if ($(ev.target).text() == "<")
                    {
@@ -655,8 +657,13 @@
         }
 
         function loadMenuItems() {
-            menuLoadAll().then(function(i__) {
-                console.log(i__);
+            return new Promise(function(resolve) {
+                menuLoadAll().then(function(i__) {
+                    var end = Promise.all(i__);
+                    end.then(function() {
+                        resolve();
+                    });
+                });
             });
         }
     </script>
