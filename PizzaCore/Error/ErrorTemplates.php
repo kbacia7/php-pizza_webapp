@@ -48,7 +48,45 @@ class ErrorTemplates {
             "code" => ErrorTypes::ERROR,
             "title" => "Niepoprawny format ceny",
             "description" => "Wygląda na to że podany format ceny jest nieprawidłowy"
+        ),
+
+        ErrorTemplatesID::MenuItem_RemoveSuccess => array(
+            "code" => ErrorTypes::SUCCESS,
+            "title" => "Usunięto element menu",
+            "description" => "Pomyślnie usunięto element menu"
+        ),
+
+        ErrorTemplatesID::MenuItem_UpdateSuccess => array(
+            "code" => ErrorTypes::SUCCESS,
+            "title" => "Zaktualizowano element menu",
+            "description" => "Pomyślnie zaktualizowano element menu"
+        ),
+
+        ErrorTemplatesID::MenuItem_CreateSuccess => array(
+            "code" => ErrorTypes::SUCCESS,
+            "title" => "Utworzono element menu",
+            "description" => "Pomyślnie utworzono element menu"
+        ),
+
+        ErrorTemplatesID::MenuCategory_RemoveSuccess => array(
+            "code" => ErrorTypes::SUCCESS,
+            "title" => "Usunięto kategorię",
+            "description" => "Pomyślnie usunięto kategorię menu"
+        ),
+
+        ErrorTemplatesID::MenuCategory_UpdateSuccess => array(
+            "code" => ErrorTypes::SUCCESS,
+            "title" => "Zaktualizowano tytuł kategorii",
+            "description" => "Pomyślnie zaktualizowano tytuł kategorii menu"
+        ),
+
+        ErrorTemplatesID::MenuCategory_CreateSuccess => array(
+            "code" => ErrorTypes::SUCCESS,
+            "title" => "Utworzono kategorię",
+            "description" => "Pomyślnie utworzono kategorię menu"
         )
+
+
         
     );
 }

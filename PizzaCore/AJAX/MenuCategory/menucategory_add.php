@@ -24,6 +24,7 @@ if($title != null)
 				);
 				$response['object'] = MenuCategoryManager::create($settings);
 				$response['complete'] = true;	
+				ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuCategory_CreateSuccess);
 			}
 		}
 		catch(Exception $e) {

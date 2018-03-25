@@ -174,6 +174,7 @@
         errorsTemplatesAjaxLoad().then(function (templates) {
             console.log(templates);
             errorsTemplates = templates;
+            errorsLoopInit();
             hide_unused();
             ajax_is_allowed();
             menuItemHandle();

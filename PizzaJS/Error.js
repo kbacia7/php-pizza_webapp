@@ -16,6 +16,12 @@ var errorsId = {
     MenuItem_NoValidPrice: 7
 }
 
+function errorsLoopInit() {
+    setInterval(() => {
+        errorsHandle();        
+    }, 500);
+}
+
 function errorsHandle() {
     errorsAjaxLoad().then(function (errors) {
         $.each(errors, function () {

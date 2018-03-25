@@ -21,6 +21,7 @@ if($ID != null && $data != null)
 			{	
 				$response['complete'] = MenuCategoryManager::update($data, $ID);
 				$response['allowed'] = true;	
+				ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuCategory_UpdateSuccess);
 			}
 		}
 		catch(Exception $e) {

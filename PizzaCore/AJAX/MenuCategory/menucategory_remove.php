@@ -16,6 +16,7 @@ if($ID != null)
 		{
 			$response['complete'] = MenuCategoryManager::remove(array("ID" => $ID));
 			$response['allowed'] = true;
+			ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuCategory_RemoveSuccess);
 		}
 	}
 	catch(Exception $e) {

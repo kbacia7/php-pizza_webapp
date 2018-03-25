@@ -9,5 +9,11 @@ abstract class ErrorTemplatesId
     const MenuItem_NoExists = 5;
     const MenuItem_NoValidTitle = 6;
     const MenuItem_NoValidPrice = 7;
+    const MenuItem_UpdateSuccess = 8;
+    const MenuItem_RemoveSuccess = 9;
+    const MenuItem_CreateSuccess = 10;
+    const MenuCategory_UpdateSuccess = 11;
+    const MenuCategory_RemoveSuccess = 12;
+    const MenuCategory_CreateSuccess = 13;
 }
 ?>

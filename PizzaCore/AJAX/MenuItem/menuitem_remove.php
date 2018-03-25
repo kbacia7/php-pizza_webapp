@@ -15,7 +15,8 @@ if($ID != null)
 		if($_SESSION['userID'] !== null)
 		{	
 			$response['complete'] = MenuItemManager::remove(array("ID" => $ID));
-			$response['allowed'] = true;	
+			$response['allowed'] = true;
+			ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_RemoveSuccess);	
 		}
 	}
 	catch(Exception $e) {

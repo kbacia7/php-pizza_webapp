@@ -31,6 +31,7 @@ if($title != null && $price != null && $parent != null)
 				);
 				$response['object'] = MenuItemManager::create($settings);
 				$response['complete'] = true;	
+				ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_CreateSuccess);
 			}
 		}
 		catch(Exception $e) {

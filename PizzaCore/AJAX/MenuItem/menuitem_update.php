@@ -22,7 +22,8 @@ if($ID != null && $data != null)
 			if($_SESSION['userID'] !== null)
 			{	
 				$response['complete'] = MenuItemManager::update($data, $ID);
-				$response['allowed'] = true;	
+				$response['allowed'] = true;
+				ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_UpdateSuccess);	
 			}
 		}
 		catch(Exception $e) {
