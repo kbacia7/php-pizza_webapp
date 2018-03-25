@@ -64,18 +64,15 @@ function menuItemSaveEdit(item) {
         menuItemCancelEdit(item, false);
     }
     else if (!is_valid_menu_title(newTitle))
-        $(titleInput).addClass('text-danger');
+        displayError(errorsTemplates[errorsId.MenuItem_NoValidTitle]);
     else if (!is_valid_menu_price(newPrice))
-        $(priceInput).addClass('text-danger');
+        displayError(errorsTemplates[errorsId.MenuItem_NoValidPrice]);
 }
 
 function menuItemCancelEdit(item, restore) {
     let parentRoot = $(item).parents(".list-group-item").first();
     let inputTitleMenu = $(parentRoot).find(".menu-name-input");
     let inputPriceMenu = $(parentRoot).find(".menu-price-input");
-
-    $(inputTitleMenu).removeClass("text-danger");
-    $(inputPriceMenu).removeClass("text-danger");
 
     if (restore) {
         restore_prev_value(inputTitleMenu);

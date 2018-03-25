@@ -36,6 +36,18 @@ class ErrorTemplates {
             "code" => ErrorTypes::ERROR,
             "title" => "Element menu nie istnieje",
             "description" => "Wygląda na to że podany element menu nie istnieje"
+        ),
+
+        ErrorTemplatesID::MenuItem_NoValidTitle => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Niepoprawny tytuł",
+            "description" => "Wygląda na to że podany tytuł jest nieprawdiłowy"
+        ),
+
+        ErrorTemplatesID::MenuItem_NoValidPrice => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Niepoprawny format ceny",
+            "description" => "Wygląda na to że podany format ceny jest nieprawidłowy"
         )
         
     );

@@ -1,19 +1,29 @@
 <?php
 class ErrorHandler {
 
+	public static function createErrorsModels() {
+		foreach(ErrorTemplates::$templates as $k => $v)
+		{
+			ErrorTemplates::$templates[$k] = self::create(ErrorTemplates::$templates[$k]);
+		}
+	}
+
 	public static function createFromTemplate($templateID) {
-		return self::create(ErrorTemplates::$templates[$templateID]);
+		self::push(ErrorTemplates::$templates[$templateID]);
 	}
 
 	public static function create($options) {
-		if($_SESSION['errors'] == null)
-			$_SESSION['errors'] = array();
 		$functionManager = new FunctionManager();
 		$error = new ErrorMessage();
 		foreach($options as $k => $v)
 			$functionManager->excetuteBasicMethod($error, "set", $k, $v);
-		$_SESSION['errors'][] = $error;
 		return $error;
+	}
+
+	public static function push($error) {
+		if($_SESSION['errors'] == null)
+			$_SESSION['errors'] = array();
+		$_SESSION['errors'][] = $error;
 	}
 	
 	public static function remove($error) {

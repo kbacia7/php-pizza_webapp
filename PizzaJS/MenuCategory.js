@@ -112,7 +112,6 @@ function menuCategoryCancelEdit(item, restore) {
     let parentRoot = $(item).parents(".list-group-item").first();
     let menuTitleInput = $(parentRoot).find(".menu-title-position-input");
     $(menuTitleInput).fadeOut(200);
-    $(menuTitleInput).removeClass("text-danger");
 
     if(restore)
         restore_prev_value(menuTitleInput);
@@ -132,7 +131,7 @@ function menuCategorySaveEdit(item) {
         menuCategoryCancelEdit(item, false);
     }
     else 
-        $(inputTitle).addClass('text-danger');
+        displayError(errorsTemplates[errorsId.MenuItem_NoValidTitle]);
     
 }
 

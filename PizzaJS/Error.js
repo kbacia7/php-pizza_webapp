@@ -3,8 +3,18 @@ var errorTypes = {
   WARNING: 1,
   ERROR: 2  
 };
-
 var notifyColors = ['success', 'warning', 'danger', 'danger'];
+var errorsTemplates = [];
+var errorsId = {
+    MenuCategory_NoData: 0,
+    MenuCategory_NoTitle: 1,
+    MenuCategory_NoExists: 2,
+    MenuItem_NoData: 3,
+    MenuItem_NoTitle: 4,
+    MenuItem_NoExists: 5,
+    MenuItem_NoValidTitle: 6,
+    MenuItem_NoValidPrice: 7
+}
 
 function errorsHandle() {
     errorsAjaxLoad().then(function (errors) {
@@ -39,6 +49,19 @@ function errorsAjaxLoad() {
             complete: function (jData) {
                 var jsonRealData = JSON.parse(jData['responseText']);
                 resolve(jsonRealData['errors']);
+            }
+        });
+    });
+}
+
+function errorsTemplatesAjaxLoad() { 
+    return new Promise(function(resolve) {
+        $.ajax({
+            url: "PizzaCore/AJAX/Error/errortemplates.php",
+            type: "POST",
+            complete: function (jData) {
+                var jsonRealData = JSON.parse(jData['responseText']);
+                resolve(jsonRealData['templates']);
             }
         });
     });

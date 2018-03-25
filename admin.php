@@ -171,20 +171,23 @@
     </div>
     <script type="text/javascript">
     $(document).ready(function() {
-        hide_unused();
-        ajax_is_allowed();
-        menuItemHandle();
-        menuCategoryHandle();
+        errorsTemplatesAjaxLoad().then(function (templates) {
+            console.log(templates);
+            errorsTemplates = templates;
+            hide_unused();
+            ajax_is_allowed();
+            menuItemHandle();
+            menuCategoryHandle();
 
-        $(".nav-link").on("click", function() {
-            subsite_change($(this).attr("data-redirect"));
-        });
+            $(".nav-link").on("click", function() {
+                subsite_change($(this).attr("data-redirect"));
+            });
 
-        $("body").on('change', ".menu-price-input, .menu-name-input, .menu-title-position-input", function() {
-            $(this).attr("value", $(this).val());
-        });
+            $("body").on('change', ".menu-price-input, .menu-name-input, .menu-title-position-input", function() {
+                $(this).attr("value", $(this).val());
+            });
 
-        
+        })
     });
 
     function subsite_change(new_subsite)
