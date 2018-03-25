@@ -55,6 +55,7 @@ function menuCategoryLoad(o) {
 
 function menuCategoryEditMode(item) {
     let parentRoot = $(item).parents(".list-group-item").first();
+    $(parentRoot).find(".trash-icon").fadeOut(100);
     $(parentRoot).find(".edit-mode-menu-buttons").fadeIn(300);
     let menuTitleInput = $(parentRoot).find(".menu-title-position-input").first();
     let actuallyTitle = $(parentRoot).find(".menu-title-position").first();
@@ -117,6 +118,7 @@ function menuCategoryCancelEdit(item, restore) {
         restore_prev_value(menuTitleInput);
 
     $(parentRoot).find(".menu-title-position").fadeIn(200);
+    $(parentRoot).find(".trash-icon").fadeIn(300);
     $(parentRoot).find(".edit-mode-menu-buttons").fadeOut(100);
 }
 
