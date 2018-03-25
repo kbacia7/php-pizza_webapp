@@ -12,15 +12,22 @@ $response = array(
 
 if($ID != null && $data != null)
 {
-	try {	
-		if($_SESSION['userID'] !== null)
-		{	
-			$response['complete'] = MenuItemManager::update($data, $ID);
-			$response['allowed'] = true;	
+	if(!preg_match("/^[\\p{L},' ']+$/", $data['title']))
+		ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoValidTitle);
+	if(!preg_match("/^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/", $data['price']))
+		ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoValidPrice);
+	else 
+	{
+		try {	
+			if($_SESSION['userID'] !== null)
+			{	
+				$response['complete'] = MenuItemManager::update($data, $ID);
+				$response['allowed'] = true;	
+			}
 		}
-	}
-	catch(Exception $e) {
-		$response['complete'] = false;
+		catch(Exception $e) {
+			$response['complete'] = false;
+		}
 	}
 }
 else if($ID == null)

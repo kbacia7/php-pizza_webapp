@@ -11,19 +11,24 @@ $response = array(
 );
 if($title != null)
 {
-	try {	
-		if($_SESSION['userID'] !== null)
-		{
-			$response['allowed'] = true;
-			$settings = array(
-				'title' => $title
-			);
-			$response['object'] = MenuCategoryManager::create($settings);
-			$response['complete'] = true;	
+	if(!preg_match("/^[\\p{L},' ']+$/", $title))
+		ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoValidTitle);
+	else 
+	{
+		try {	
+			if($_SESSION['userID'] !== null)
+			{
+				$response['allowed'] = true;
+				$settings = array(
+					'title' => $title
+				);
+				$response['object'] = MenuCategoryManager::create($settings);
+				$response['complete'] = true;	
+			}
 		}
-	}
-	catch(Exception $e) {
-		$response['complete'] = false;
+		catch(Exception $e) {
+			$response['complete'] = false;
+		}
 	}
 }
 else

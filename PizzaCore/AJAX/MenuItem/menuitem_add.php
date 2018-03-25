@@ -14,21 +14,28 @@ $response = array(
 
 if($title != null && $price != null && $parent != null)
 {
-	try {	
-		if($_SESSION['userID'] !== null)
-		{
-			$response['allowed'] = true;
-			$settings = array(
-				'title' => $title,
-				'price' => $price,
-				'parent' => $parent
-			);
-			$response['object'] = MenuItemManager::create($settings);
-			$response['complete'] = true;	
+	if(!preg_match("/^[\\p{L},' ']+$/", $title))
+		ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoValidTitle);
+	if(!preg_match("/^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/", $price))
+		ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoValidPrice);
+	else 
+	{
+		try {	
+			if($_SESSION['userID'] !== null)
+			{
+				$response['allowed'] = true;
+				$settings = array(
+					'title' => $title,
+					'price' => $price,
+					'parent' => $parent
+				);
+				$response['object'] = MenuItemManager::create($settings);
+				$response['complete'] = true;	
+			}
 		}
-	}
-	catch(Exception $e) {
-		$response['complete'] = false;
+		catch(Exception $e) {
+			$response['complete'] = false;
+		}
 	}
 }
 else if($title == null)

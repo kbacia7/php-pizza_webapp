@@ -12,15 +12,20 @@ $response = array(
 
 if($ID != null && $data != null)
 {
-	try {	
-		if($_SESSION['userID'] !== null)
-		{	
-			$response['complete'] = MenuCategoryManager::update($data, $ID);
-			$response['allowed'] = true;	
+	if(!preg_match("/^[\\p{L},' ']+$/", $data['title']))
+		ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoValidTitle);
+	else
+	{
+		try {	
+			if($_SESSION['userID'] !== null)
+			{	
+				$response['complete'] = MenuCategoryManager::update($data, $ID);
+				$response['allowed'] = true;	
+			}
 		}
-	}
-	catch(Exception $e) {
-		$response['complete'] = false;
+		catch(Exception $e) {
+			$response['complete'] = false;
+		}
 	}
 }
 else if($ID == null)
