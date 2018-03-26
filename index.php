@@ -318,7 +318,6 @@
 								type: "POST",
 								data: serializeDataForm,
 								complete: function(jData) {
-									console.log(jData);
 									var jsonRealData = JSON.parse(jData['responseText']);
                                     if(jsonRealData['complete'])
                                     {
@@ -538,7 +537,6 @@
             saveMenuItems[1] = 1; //Current page
             saveMenuItems[2] = $(".menuitem:visible:not('.menu-category-hidden')"); //Visible elements .menuitem
             var minIndex = saveMenuItems[2].length * saveMenuItems[1];
-            console.log(saveMenuItems);
             if ($(".menuitem").find(":hidden").not("script").length > 0) { //if any hidden .menuitem exists
                
                 //Next menu items

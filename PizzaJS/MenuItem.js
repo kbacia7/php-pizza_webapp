@@ -17,7 +17,6 @@ function menuItemHandle() {
     });
 
     $("body").on('click', ".remove-menu", function () {
-        console.log("check~");
         let elementToRemove = $(this).parents(".list-group-item").first();
         menuItemRemove(elementToRemove);
     });
@@ -27,7 +26,6 @@ function menuItemHandle() {
     });
     
     $("body").on('click', '.remove-menu-item-button', function() {
-        console.log("check~");
         $(this).siblings(".remove-menu-content").first().fadeIn(300);
     });
 }
@@ -36,7 +34,6 @@ function menuItemHandle() {
 function menuItemLoad(parent, id) {
     menuItemAjaxLoad({ "parent": id }, function (data) {
         $(data['objects']).each(function () {
-            console.log(this);
             let e = menuItemAdd(parent);
             $(e).find(".menu-name-input").first().val(this['title']);
             $(e).find(".menu-name-input").first().text(this['title']);
@@ -58,8 +55,6 @@ function menuItemSaveEdit(item) {
     let newTitle = $(titleInput).val();
     if (is_valid_menu_title(newTitle) && is_valid_menu_price(newPrice)) {
         $(parentRoot).find(".badge").text(newPrice + "$");
-        console.log($(parentRoot).attr("data-itemID"));
-        console.log({"title": newTitle, "price": newPrice});
         menuItemAjaxUpdate($(parentRoot).attr("data-itemID"), {"title": newTitle, "price": newPrice});
         menuItemCancelEdit(item, false);
     }
@@ -124,7 +119,6 @@ function menuItemAdd(parent, ajaxSupport) {
             price: $(cloneNewMenu).find(".badge").text().slice(0, -1),
             parent: $(parent).attr("data-categoryID")
         }
-		console.log(parent);
         menuItemAjaxAdd(dataAdd, function(data) {
             $(cloneNewMenu).attr("data-itemid", data['ID']);
         });
@@ -139,14 +133,12 @@ function menuItemAjaxAdd(data, callback) //data - {title: "title", price: 3.95, 
         type: "POST",
         data: data,
         complete: function (jData) {
-			console.log(jData);
             var jsonRealData = JSON.parse(jData['responseText']);
             if (jsonRealData['alllowed'] === false)
                 ajax_is_allowed();
             else {
                 //error handle?
                callback(jsonRealData['object']);
-
             }
         }
     });
@@ -177,9 +169,6 @@ function menuItemAjaxRemove(ID) {
             var jsonRealData = JSON.parse(jData['responseText']);
             if (jsonRealData['alllowed'] === false)
                 ajax_is_allowed();
-            else {
-                console.log(jsonRealData);
-            }
         }
     });
 }
@@ -193,9 +182,6 @@ function menuItemAjaxUpdate(ID, data) {
             var jsonRealData = JSON.parse(jData['responseText']);
             if (jsonRealData['alllowed'] === false)
                 ajax_is_allowed();
-            else {
-                console.log(jsonRealData);
-            }
         }
     });
 }

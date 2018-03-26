@@ -50,7 +50,6 @@ function menuCategoryLoad(o) {
         let e = menuCategoryAdd($(document));
         $(e).find(".menu-title-position").text(o['title']);
         $(e).find("ul.list-group").first().attr("data-categoryID", o['ID']);
-        console.log(o);
         menuItemLoad($(e).find("ul.list-group").first(), o['ID']);
         resolve(o['ID']);
     });
@@ -101,7 +100,6 @@ function menuCategoryRemove(element) {
         paginatorPrevPage();
     let pointCount = 0;
     let categoriesArray = $(element).find("li");
-    console.log(categoriesArray.length);
     function menuCategoryRemoveLoop()  //async -> sync
     {
         if (pointCount < categoriesArray.length - 1) {
@@ -189,9 +187,6 @@ function menuCategoryAjaxRemove(ID) {
             var jsonRealData = JSON.parse(jData['responseText']);
             if (jsonRealData['alllowed'] === false)
                 ajax_is_allowed();
-            else {
-                console.log(jsonRealData);
-            }
         }
     });
 }
@@ -202,13 +197,9 @@ function menuCategoryAjaxUpdate(ID, data) {
         type: "POST",
         data: { ID: ID, data: data },
         complete: function (jData) {
-            console.log(jData);
             var jsonRealData = JSON.parse(jData['responseText']);
             if (jsonRealData['alllowed'] === false)
                 ajax_is_allowed();
-            else {
-                console.log(jsonRealData);
-            }
         }
     });
 }
