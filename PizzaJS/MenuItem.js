@@ -110,6 +110,7 @@ function menuItemEditMode(item) {
 function menuItemRemove(item) {
     $(item).fadeOut(400);
     menuItemAjaxRemove($(item).attr("data-itemid"));
+    $(item).remove();
 }
 
 function menuItemAdd(parent, ajaxSupport) {

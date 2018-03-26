@@ -28,8 +28,11 @@ function menuCategoryHandle() {
         menuCategoryRemove(elementToRemove);
     });
 
-    menuLoadAll();
-    console.log("handle");
+    return new Promise(function(resolve) {
+        menuLoadAll().then(() => {
+            resolve();
+        });
+    });
 }
 
 function menuLoadAll() {
@@ -74,23 +77,28 @@ function menuCategoryAdd(parent, AJAX) {
     let cloneNewMenuCategory = $(parent).find(".menu-category-hidden").clone();
     let addNewButton = $(parent).find(".add-new-category-button").first();
     $(cloneNewMenuCategory).removeClass("menu-category-hidden").insertBefore(addNewButton);
-    $(cloneNewMenuCategory).fadeIn(300);
-
     if (AJAX) {
         let dataAdd = {
             title: $(cloneNewMenuCategory).find(".menu-title-position").text(),
         }
         menuCategoryAjaxAdd(dataAdd, function (d) {
-            console.log(d);
             $(cloneNewMenuCategory).find("ul").first().attr("data-categoryID", d['ID']);
+            if(!paginatorIsLastPage())
+                paginatorMoveLastPage();
+            $(cloneNewMenuCategory).fadeIn(300);
         });
     }
+    else 
+        $(cloneNewMenuCategory).fadeIn(300);
     return cloneNewMenuCategory;
 }
 
 function menuCategoryRemove(element) {
 
     $(element).fadeOut(400);
+    $(element).remove();
+    if(paginatorCategoriesOnPage() == 0)
+        paginatorPrevPage();
     let pointCount = 0;
     let categoriesArray = $(element).find("li");
     console.log(categoriesArray.length);

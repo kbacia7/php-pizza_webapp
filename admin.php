@@ -31,6 +31,7 @@
     <script src="PizzaJS/MenuItem.js"></script>
     <script src="PizzaJS/MenuCategory.js"></script>
     <script src="PizzaJS/Error.js"></script>
+    <script src="PizzaJS/Paginator.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Your pizzeria</title>
 </head>
@@ -157,6 +158,13 @@
                                                     <button type="button" class="add-menu-category btn btn-primary btn-lg">+</button>
                                                 </div>
                                             </div>
+                                            <div class="w-100" style="padding-top: 1%">
+                                                <div class="d-flex h-100 justify-content-center align-items-center">
+                                                    <h3 class="position-absolute paginator-prev-page" style="top: 0; left: 0;"><</h3>
+                                                    <h3 class="position-absolute paginator-next-page" style="top: 0; right: 0;">></h3>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -171,24 +179,26 @@
     </div>
     <script type="text/javascript">
     $(document).ready(function() {
+        $("#waitDialog").modal('show');
         errorsTemplatesAjaxLoad().then(function (templates) {
-            console.log(templates);
             errorsTemplates = templates;
             errorsLoopInit();
             hide_unused();
             ajax_is_allowed();
             menuItemHandle();
-            menuCategoryHandle();
+            menuCategoryHandle().then(function() {
+                $("#waitDialog").modal('hide');
+                paginatorInit();
+                
+                $(".nav-link").on("click", function() {
+                    subsite_change($(this).attr("data-redirect"));
+                });
 
-            $(".nav-link").on("click", function() {
-                subsite_change($(this).attr("data-redirect"));
+                $("body").on('change', ".menu-price-input, .menu-name-input, .menu-title-position-input", function() {
+                    $(this).attr("value", $(this).val());
+                });
             });
-
-            $("body").on('change', ".menu-price-input, .menu-name-input, .menu-title-position-input", function() {
-                $(this).attr("value", $(this).val());
-            });
-
-        })
+        });
     });
 
     function subsite_change(new_subsite)
@@ -232,7 +242,6 @@
 
     function ajax_is_allowed()
     {
-        $("#waitDialog").modal('show');
         $.ajax({
 		    url: "PizzaCore/AJAX/User/login_allowed.php",
             type: "POST",
@@ -240,9 +249,7 @@
 		    complete: function(jData) {
                 var jsonRealData = JSON.parse(jData['responseText']);
                 if(!jsonRealData['allow'])
-                    window.location = "index.php";
-                else 
-                    $("#waitDialog").modal('hide');
+                    window.location = "index.php";             
 			}
         });
     }
