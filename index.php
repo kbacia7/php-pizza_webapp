@@ -58,18 +58,17 @@
         }
     </style>
     <link rel="icon" href="images/pizzaicon.png">
+    <link rel="stylesheet" href="PizzaFonts/fonts.css"/>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="rwd.css" />
-    <link href="https://fonts.googleapis.com/css?family=Courgette|Montserrat|Roboto|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.0/css/swiper.min.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3BFv03xXDii2HzbPZraRkHvSEnb9rCMg">
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="jquery-3-2-1.js"></script>
     <script src="jquery-mobile.js"></script>
     <!-- Only touch support -->
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
-        crossorigin="anonymous">
+    <script src="jquery-ui.min.js">
         </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="PizzaJS/MenuItem.js"></script>

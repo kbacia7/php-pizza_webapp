@@ -2,31 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <style>
-		[data-dialog="true"] label, input { display:block; }
-		[data-dialog="true"] input.text { margin-bottom:12px; width:95%; padding: .4em; }
-		[data-dialog="true"] fieldset { padding:0; border:0; }
-		[data-dialog="true"] h1 { font-size: 1.2em; margin: .6em 0; }
-		[data-dialog="true"] div#users-contain { width: 350px; margin: 20px 0; }
-		[data-dialog="true"] div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
-		[data-dialog="true"]div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
-		[data-dialog="true"] .ui-dialog .ui-state-error { padding: .3em; }
-		[data-dialog="true"] .validateTips { border: 1px solid transparent; padding: 0.3em; }
-		[data-dialog="true"] .error { color: #FF0000; font-weight: bold; }
-	</style>
+    <link rel="stylesheet" href="PizzaFonts/fonts.css"/>
     <link rel="icon" href="images/pizzaicon.png">
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="rwd.css" />
-    <script src="https://code.jquery.com/jquery-3.2.1.js"
-            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-            crossorigin="anonymous"></script>
+    <script src="jquery-3-2-1.js"></script>
     <link rel="stylesheet" href="animate.css" />
     <script src="bootstrap-notify.js"></script>
     <script src="xregexp.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Courgette|Montserrat|Roboto|Pacifico" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src="PizzaJS/MenuItem.js"></script>
     <script src="PizzaJS/MenuCategory.js"></script>
