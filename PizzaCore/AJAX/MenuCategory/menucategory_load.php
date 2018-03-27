@@ -12,13 +12,10 @@ $response = array(
 if($ID != null)
 {
 	try {	
-		if($_SESSION['userID'] !== null)
-		{
-			$response['allowed'] = true;
-			$loadedMenuCategory = MenuCategoryManager::load(($ID !== "*") ? $ID : null);
-			$response['complete'] = true;	
-			$response['objects'] = ($loadedMenuCategory);
-		}
+		$response['allowed'] = true;
+		$loadedMenuCategory = MenuCategoryManager::load(($ID !== "*") ? $ID : null);
+		$response['complete'] = true;	
+		$response['objects'] = ($loadedMenuCategory);
 	}
 	catch(Exception $e) {
 		$response['complete'] = false;

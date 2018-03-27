@@ -74,6 +74,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="PizzaJS/MenuItem.js"></script>
     <script src="PizzaJS/MenuCategory.js"></script>
+    <script src="PizzaJS/Paginator.js"></script>
     <title>Your pizzeria</title>
 </head>
 
@@ -138,9 +139,9 @@
                         <div class="add-new-menu"></div>
                     </li>
                 </ul>
-                <p class="textarr">
+                <p class="textarr paginator-prev-page" style="float: left">
                     <</p>
-                        <p class="textarr">></p>
+                        <p class="textarr paginator-next-page" style="float: right">></p>
             </div>
             <div class="add-new-category-button"></div>
         </div>
@@ -250,17 +251,7 @@
     </div>
 
     <script type="text/javascript">
-        /*
-            OPTIONS
-
-            FIXED_MENU_ITEM = All .menuitem have the same height (true/false)
-            SHOW_HELP_ARROWS = Shows the arrows to change the .menuitem pages (true/false)
-            secGallimg = Second to change image in .block4 (int)
-        */
-        var FIXED_MENU_ITEM = true, SHOW_HELP_ARROWS = true;
         var secGallImg = 3;
-        
-        var savedData = new Array(); //[Menu item ID] => [0] = Full HTML Code (with hidden <li> etc) [1] = HTML code removed elements after swipe [2] = HTML code didnt display normally [3] = Page number
         var imgGallWidth = 0;
         var slideImg = 1;
         var blockArrow = false;
@@ -268,13 +259,19 @@
         var dialog;
         $(window).resize(function () { location.reload(); }); //Reload page after resize 
         $(document).ready(function () {
-            loadMenuItems().then(function () {   
-                setSettings().then(function () {
-                        
+            loadMenuItems().then(function () {       
                     mapLoad();
                     swipeMenuItems();
                     swipeMenuItemsData();
-                    
+                    paginatorInit({
+                        "globalselector": ".menuitem:has([data-categoryid])",
+                        "globalselectorname": ".menuitem",
+                        "visiblesel": "[data-categoryid]:visible",
+                        "nextpage": "RandomStringDisableUseIt",
+                        "prevpage": "RandomStringDisableUseIt",
+                        "element": "[data-categoryid]"
+                    });
+
                     firstSrcImg["src"] = $(".block4 #active").attr("src");
                     firstSrcImg["srcset"] = $(".block4 #active").attr("srcset");
                     imgGallWidth = $("#active").width();
@@ -296,7 +293,6 @@
                     });
 
                     setTimeout(fadeImageGallery, secGallImg * 1000);
-                });
             });
 
             dialog = $( "#dialog" ).dialog({
@@ -361,30 +357,6 @@
                 position: pizzeria,
                 map: map,
                 title: 'Your pizzeria' //Pizzeria name
-            });
-        }
-
-        /*
-            Function Name: setSettings 
-            Arguments: 0
-            Function load the settings (from the variables at the top of the code) and configures the web page
-        */
-        function setSettings() {
-            return new Promise(function (resolve, reject) { 
-                if (FIXED_MENU_ITEM) {
-                    var mL = minLength(".menuitem");
-                    $(".menuitem ul li:not(:nth-of-type(-n+" + mL + "))").css("display", "none");
-                    resolve();
-                }
-
-                if (SHOW_HELP_ARROWS) {
-                    $(".menuitem").each(function () {
-                        if ($(this).find("ul > li").last().css("display") == "none") {
-                            $(this).find(".textarr").css("display", "inline-block");
-                        }
-                    });
-                    resolve();
-                }
             });
         }
 
@@ -484,24 +456,11 @@
         */
         function swipeMenuItemsData() {
             if ($(".menuitem > ul > li").find(":hidden").not("script").length > 0) {
-                var heightMenuItem = $(".textarr:visible").parent(".menuitem").outerHeight();
                 var specialID = 0;
                 $(".menuitem").each(function () {
                     $(this).attr("data-specialMenuID", specialID);
-                    var ulThis = $(this).find("ul");
-                    savedData[specialID] = new Array();
-                    savedData[specialID][0] = ulThis.find("li");
-                    savedData[specialID][1] = $(ulThis).find("li").filter(function () {
-                        return $(this).css('display').toLowerCase().indexOf('none') == -1
-                    });
-                    savedData[specialID][2] = $(ulThis).find("li").filter(function () {
-                        return $(this).css('display').toLowerCase().indexOf('none') > -1
-                    });
-                    savedData[specialID][3] = 1;
                     specialID++;
                 });
-
-               $(".menuitem").css("height", heightMenuItem);
               
                $(".menuitem").on("swiperight", function (ev) {
                    nextMenuItemPage(ev.target);
@@ -510,7 +469,7 @@
                $(".textarr").on("click", function (ev) {
                    if ($(ev.target).text() == ">")
                    {
-                       nextMenuItemPage($(ev.target).pareadmin.phpnt(".menuitem"));
+                       nextMenuItemPage($(ev.target).parent(".menuitem"));
                    }
                    else if ($(ev.target).text() == "<")
                    {
@@ -521,8 +480,7 @@
                $(".menuitem").on("swipeleft", function (ev) {
                    prevMenuItemPage(ev.target);
                });
-            }
-           
+            }        
         }
 
         /*
@@ -532,38 +490,16 @@
         */
         function swipeMenuItems()
         {
-            var saveMenuItems = new Array();
-            saveMenuItems[0] = $(".menuitem:not('.menu-category-hidden')").not(".unused-never-use-menu"); //All elements .menuitem
-            saveMenuItems[1] = 1; //Current page
-            saveMenuItems[2] = $(".menuitem:visible:not('.menu-category-hidden')"); //Visible elements .menuitem
-            var minIndex = saveMenuItems[2].length * saveMenuItems[1];
             if ($(".menuitem").find(":hidden").not("script").length > 0) { //if any hidden .menuitem exists
                
                 //Next menu items
                 $(".fade").on("swiperight", function (ev) { 
-                    saveMenuItems[2] = $(".menuitem:visible");
-                    if ($(ev.target).children(".menu") != undefined && $(".menuitem:hidden").length > 0) {
-                        var showItems = saveMenuItems[2];
-                        showItems.fadeOut("fast", function () { 
-                            var elToPage = saveMenuItems[0].slice(minIndex, minIndex + saveMenuItems[2].length);
-                            elToPage.fadeIn("fast"); 
-                        });
-                        saveMenuItems[1]++;
-                    }
+                    paginatorNextPage();
                 });
 
                 //Prev menu items
                 $(".fade").on("swipeleft", function (ev) {
-                    saveMenuItems[2] = $(".menuitem:visible");                 
-                    minIndex = (saveMenuItems[1] - 1) * saveMenuItems[2].length;
-                    if ($(ev.target).children(".menu") != undefined && saveMenuItems[1] > 1) {
-                        var showItems = saveMenuItems[2];
-                        showItems.fadeOut("fast", function () {
-                            var elToPage = saveMenuItems[0].slice(minIndex - saveMenuItems[2].length, minIndex);
-                            elToPage.fadeIn("fast");
-                        });     
-                        saveMenuItems[1]--;
-                    }
+                    paginatorPrevPage();
                 });
             }
         }
@@ -577,7 +513,7 @@
         function nextMenuItemPage(ev) {
             var ulThis = $(ev).find("ul");
             var menuItemID = $(ev).attr("data-specialMenuID");
-            if (savedData[menuItemID] != undefined) {
+           /* if (savedData[menuItemID] != undefined) {
                 var minIndexElements = savedData[menuItemID][3] * savedData[menuItemID][1].length;
                 if (minIndexElements < savedData[menuItemID][0].length) {
                     ulThis.fadeOut("fast", function () {
@@ -588,7 +524,7 @@
                         ulThis.fadeIn("fast");
                     });
                 }
-            }
+            }*/
         }
 
          /*
@@ -600,7 +536,7 @@
         function prevMenuItemPage(ev) {
             var ulThis = $(ev).find("ul");
             var menuItemID = $(ev).attr("data-specialMenuID");
-            if (savedData[menuItemID] != undefined) {
+        /*    if (savedData[menuItemID] != undefined) {
                 var minIndexElements = (savedData[menuItemID][3] - 1) * savedData[menuItemID][1].length;
                 if (savedData[menuItemID][3] > 1) {
                     ulThis.fadeOut("fast", function () {
@@ -611,7 +547,7 @@
                         ulThis.fadeIn("fast");
                     });
                 }
-            }
+            }*/
         }
 
         /*

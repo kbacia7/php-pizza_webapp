@@ -188,7 +188,14 @@
             menuItemHandle();
             menuCategoryHandle().then(function() {
                 $("#waitDialog").modal('hide');
-                paginatorInit();
+                paginatorInit({
+                    "globalselector": ".global-menu-root:has([data-categoryid])",
+                    "globalselectorname": ".global-menu-root",
+                    "visiblesel": "[data-categoryid]:visible",
+                    "nextpage": ".paginator-next-page",
+                    "prevpage": ".paginator-prev-page",
+                    "element": "[data-categoryid]"
+                });
                 
                 $(".nav-link").on("click", function() {
                     subsite_change($(this).attr("data-redirect"));

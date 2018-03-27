@@ -1,14 +1,28 @@
 var paginatorPage = 1;
+var paginatorGlobalElements = null;
+var paginatorGlobalElName="";
+var paginatorIsVisibleSel = "";
+var paginatorNextPageSel = "";
+var paginatorPrevPageSel = "";
+var paginatorElement = "";
 
-function paginatorInit() {
-    $("[data-categoryid]").parents(".global-menu-root").css("display", "none");
+function paginatorInit(settings) {
+    paginatorGlobalElements = settings['globalselector'];
+    paginatorGlobalElName = settings['globalselectorname'];
+    paginatorIsVisibleSel = settings['visiblesel'];
+    paginatorNextPageSel = settings['nextpage'];
+    paginatorPrevPageSel = settings['prevpage'];
+    paginatorElement = settings['element'];
+
+    $(paginatorGlobalElements).css("display", "none");
+    //$("[data-categoryid]").parents(".global-menu-root").css("display", "none");
     paginatorShowCategories(1, 3);
 
-    $("body").on("click", ".paginator-next-page", () => {
+    $("body").on("click", paginatorNextPageSel/*".paginator-next-page"*/, () => {
         paginatorNextPage();
     });
 
-    $("body").on("click", ".paginator-prev-page", () => {
+    $("body").on("click", paginatorPrevPageSel, () => {
         paginatorPrevPage();
     });
 }
@@ -19,13 +33,13 @@ function paginatorPrevPage() {
 }
 
 function paginatorNextPage() {
-    if(paginatorPage * 3 < $("[data-categoryid]").length)
+    if(paginatorPage * 3 < $(paginatorElement).length)
         paginatorSetPage(paginatorPage + 1);
 }
 
 function paginatorSetPage(page) {
-    let categories = $("[data-categoryid]").length;
-    $("[data-categoryid]").parents(".global-menu-root").css("display", "none");
+    let categories = $(paginatorElement).length;
+    $(paginatorGlobalElements).css("display", "none");
     paginatorPage = page;
     let minID = ((paginatorPage - 1) * 3) + 1;
     let maxID = paginatorPage * 3;
@@ -35,22 +49,22 @@ function paginatorSetPage(page) {
 
 function paginatorShowCategories(a, b) {
     let categoryNumber = 1;
-    let categories = $("[data-categoryid]");
+    let categories = $(paginatorElement);
     $.each(categories, function() {
         if(categoryNumber >= a && categoryNumber <= b)
-            $(this).parents(".global-menu-root").fadeIn(1000);
+            $(this).parents(paginatorGlobalElName).fadeIn(1000);
         categoryNumber++;
     });
 }
 
 function paginatorMoveLastPage() {
-    let categories = $("[data-categoryid]").length;
+    let categories = $(paginatorElement).length;
     let lastPage = Math.ceil(categories / 3);
     paginatorSetPage(lastPage);
 }
 
 function paginatorIsLastPage() {
-    let categories = $("[data-categoryid]").length;
+    let categories = $(paginatorElement).length;
     let lastPage = Math.ceil(categories / 3);
     if(paginatorPage == lastPage)
         return true;
@@ -59,5 +73,5 @@ function paginatorIsLastPage() {
 }
 
 function paginatorCategoriesOnPage() {
-    return $("[data-categoryid]:visible").length;
+    return $(paginatorIsVisibleSel/*"[data-categoryid]:visible"*/).length;
 }
