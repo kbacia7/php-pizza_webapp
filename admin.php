@@ -57,7 +57,7 @@
                                 <a class="nav-link" data-redirect="menu_manager" href="#" id="menu">Menu</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-redirect="home" href="#">Galeria</a>
+                                <a class="nav-link" data-redirect="gallery_manager" href="#">Galeria</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-redirect="home" href="#">Kontakt</a>
@@ -87,6 +87,7 @@
                                     </div>
                                     <div id="menu_manager"> <!-- MENU --> </div>
                                     <div id="config_manager"></div>
+                                    <div id="gallery_manager"></div>
                                 </div>
                             </div>
                         </div>
@@ -101,6 +102,7 @@
     $(document).ready(function() {
         $("#config_manager").load("admin_config.php");
         $("#menu_manager").load("admin_menu.php");
+        $("#gallery_manager").load("admin_gallery.php");
         $("#waitDialog").modal('show');
         errorsTemplatesAjaxLoad().then(function (templates) {
             errorsTemplates = templates;
