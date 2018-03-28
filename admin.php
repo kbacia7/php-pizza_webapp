@@ -63,7 +63,7 @@
                                 <a class="nav-link" data-redirect="mail_manager" href="#">Kontakt <span class="badge badge-pill badge-danger">9</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-redirect="home" href="#">Powiadomienia</a>
+                                <a class="nav-link" data-redirect="notification_manager" href="#">Powiadomienia</a>
                             </li>
                         </ul>
                     </div>
@@ -89,6 +89,7 @@
                                     <div id="config_manager"></div>
                                     <div id="gallery_manager"></div>
                                     <div id="mail_manager"></div>
+                                    <div id="notification_manager"></div>
                                 </div>
                             </div>
                         </div>
@@ -105,6 +106,7 @@
         $("#menu_manager").load("admin_menu.php");
         $("#gallery_manager").load("admin_gallery.php");
         $("#mail_manager").load("admin_contact.php");
+        $("#notification_manager").load("admin_notification.php");
         $("#waitDialog").modal('show');
         errorsTemplatesAjaxLoad().then(function (templates) {
             errorsTemplates = templates;
