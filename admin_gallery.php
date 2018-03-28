@@ -66,7 +66,7 @@
     <div class="row">
       <div class="col-2">
         <div class="position-absolute w-100 h-100 collapse" style="left: 0">
-          <div class="fade"></div>
+          <div class="fade_screen"></div>
           <div class="d-flex h-100 justify-content-center align-items-center">
             <div style="z-index: 3">
               <button type="button" class="btn btn-success"><i class="fas fa-pencil-alt"></i></button>

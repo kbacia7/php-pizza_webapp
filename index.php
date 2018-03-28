@@ -125,7 +125,7 @@
         </div>
     </div>
     <div class="block3">
-        <div class="fade"></div>
+        <div class="fade_screen"></div>
         <div class="menu">
             <div class="menuitem menu-category-hidden" style="display: none;">
                 <h1 class="menu-title-position">Category 4</h1>
@@ -178,7 +178,7 @@
 
     </div>
     <div class="block5">
-        <div class="fade"></div>
+        <div class="fade_screen"></div>
         <div class="boxes">
             <div class="boxmsg">
                 <h1>Contact</h1>
@@ -492,12 +492,12 @@
             if ($(".menuitem").find(":hidden").not("script").length > 0) { //if any hidden .menuitem exists
                
                 //Next menu items
-                $(".fade").on("swiperight", function (ev) { 
+                $(".fade_screen").on("swiperight", function (ev) { 
                     paginatorNextPage();
                 });
 
                 //Prev menu items
-                $(".fade").on("swipeleft", function (ev) {
+                $(".fade_screen").on("swipeleft", function (ev) {
                     paginatorPrevPage();
                 });
             }

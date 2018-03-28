@@ -46,7 +46,7 @@
             <div class="col-10">
                 <div class="card">
                     <div class="card-header">
-                        <ul class="nav nav-pills card-header-pills">
+                        <ul class="nav nav-pills card-header-pills list-cards-links">
                             <li class="nav-item">
                                 <a class="nav-link active" data-redirect="home" href="#">Strona główna</a>
                             </li>
@@ -60,10 +60,10 @@
                                 <a class="nav-link" data-redirect="gallery_manager" href="#">Galeria</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-redirect="home" href="#">Kontakt</a>
+                                <a class="nav-link" data-redirect="mail_manager" href="#">Kontakt <span class="badge badge-pill badge-danger">9</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-redirect="home" href="#">Powiadomienia <span class="badge badge-pill badge-danger">9</span></a>
+                                <a class="nav-link" data-redirect="home" href="#">Powiadomienia</a>
                             </li>
                         </ul>
                     </div>
@@ -88,6 +88,7 @@
                                     <div id="menu_manager"> <!-- MENU --> </div>
                                     <div id="config_manager"></div>
                                     <div id="gallery_manager"></div>
+                                    <div id="mail_manager"></div>
                                 </div>
                             </div>
                         </div>
@@ -103,6 +104,7 @@
         $("#config_manager").load("admin_config.php");
         $("#menu_manager").load("admin_menu.php");
         $("#gallery_manager").load("admin_gallery.php");
+        $("#mail_manager").load("admin_contact.php");
         $("#waitDialog").modal('show');
         errorsTemplatesAjaxLoad().then(function (templates) {
             errorsTemplates = templates;
@@ -121,7 +123,7 @@
                     "element": "[data-categoryid]"
                 });
                 
-                $(".nav-link").on("click", function() {
+                $(".list-cards-links .nav-link").on("click", function() {
                     subsite_change($(this).attr("data-redirect"));
                 });
 

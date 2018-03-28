@@ -191,7 +191,7 @@ html, body {
             margin: 0;
         }
 
-.fade {
+.fade_screen {
     background: #000;
     opacity: 0.64;
     height: 100%;
@@ -432,3 +432,8 @@ p.item:after {
 .popover {
     display: table !important;
 }
+
+.msg-contact:nth-child(odd) {
+    float: right;
+}
+
