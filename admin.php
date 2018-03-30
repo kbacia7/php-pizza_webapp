@@ -17,6 +17,7 @@
     <script src="PizzaJS/MenuItem.js"></script>
     <script src="PizzaJS/MenuCategory.js"></script>
     <script src="PizzaJS/Error.js"></script>
+    <script src="PizzaJS/Config.js"></script>
     <script src="PizzaJS/Paginator.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Your pizzeria</title>
@@ -114,6 +115,9 @@
             hide_unused();
             ajax_is_allowed();
             menuItemHandle();
+            configAjaxLoad().then(function (o) {
+                configSetForm(o);
+            });
             menuCategoryHandle().then(function() {
                 $("#waitDialog").modal('hide');
                 paginatorInit({

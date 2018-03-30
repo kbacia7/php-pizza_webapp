@@ -74,6 +74,7 @@
     <script src="PizzaJS/MenuItem.js"></script>
     <script src="PizzaJS/MenuCategory.js"></script>
     <script src="PizzaJS/Paginator.js"></script>
+    <script src="PizzaJS/Config.js"></script>
     <title>Your pizzeria</title>
 </head>
 
@@ -84,7 +85,7 @@
         </div>
     </div>
     <div class="block2">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo vel purus interdum ultrices. Suspendisse sit
+        <p id="block2-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo vel purus interdum ultrices. Suspendisse sit
             amet aliquam sem. Pellentesque vel nibh nisl. Nulla sed neque sit amet quam ultricies porttitor at vitae mauris.
             Donec nec magna et nisl ullamcorper mattis sodales at est</p>
         <div class="gallery">
@@ -146,7 +147,7 @@
         </div>
     </div>
     <div class="block4">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo vel purus interdum ultrices. Suspendisse sit
+        <p id="block4-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo vel purus interdum ultrices. Suspendisse sit
             amet aliquam sem. Pellentesque vel nibh nisl. Nulla sed neque sit amet quam ultricies porttitor at vitae mauris.
             Donec nec magna et nisl ullamcorper mattis sodales at est. Aliquam iaculis scelerisque sem, eu faucibus justo
             dictum quis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis et
@@ -262,6 +263,9 @@
                     mapLoad();
                     swipeMenuItems();
                     swipeMenuItemsData();
+                    configAjaxLoad().then(function(o) {
+                        configSetData(o);
+                    });
                     paginatorInit({
                         "globalselector": ".menuitem:has([data-categoryid])",
                         "globalselectorname": ".menuitem",
