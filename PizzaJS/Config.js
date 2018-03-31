@@ -1,7 +1,14 @@
+function configHandle() {
+  $("body").on("click", "#configSaveButton", function() {
+    configSave();
+  });
+}
+
 function configSetForm(configObject) {
   $("#inputName").val(configObject['title']);
   $("#inputLocation").val(configObject['position']);
   $("#inputMoney").val(configObject['cashChar']);
+  $("#inputNumber").val(configObject['contactNumber']);
   $("#inputGallery1").val(configObject['descriptionGallery1']);
   $("#inputGallery2").val(configObject['descriptionGallery2']);
   document.title = configObject['title'];
@@ -25,6 +32,23 @@ function configSetData(configObject) {
   });
 }
 
+function configSave() {
+  var file_data = $('#inputIcon').prop('files')[0];   
+  var form_data = new FormData();                  
+  form_data.append('file', file_data);
+  let d = {
+    title:  $("#inputName").val(),
+    position: $("#inputLocation").val(),
+    cashChar: $("#inputMoney").val(),
+    descriptionGallery1: $("#inputGallery1").val(),
+    descriptionGallery2: $("#inputGallery2").val(),
+    contactNumber: $("#inputNumber").val()
+  }
+  configAjaxUpdate(d);
+  if(file_data !== undefined)
+    configUploadIcon(form_data);
+}
+
 function configAjaxLoad() {
   return new Promise(function(resolve) {
     $.ajax({
@@ -41,14 +65,30 @@ function configAjaxLoad() {
   });
 }
 
-function configAjaxUpdate(data) {
+function configUploadIcon(icon) {
   $.ajax({
-    url: "PizzaCore/AJAX/Config/config_update.php",
+    url: "PizzaCore/AJAX/Config/config_icon.php",
     type: "POST",
-    data: { ID: 1, data: data },
+    data: icon,
+    cache: false,
+    contentType: false,
+    processData: false,
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
       if (jsonRealData["alllowed"] === false) ajax_is_allowed();
     }
   });
 }
+
+function configAjaxUpdate(data) {
+  $.ajax({
+    url: "PizzaCore/AJAX/Config/config_update.php",
+    type: "POST",
+    data: { data: data },
+    complete: function(jData) {
+      var jsonRealData = JSON.parse(jData["responseText"]);
+      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+    }
+  });
+}
+

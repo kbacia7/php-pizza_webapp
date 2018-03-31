@@ -114,6 +114,7 @@
             errorsLoopInit();
             hide_unused();
             ajax_is_allowed();
+            configHandle();
             menuItemHandle();
             configAjaxLoad().then(function (o) {
                 configSetForm(o);

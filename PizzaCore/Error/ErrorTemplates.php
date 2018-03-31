@@ -84,6 +84,12 @@ class ErrorTemplates {
             "code" => ErrorTypes::SUCCESS,
             "title" => "Utworzono kategorię",
             "description" => "Pomyślnie utworzono kategorię menu"
+        ),
+
+        ErrorTemplatesID::Config_UpdateSuccess => array(
+            "code" => ErrorTypes::SUCCESS,
+            "title" => "Zaktualizowano konfigurację",
+            "description" => "Pomyślnie zaktualizowano konfigurację"
         )
 
 

@@ -1,6 +1,6 @@
 <h4 class="text-center">Konfiguracja</h4>
 <p class="m-0 text-center">W tym miejscu możesz skonfigurować swoją aplikację internetową! Do dzieła!</p>
-<form>
+<form id="configSaveForm">
   <div class="form-group row">
     <label for="inputName" class="col-sm-2 col-form-label">Nazwa pizzeri</label>
     <div class="col-sm-10">
@@ -11,6 +11,12 @@
     <label for="inputLocation" class="col-sm-2 col-form-label">Współrzędne pizzerii</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="inputLocation" placeholder="51.801391, 1.118050">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputNumber" class="col-sm-2 col-form-label">Numer telefonu</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputNumber" placeholder="(44) 732-235-134">
     </div>
   </div>
   <div class="form-group row">
@@ -36,7 +42,7 @@
   <div class="form-group row">
     <div class="col-12">
       <div class="text-center">
-        <button type="submit" class="btn btn-primary">Zapisz</button>
+        <button id="configSaveButton" class="btn btn-primary">Zapisz</button>
       </div>
     </div>
   </div>

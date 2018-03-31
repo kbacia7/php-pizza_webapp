@@ -15,5 +15,7 @@ abstract class ErrorTemplatesId
     const MenuCategory_UpdateSuccess = 11;
     const MenuCategory_RemoveSuccess = 12;
     const MenuCategory_CreateSuccess = 13;
+    const Config_UpdateSuccess = 14;
+
 }
 ?>
