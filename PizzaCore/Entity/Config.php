@@ -2,6 +2,7 @@
 class Config implements JsonSerializable {
 	private $title;
 	private $position;
+	private $contactNumber;
 	private $cashChar;
 	private $descriptionGallery1;
 	private $descriptionGallery2;
@@ -16,6 +17,11 @@ class Config implements JsonSerializable {
 	public function getPosition()
 	{
 		return $this->position;
+	}
+	
+	public function getContactNumber()
+	{
+		return $this->contactNumber;
 	}
 	
 	public function getCashChar()
@@ -53,6 +59,11 @@ class Config implements JsonSerializable {
 		return $this->position = $_position;
 	}
 	
+	public function setContactNumber($_number)
+	{
+		return $this->contactNumber = $_number;
+	}
+	
 	public function setCashChar($_cc)
 	{
 		return $this->cashChar = $_cc;
@@ -74,6 +85,7 @@ class Config implements JsonSerializable {
         return array(
 			"title" => $this->getTitle(),
 			"position" => $this->getPosition(),
+			"contactNumber" => $this->getContactNumber(),
 			"cashChar" => $this->getCashChar(),
 			"descriptionGallery1" => $this->getDescriptionGallery1(),
 			"descriptionGallery2" => $this->getDescriptionGallery2(),

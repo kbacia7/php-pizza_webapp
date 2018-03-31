@@ -4,12 +4,25 @@ function configSetForm(configObject) {
   $("#inputMoney").val(configObject['cashChar']);
   $("#inputGallery1").val(configObject['descriptionGallery1']);
   $("#inputGallery2").val(configObject['descriptionGallery2']);
+  document.title = configObject['title'];
 }
 
 function configSetData(configObject) {
   $("#block2-description").text(configObject['descriptionGallery1']);
   $("#block4-description").text(configObject['descriptionGallery2']);
+  $("#header-title").text(configObject['title']);
+  $("#contact-number").text(configObject['contactNumber']);
   document.title = configObject['title'];
+  $.ajax({
+    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ configObject['position'].trim() + "&key=AIzaSyBSsAa2ivZ1xAMJgfAMBlvCtcLjEAdiWb4",
+    type: "GET",
+    complete: function(jData) {
+        let jsonRealData = JSON.parse(jData["responseText"]);
+        let address = jsonRealData['results'][0]['formatted_address'].split(",");
+        $("#street-location").text(address[0]);
+        $("#city-location").text(address[1]);
+    }
+  });
 }
 
 function configAjaxLoad() {

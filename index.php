@@ -81,7 +81,7 @@
 <body>
     <div class="block1">
         <div class="header">
-            <h1>asYour pizzeria</h1>
+            <h1 id="header-title">asYour pizzeria</h1>
         </div>
     </div>
     <div class="block2">
@@ -228,9 +228,9 @@
                 <div class="map"></div>
 
                 <div class="contact">
-                    <p>Arts District 9</p>
-                    <p>Los Angeles</p>
-                    <p>(48)939 923 111</p>
+                    <p id="street-location">Arts District 9</p>
+                    <p id="city-location">Los Angeles</p>
+                    <p id="contact-number">(48)939 923 111</p>
                 </div>
             </div>
         </div>
@@ -260,11 +260,11 @@
         $(window).resize(function () { location.reload(); }); //Reload page after resize 
         $(document).ready(function () {
             loadMenuItems().then(function () {       
-                    mapLoad();
                     swipeMenuItems();
                     swipeMenuItemsData();
                     configAjaxLoad().then(function(o) {
                         configSetData(o);
+                        mapLoad(o['title'], o['position'].split(","));
                     });
                     paginatorInit({
                         "globalselector": ".menuitem:has([data-categoryid])",
@@ -350,8 +350,8 @@
             Arguments: 0
             This function loads the google map and insert in element with class .map (the default is div.map in block 5)
         */
-        function mapLoad() {
-            var pizzeria = new google.maps.LatLng(34.046919, -118.256752); //Pizzeria position on Google Map
+        function mapLoad(title, location_) {
+            var pizzeria = new google.maps.LatLng(parseFloat(location_[0]), parseFloat(location_[1])); //Pizzeria position on Google Map
             var map = new google.maps.Map(document.getElementsByClassName('map')[0], { //Create Map
                 zoom: 17,
                 center: pizzeria
@@ -359,7 +359,7 @@
             var marker = new google.maps.Marker({ //Add marker to map
                 position: pizzeria,
                 map: map,
-                title: 'Your pizzeria' //Pizzeria name
+                title: title //Pizzeria name
             });
         }
 
