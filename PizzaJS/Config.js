@@ -15,6 +15,16 @@ function configSetForm(configObject) {
 }
 
 function configSetData(configObject) {
+  var OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "a5e6cf68-890a-4add-94b6-97f470fa200d",
+      autoRegister: false,
+      notifyButton: {
+        enable: true,
+      },
+    });
+  });
   $("#block2-description").text(configObject['descriptionGallery1']);
   $("#block4-description").text(configObject['descriptionGallery2']);
   $("#header-title").text(configObject['title']);

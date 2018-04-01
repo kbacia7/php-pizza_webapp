@@ -19,6 +19,7 @@
     <script src="PizzaJS/Error.js"></script>
     <script src="PizzaJS/Config.js"></script>
     <script src="PizzaJS/Paginator.js"></script>
+    <script src="PizzaJS/Notification.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Your pizzeria</title>
 </head>
@@ -116,6 +117,7 @@
             ajax_is_allowed();
             configHandle();
             menuItemHandle();
+            notificationHandle();
             configAjaxLoad().then(function (o) {
                 configSetForm(o);
             });

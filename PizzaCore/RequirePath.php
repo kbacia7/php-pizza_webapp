@@ -28,6 +28,7 @@ class RequirePath {
 		require_once(__ROOT__ . "Error/ErrorTemplatesId.php");
 		require_once(__ROOT__ . "Error/ErrorTemplates.php");
 
+		require_once(__ROOT__ . "Notification/NotificationManager.php");
 		require_once(__ROOT__ . "Utility/RandomString.php");
 
 		ErrorHandler::createErrorsModels();

@@ -21,7 +21,7 @@ class ErrorHandler {
 	}
 
 	public static function push($error) {
-		if($_SESSION['errors'] == null)
+		if(!array_key_exists('errors', $_SESSION))
 			$_SESSION['errors'] = array();
 		$_SESSION['errors'][] = $error;
 	}
@@ -33,7 +33,7 @@ class ErrorHandler {
 	}
 
 	public static function load() {
-		$errors = ($_SESSION['errors'] != null) ? ($_SESSION['errors']) : null;
+		$errors = (array_key_exists('errors', $_SESSION)) ? ($_SESSION['errors']) : null;
 		$_SESSION['errors'] = array();
 		return $errors;
 	}

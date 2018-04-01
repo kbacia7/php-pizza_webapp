@@ -12,7 +12,7 @@
   <div class="form-group">
     <div class="col-12">
       <div class="text-center">
-        <button type="submit" class="btn btn-primary">Wyślij</button>
+        <button id="notificationSend" class="btn btn-primary">Wyślij</button>
       </div>
     </div>
   </div>

@@ -90,6 +90,12 @@ class ErrorTemplates {
             "code" => ErrorTypes::SUCCESS,
             "title" => "Zaktualizowano konfigurację",
             "description" => "Pomyślnie zaktualizowano konfigurację"
+        ),
+
+        ErrorTemplatesId::Notification_SendSuccess => array(
+            "code" => ErrorTypes::SUCCESS,
+            "title" => "Wysłano powiadomienie",
+            "description" => "Pomyślnie wysłano powiadomienie"
         )
 
 

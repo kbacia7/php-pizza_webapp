@@ -18,8 +18,8 @@ var errorsId = {
 
 function errorsLoopInit() {
     setInterval(() => {
-        errorsHandle();        
-    }, 500);
+      //  errorsHandle();        
+    }, 5000);
 }
 
 function errorsHandle() {

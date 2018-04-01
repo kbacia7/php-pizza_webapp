@@ -70,6 +70,7 @@
     <!-- Only touch support -->
     <script src="jquery-ui.min.js">
         </script>
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="PizzaJS/MenuItem.js"></script>
     <script src="PizzaJS/MenuCategory.js"></script>
