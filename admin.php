@@ -20,6 +20,7 @@
     <script src="PizzaJS/Config.js"></script>
     <script src="PizzaJS/Paginator.js"></script>
     <script src="PizzaJS/Notification.js"></script>
+    <script src="PizzaJS/Gallery.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Your pizzeria</title>
 </head>
@@ -118,6 +119,7 @@
             configHandle();
             menuItemHandle();
             notificationHandle();
+            galleryHandle();
             configAjaxLoad().then(function (o) {
                 configSetForm(o);
             });

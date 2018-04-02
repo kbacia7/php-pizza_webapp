@@ -8,7 +8,9 @@ class RequirePath {
 		require_once(__ROOT__ . "Entity/User.php");
 		require_once(__ROOT__ . "Entity/MenuCategory.php");
 		require_once(__ROOT__ . "Entity/MenuItem.php");
+		require_once(__ROOT__ . "Entity/GalleryItem.php");
 		require_once(__ROOT__ . "Error/ErrorMessage.php");
+		
 		
 		require_once(__ROOT__ . "PizzaException.php");
 	
@@ -21,6 +23,7 @@ class RequirePath {
 		require_once(__ROOT__ . "EntityManager/MenuItemManager.php");
 		require_once(__ROOT__ . "EntityManager/MenuCategoryManager.php");
 		require_once(__ROOT__ . "EntityManager/UserManager.php");
+		require_once(__ROOT__ . "EntityManager/GalleryManager.php");
 		require_once(__ROOT__ . "EntityManager/ConfigManager.php");
 
 		require_once(__ROOT__ . "Error/ErrorTypes.php");

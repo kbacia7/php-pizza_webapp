@@ -1,4 +1,4 @@
-<div class="modal" id="editGallery" tabindex="-1" role="dialog" aria-labelledby="editGalleryLabel" aria-hidden="true">
+<div class="modal fade" id="editGallery" tabindex="-1" role="dialog" aria-labelledby="editGalleryLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<div class="modal" id="addGallery" tabindex="-1" role="dialog" aria-labelledby="addGalleryLabel" aria-hidden="true">
+<div class="modal fade" id="addGallery" tabindex="-1" role="dialog" aria-labelledby="addGalleryLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -46,7 +46,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
-        <button type="button" class="btn btn-primary">Zapisz</button>
+        <button type="button" class="add-new-gallery-item btn btn-primary">Zapisz</button>
       </div>
     </div>
   </div>
@@ -64,13 +64,13 @@
 </div>
 <div class="col-12">
     <div class="row">
-      <div class="col-2">
-        <div class="position-absolute w-100 h-100 collapse" style="left: 0">
+      <div class="col-2 imageslot never-used-gallery-slot collapse">
+        <div class="screen-gallery-hide position-absolute w-100 h-100 collapse" style="left: 0">
           <div class="fade_screen"></div>
           <div class="d-flex h-100 justify-content-center align-items-center">
             <div style="z-index: 3">
-              <button type="button" class="btn btn-success"><i class="fas fa-pencil-alt"></i></button>
-              <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+              <button type="button" class="btn btn-success gallery-edit"><i class="fas fa-pencil-alt"></i></button>
+              <button type="button" class="btn btn-danger gallery-remove"><i class="fas fa-trash"></i></button>
             </div>
           </div>
         </div>
