@@ -39,8 +39,8 @@
             <input type="file" class="form-control-file" id="inputGalleryFile"/>
           </div>
           <div class="form-group">
-            <label for="inputGalleryDescription" class="col-form-label">Opis dodawanego zdjęcia</label>
-            <textarea class="form-control" id="inputGalleryDescription"></textarea>
+            <label for="inputGalleryDescriptionCreate" class="col-form-label">Opis dodawanego zdjęcia</label>
+            <textarea class="form-control" id="inputGalleryDescriptionCreate"></textarea>
           </div>
         </form>
       </div>
@@ -57,8 +57,8 @@
 <div class="col-12 mt-3 mb-3">
   <div class="text-center">
     <div class="btn-group" role="group" aria-label="Galerie">
-      <button type="button" class="btn btn-secondary active">Pierwsza galeria</button>
-      <button type="button" class="btn btn-secondary">Druga galeria</button>
+      <button type="button" data-galleryID="1" class="btn btn-secondary active">Pierwsza galeria</button>
+      <button type="button" data-galleryID="2" class="btn btn-secondary">Druga galeria</button>
     </div>
   </div>
 </div>
