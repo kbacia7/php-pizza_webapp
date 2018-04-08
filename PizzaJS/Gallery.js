@@ -1,4 +1,5 @@
 let actuallyGalleryID = 1;
+let isAnyActive = [false, false];
 function galleryHandle() {
   $("body").on("mouseenter", ".imageslot", function() {
     $(this)
@@ -22,87 +23,143 @@ function galleryHandle() {
 
   $("body").on("click", ".gallery-edit", function() {
     $("#editGallery").modal("show");
+    $("#editGallery").attr("data-displayID", $(this).parents("[data-galleryItemID]").first().attr("data-galleryItemID"));
   });
 
   $("body").on("click", ".add-new-gallery-item", function() {
-    galleryAdd("", true);
+    $("#addGallery").modal("hide");
+    galleryAdd(null, true);
   });
 
+  $("body").on("click", "#galleryAddImg", function() {
+    $("#addGallery").modal("show");
+  });
 
-  $("body").on("click", "button[data-galleryID]", function () {
-      $("button[data-galleryID].active").removeClass("active");
-      $(this).addClass("active");
-      galleryChange($(this).attr("data-galleryID"));
-  })
+  $("body").on("click", "button[data-galleryID]", function() {
+    $("button[data-galleryID].active").removeClass("active");
+    $(this).addClass("active");
+    galleryChange($(this).attr("data-galleryID"));
+  });
+
+  $("body").on("click", "#galleryUpdateSave", function() {
+    $("#editGallery").modal("hide");
+    galleryUpdate($("[data-displayID]").attr("data-displayID"));
+  });
   galleryLoadAll();
 }
 
 function galleryLoadAll() {
-  galleryAjaxLoad("*", function(d) {
+  galleryAjaxLoad("*").then(function(d) {
     $.each(d["objects"], function() {
-      let u = document.location.origin + "/images/NormalPC/gallery1/" + this["path"];
-      let e = galleryAdd(u, undefined);
-      $(e).attr("data-galleryItemID", this["ID"]);
-      $(e).attr("data-galleryContainsID", this["galleryID"]);
-      if(this["galleryID"] != actuallyGalleryID)
-        $(e).addClass("collapse");
+      galleryAdd(this, undefined).then(function(rArray) {
+        let o = rArray[0];
+        let e = rArray[1];
+        if (o.galleryID != actuallyGalleryID) $(e).css("display", "none");
+      });
+    });
+  });
+}
+
+function galleryLoadAllHome() {
+  return new Promise(function(resolve) {
+    let promises = [];
+    galleryAjaxLoad("*").then(function (data) {
+      promises = data['objects'].map(galleryAddHome);
+      resolve(promises);
     });
   });
 }
 
 function galleryChange(ID) {
-    $("[data-galleryContainsID=" + actuallyGalleryID + "]").fadeOut(100);
-    $("[data-galleryContainsID=" + ID + "]").fadeIn(100);
-    actuallyGalleryID = ID;
+  $("[data-galleryContainsID=" + actuallyGalleryID + "]").css("display", "none");
+  $("[data-galleryContainsID=" + ID + "]").fadeIn(100);
+  actuallyGalleryID = ID;
 }
 
-function galleryAdd(imgurl, AJAX) {
-  let promiseWait = null;
-  if (AJAX) {
-    var file_data = $("#inputGalleryFile").prop("files")[0];
-    var form_data = new FormData();
-    form_data.append("file", file_data);
-    promiseWait = galleryAjaxUploadFile(form_data);
-    Promise.all([promiseWait]).then(function(fileName) {
-      imgurl = document.location.origin + "/images/NormalPC/gallery1/" + fileName;
-      let d = {
-        path: fileName.toString(),
-        description: $("#inputGalleryDescriptionCreate").val(),
-        galleryID: actuallyGalleryID
-      };
-      galleryAjaxAdd(d, () => {});
+function galleryUpdate(ID)
+{
+  galleryAjaxUpdate(ID, {description: $("#inputGalleryDescription").val()});
+}
+
+function galleryAdd(galleryObj, AJAX) {
+  return new Promise(function(resolve) {
+    let promiseWait = null;
+    if (AJAX) {
+      var file_data = $("#inputGalleryFile").prop("files")[0];
+      var form_data = new FormData();
+      form_data.append("file", file_data);
+      form_data.append("galleryID", actuallyGalleryID);
+      promiseWait = galleryAjaxUploadFile(form_data);
+      Promise.all([promiseWait]).then(function(fileName) {
+        
+        let d = {
+          path: fileName.toString(),
+          description: $("#inputGalleryDescriptionCreate").val(),
+          galleryID: actuallyGalleryID
+        };
+        galleryObj = d;
+        galleryAjaxAdd(d, () => {});
+      });
+    }
+    Promise.all([promiseWait]).then(function() {
+      let newGallery = $(".never-used-gallery-slot").clone();
+      let imgurl = document.location.origin + "/images/NormalPC/gallery" + galleryObj.galleryID +"/" + galleryObj.path;
+      $(newGallery).removeClass("never-used-gallery-slot");
+      $(newGallery).insertBefore($(".never-used-gallery-slot"));
+      $(newGallery)
+        .find("img")
+        .attr("src", imgurl);
+      $(newGallery).attr("data-galleryItemID", galleryObj.ID);
+      $(newGallery).attr("data-galleryContainsID", galleryObj.galleryID);
+      $(newGallery).fadeIn(1000);
+      resolve([galleryObj, newGallery]);
     });
-    $("#addGallery").modal('hide');
-  }
-  Promise.all([promiseWait]).then(function() {
-    let newGallery = $(".never-used-gallery-slot").clone();
-    $(newGallery).removeClass("never-used-gallery-slot");
-    $(newGallery).insertBefore($(".never-used-gallery-slot"));
-    $(newGallery)
-      .find("img")
-      .attr("src", imgurl);
-    $(newGallery).fadeIn(1000);
-    return newGallery;
   });
 }
 
+function galleryAddHome(galleryObj) {
+  return new Promise(function(resolve) {
+      let classStr = ".never-used-gallery-slot-g" + galleryObj.galleryID;
+      let newGallery = $(classStr).clone();
+      let imgurl = document.location.origin + "/images/NormalPC/gallery" + galleryObj.galleryID +"/" + galleryObj.path;
+      $(newGallery).removeClass(classStr.substr(1));
+      $(newGallery).insertBefore($(classStr));
+      let sImg = $(newGallery);
+      let aSrc = $(sImg).attr("src");
+      let nSrc = aSrc.replace(/\[FILENAME\]/g, galleryObj.path);
+      $(sImg).attr("src", nSrc);
+
+      aSrc = $(sImg).attr("srcset");
+      nSrc = aSrc.replace(/\[FILENAME\]/g, galleryObj.path);
+      $(sImg).attr("srcset", nSrc);
+      $(sImg).attr("data-description", galleryObj.description);
+      
+      if(isAnyActive[galleryObj.galleryID - 1])
+        $(sImg).removeAttr("id");
+      isAnyActive[galleryObj.galleryID - 1] = true;
+      resolve(sImg);
+    });
+}
+
 function galleryRemove(el) {
-  $(el).fadeOut(300);
+  $(el).css("display", "none");
   galleryAjaxRemove($(el).attr("data-galleryItemID"));
 }
 
-function galleryAjaxLoad(ID, callback) {
-  $.ajax({
-    url: "PizzaCore/AJAX/Gallery/gallery_load.php",
-    type: "POST",
-    data: { ID: ID },
-    complete: function(jData) {
-      var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
-      else {
-        callback(jsonRealData);
+function galleryAjaxLoad(ID) {
+  return new Promise(function(resolve) {
+    $.ajax({
+      url: "PizzaCore/AJAX/Gallery/gallery_load.php",
+      type: "POST",
+      data: { ID: ID },
+      complete: function(jData) {
+        var jsonRealData = JSON.parse(jData["responseText"]);
+        if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+        else {
+          resolve(jsonRealData);
+        }
       }
-    }
+    });
   });
 }
 
@@ -160,7 +217,7 @@ function galleryAjaxUploadFile(file) {
         var jsonRealData = JSON.parse(jData["responseText"]);
         if (jsonRealData["alllowed"] === false) ajax_is_allowed();
         else {
-          resolve(jsonRealData['filename']);
+          resolve(jsonRealData["filename"]);
         }
       }
     });

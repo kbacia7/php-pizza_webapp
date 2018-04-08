@@ -17,7 +17,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
-        <button type="button" class="btn btn-primary">Zapisz</button>
+        <button type="button" id="galleryUpdateSave" class="btn btn-primary">Zapisz</button>
       </div>
     </div>
   </div>
@@ -59,6 +59,7 @@
     <div class="btn-group" role="group" aria-label="Galerie">
       <button type="button" data-galleryID="1" class="btn btn-secondary active">Pierwsza galeria</button>
       <button type="button" data-galleryID="2" class="btn btn-secondary">Druga galeria</button>
+      <button type="button" id="galleryAddImg" class="btn btn-success">+</button>
     </div>
   </div>
 </div>
@@ -74,7 +75,7 @@
             </div>
           </div>
         </div>
-        <img src="https://www.google.pl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" class="img-fluid"/>
+        <img src="" class="img-fluid"/>
       </div>
   </div>
 </div>

@@ -75,6 +75,7 @@
     <script src="PizzaJS/MenuItem.js"></script>
     <script src="PizzaJS/MenuCategory.js"></script>
     <script src="PizzaJS/Paginator.js"></script>
+    <script src="PizzaJS/Gallery.js"></script>
     <script src="PizzaJS/Config.js"></script>
     <title>Your pizzeria</title>
 </head>
@@ -94,28 +95,20 @@
                 <img id="left" class="arrow" src="images/arrow.png" />
                 <img id="right" class="arrow" src="images/arrow.png" />
                 <div class="galleryimages">
-                    <img id="active" src="images/4k+/gallery1/pizza-block2_gallery1.jpeg" srcset="images/smartphone/gallery1/pizza-block2_gallery1.jpeg 210w, 
+                 <!--   <img id="active" src="images/4k+/gallery1/pizza-block2_gallery1.jpeg" srcset="images/smartphone/gallery1/pizza-block2_gallery1.jpeg 210w, 
                          images/tablets/gallery1/pizza-block2_gallery1.jpeg 390w,
                          images/laptops/gallery1/pizza-block2_gallery1.jpeg 500w,
                          images/NormalPC/gallery1/pizza-block2_gallery1.jpeg 669w,
                          images/FullHD2K/gallery1/pizza-block2_gallery1.jpeg 735w,
                          images/4k+/gallery1/pizza-block2_gallery1.jpeg 1186w" sizes="(max-width: 599px) 210px, (min-width: 600px) and (max-width: 900px) 390px, (min-width: 901px) and (max-width: 1359px) 500px, (min-width: 1360px) and (max-width: 1919px) 669px, (min-width: 1920px) and (max-width: 2199px) 735px, (min-width: 2200px) 1186px"
                         data-description="Nunc id semper leo. Cras dictum vulputate libero, nec dictum felis. Etiam rhoncus viverra velit ut mollis. Sed consectetur accumsan turpis, sed semper erat mattis eu1_1_!_1"
-                    />
-                    <img src="images/4k+/gallery1/pizza-block2_gallery2.jpeg" srcset="images/smartphone/gallery1/pizza-block2_gallery2.jpeg 210w, 
-                         images/tablets/gallery1/pizza-block2_gallery2.jpeg 390w,
-                         images/laptops/gallery1/pizza-block2_gallery2.jpeg 500w,
-                         images/NormalPC/gallery1/pizza-block2_gallery2.jpeg 669w,
-                         images/FullHD2K/gallery1/pizza-block2_gallery2.jpeg 735w,
-                         images/4k+/gallery1/pizza-block2_gallery2.jpeg 1186w" sizes="(max-width: 599px) 210px, (min-width: 600px) and (max-width: 900px) 390px, (min-width: 901px) and (max-width: 1359px) 500px, (min-width: 1360px) and (max-width: 1919px) 669px, (min-width: 1920px) and (max-width: 2199px) 735px, (min-width: 2200px) 1186px"
-                        data-description="Nunc id semper leo. Cras dictum vulputate libero, nec dictum felis. Etiam rhoncus viverra velit ut mollis. Sed consectetur accumsan turpis, sed semper erat mattis eu2@@@@2"
-                    />
-                    <img src="images/4k+/gallery1/pizza-block2_gallery3.jpeg" srcset="images/smartphone/gallery1/pizza-block2_gallery3.jpg 210w, 
-                         images/tablets/gallery1/pizza-block2_gallery3.jpg 390w,
-                         images/laptops/gallery1/pizza-block2_gallery3.jpg 500w,
-                         images/NormalPC/gallery1/pizza-block2_gallery3.jpg 669w,
-                         images/FullHD2K/gallery1/pizza-block2_gallery3.jpg 735w,
-                         images/4k+/gallery1/pizza-block2_gallery3.jpg 1186w" sizes="(max-width: 599px) 210px, (min-width: 600px) and (max-width: 900px) 390px, (min-width: 901px) and (max-width: 1359px) 500px, (min-width: 1360px) and (max-width: 1919px) 669px, (min-width: 1920px) and (max-width: 2199px) 735px, (min-width: 2200px) 1186px"
+                    />-->
+                    <img id="active" class="never-used-gallery-slot-g1" src="images/4k+/gallery1/[FILENAME]" srcset="images/smartphone/gallery1/[FILENAME] 210w, 
+                         images/tablets/gallery1/[FILENAME] 390w,
+                         images/laptops/gallery1/[FILENAME] 500w,
+                         images/NormalPC/gallery1/[FILENAME] 669w,
+                         images/FullHD2K/gallery1/[FILENAME] 735w,
+                         images/4k+/gallery1/[FILENAME] 1186w" sizes="(max-width: 599px) 210px, (min-width: 600px) and (max-width: 900px) 390px, (min-width: 901px) and (max-width: 1359px) 500px, (min-width: 1360px) and (max-width: 1919px) 669px, (min-width: 1920px) and (max-width: 2199px) 735px, (min-width: 2200px) 1186px"
                         data-description="Nunc id semper leo. Cras dictum vulputate libero, nec dictum felis. Etiam rhoncus viverra velit ut mollis. Sed consectetur accumsan turpis, sed semper erat mattis eu3333"
                     />
                 </div>
@@ -153,28 +146,13 @@
             Donec nec magna et nisl ullamcorper mattis sodales at est. Aliquam iaculis scelerisque sem, eu faucibus justo
             dictum quis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis et
             risus tortor</p>
-        <img id="active" src="images/4k+/gallery2/restaurant-block4_gallery1.jpg" srcset="images/smartphone/gallery2/restaurant-block4_gallery1.jpg 440w,
-             images/tablets/gallery2/restaurant-block4_gallery1.jpg 586w,
-             images/laptops/gallery2/restaurant-block4_gallery1.jpg 884w,
-             images/NormalPC/gallery2/restaurant-block4_gallery1.jpg 1248w,
-             images/FullHD2K/gallery2/restaurant-block4_gallery1.jpg 1430w,
-             images/4k+/gallery2/restaurant-block4_gallery1.jpg 1800w" sizes="(max-width: 599px) 440px, (min-width: 600px) and (max-width: 900px) 586px, (min-width: 901px) and (max-width: 1359px) 884px, (min-width: 1360px) and (max-width: 1919px) 1248px, (min-width: 1920px) and (max-width: 2199px) 1430px, (min-width: 2200px) 1800px"
-        />
 
-        <img src="images/4k+/gallery2/restaurant-block4_gallery2.jpg" srcset="images/smartphone/gallery2/restaurant-block4_gallery2.jpg 440w,
-             images/tablets/gallery2/restaurant-block4_gallery2.jpg 586w,
-             images/laptops/gallery2/restaurant-block4_gallery2.jpg 884w,
-             images/NormalPC/gallery2/restaurant-block4_gallery2.jpg 1248w,
-             images/FullHD2K/gallery2/restaurant-block4_gallery2.jpg 1430w,
-             images/4k+/gallery2/restaurant-block4_gallery2.jpg 1800w" sizes="(max-width: 599px) 440px, (min-width: 600px) and (max-width: 900px) 586px, (min-width: 901px) and (max-width: 1359px) 884px, (min-width: 1360px) and (max-width: 1919px) 1248px, (min-width: 1920px) and (max-width: 2199px) 1430px, (min-width: 2200px) 1800px"
-        />
-
-        <img src="images/4k+/gallery2/restaurant-block4_gallery3.jpg" srcset="images/smartphone/gallery2/restaurant-block4_gallery3.jpg 440w,
-             images/tablets/gallery2/restaurant-block4_gallery3.jpg 586w,
-             images/laptops/gallery2/restaurant-block4_gallery3.jpg 884w,
-             images/NormalPC/gallery2/restaurant-block4_gallery3.jpg 1248w,
-             images/FullHD2K/gallery2/restaurant-block4_gallery3.jpg 1430w,
-             images/4k+/gallery2/restaurant-block4_gallery3.jpg 1800w" sizes="(max-width: 599px) 440px, (min-width: 600px) and (max-width: 900px) 586px, (min-width: 901px) and (max-width: 1359px) 884px, (min-width: 1360px) and (max-width: 1919px) 1248px, (min-width: 1920px) and (max-width: 2199px) 1430px, (min-width: 2200px) 1800px"
+        <img id="active" class="never-used-gallery-slot-g2" src="images/4k+/gallery2/[FILENAME]" srcset="images/smartphone/gallery2/[FILENAME] 440w,
+             images/tablets/gallery2/[FILENAME] 586w,
+             images/laptops/gallery2/[FILENAME] 884w,
+             images/NormalPC/gallery2/[FILENAME] 1248w,
+             images/FullHD2K/gallery2/[FILENAME] 1430w,
+             images/4k+/gallery2/[FILENAME] 1800w" sizes="(max-width: 599px) 440px, (min-width: 600px) and (max-width: 900px) 586px, (min-width: 901px) and (max-width: 1359px) 884px, (min-width: 1360px) and (max-width: 1919px) 1248px, (min-width: 1920px) and (max-width: 2199px) 1430px, (min-width: 2200px) 1800px"
         />
 
 
@@ -267,6 +245,9 @@
                         configSetData(o);
                         mapLoad(o['title'], o['position'].split(","));
                     });
+                    galleryLoadAllHome().then(function(imgs) {
+                    $(".never-used-gallery-slot-g1").remove();
+                    $(".never-used-gallery-slot-g2").remove();
                     paginatorInit({
                         "globalselector": ".menuitem:has([data-categoryid])",
                         "globalselectorname": ".menuitem",
@@ -297,6 +278,7 @@
                     });
 
                     setTimeout(fadeImageGallery, secGallImg * 1000);
+                });
             });
 
             dialog = $( "#dialog" ).dialog({
