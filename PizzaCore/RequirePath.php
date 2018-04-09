@@ -1,6 +1,6 @@
 <?php
 class RequirePath {
-	public static function include_()
+	public static function include_($mail = false)
 	{
 		define('__ROOT__', $_SERVER['DOCUMENT_ROOT'] . '/PizzaCore/'); 
 
@@ -37,6 +37,13 @@ class RequirePath {
 
 		require_once(__ROOT__ . "Notification/NotificationManager.php");
 		require_once(__ROOT__ . "Utility/RandomString.php");
+
+		if($mail)
+		{
+			require_once(__ROOT__ . 'PHPMailer/Exception.php');
+			require_once(__ROOT__ . 'PHPMailer/PHPMailer.php');
+			require_once(__ROOT__ . 'PHPMailer/SMTP.php');	
+		}
 
 		ErrorHandler::createErrorsModels();
 	}

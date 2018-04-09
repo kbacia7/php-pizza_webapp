@@ -4,6 +4,7 @@ class UserManager implements IEntityManager {
 	
 	//Interfaces methods
 	public static function create($options) {
+		$functionManager = new FunctionManager();
 		$r = new RandomString();
 		$config = new ConfigLoader();
 		$data = $config->GetConfig();

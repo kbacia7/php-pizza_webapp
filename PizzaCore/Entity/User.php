@@ -4,6 +4,8 @@ class User  implements JsonSerializable {
 	private $password;
 	private $salt;
 	private $admin;
+	private $firstName;
+	private $lastName;
 	private $ID;
 	
 	
@@ -28,6 +30,16 @@ class User  implements JsonSerializable {
 		return $this->admin;
 	}
 	
+	public function getFirstName()
+	{
+		return $this->firstName;
+	}
+
+	public function getLastName()
+	{
+		return $this->lastName;
+	}
+
 	public function getID()
 	{
 		return $this->ID;
@@ -58,12 +70,24 @@ class User  implements JsonSerializable {
 		return $this->admin = $_adm;
 	}
 
+	public function setFirstName($_firstName)
+	{
+		return $this->firstName = $_firstName;
+	}
+
+	public function setLastName($_lastName)
+	{
+		return $this->lastName = $_lastName;
+	}
+
 	//serialize JSON
 	public function jsonSerialize() {
         return array(
 			"login" => $this->getLogin(),
 			"ID" => $this->getID(),
-			"admin" => $this->getAdmin()
+			"admin" => $this->getAdmin(),
+			'firstName' => $this->getFirstName(),
+			'lastName' => $this->getLastName()
 			//never return salt & password hash
 		);
     }

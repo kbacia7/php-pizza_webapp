@@ -77,6 +77,7 @@
     <script src="PizzaJS/Paginator.js"></script>
     <script src="PizzaJS/Gallery.js"></script>
     <script src="PizzaJS/Config.js"></script>
+    <script src="PizzaJS/User.js"></script>
     <title>Your pizzeria</title>
 </head>
 
@@ -161,29 +162,14 @@
         <div class="fade_screen"></div>
         <div class="boxes">
             <div class="boxmsg">
-                <h1>Contact</h1>
-                <?php
-					if(isset($_POST['button']))
-					{
-						$fName = $_POST['firstName'];
-						$lName = $_POST['lastName'];
-						$m = $_POST['mail'];
-						$topic = $_POST['topic'];
-						$val = $_POST['val'];
-						if($val != null && $topic != null && $m != null && $lName != null && $fName != null)
-						{
-							echo "<h1>Dziękujemy za maila, odpowiemy najszybciej jak to możliwe!</h1>";
-							mail($m, "Kontakt", "Dziękujemy za chęć skontaktowania się z naszą pizzerią panie {$fName} {$lName}. Dołożymy wszelkich starań aby jak najszybciej odpowiedzieć", "From: sender@pizzeriatemplate.cba.pl");
-						}
-					}
-				?>
+                <h1>Kontakt</h1>
                     <form method="POST">
                         <div class="input">
-                            <p>First Name</p>
+                            <p>Imię</p>
                             <input name="firstName" type="text" required />
                         </div>
                         <div class="input">
-                            <p>Last Name</p>
+                            <p>Nazwisko</p>
                             <input name="lastName" type="text" required />
                         </div>
                         <div class="input">
@@ -191,15 +177,15 @@
                             <input name="mail" type="email" required />
                         </div>
                         <div class="input">
-                            <p>Topic</p>
+                            <p>Temat</p>
                             <input name="topic" type="text" required />
                         </div>
                         <div class="input">
-                            <p>Message</p>
+                            <p>Wiadomość</p>
                             <textarea name="val" required></textarea>
                         </div>
                         <div class="input">
-                            <input name="button" type="submit" value="SEND" />
+                            <input name="button" type="submit" value="Wyślij" />
                         </div>
                     </form>
             </div>
