@@ -21,6 +21,8 @@
     <script src="PizzaJS/Paginator.js"></script>
     <script src="PizzaJS/Notification.js"></script>
     <script src="PizzaJS/Gallery.js"></script>
+    <script src="PizzaJS/ContactMessage.js"></script>
+    <script src="PizzaJS/ContactRoom.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Your pizzeria</title>
 </head>
@@ -104,6 +106,16 @@
     </div>     
     </div>
     <script type="text/javascript">
+    Date.prototype.toHumanFormat = function() {
+        var mm = this.getMonth() + 1; // getMonth() is zero-based
+        var dd = this.getDate();
+
+        return [this.getFullYear(),
+                (mm>9 ? '' : '0') + mm,
+                (dd>9 ? '' : '0') + dd
+                ].join('');
+    };
+
     $(document).ready(function() {
         $("#config_manager").load("admin_config.php");
         $("#menu_manager").load("admin_menu.php");
@@ -120,6 +132,7 @@
             menuItemHandle();
             notificationHandle();
             galleryHandle();
+            contactRoomHandle();
             configAjaxLoad().then(function (o) {
                 configSetForm(o);
             });

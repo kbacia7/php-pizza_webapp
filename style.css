@@ -433,7 +433,5 @@ p.item:after {
     display: table !important;
 }
 
-.msg-contact:nth-child(odd) {
-    float: right;
-}
+
 
