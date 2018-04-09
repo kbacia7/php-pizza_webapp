@@ -14,9 +14,15 @@ if($login != null && $password != null)
 		$userLoaded = UserManager::isCorrectPassword($password, $login);
 		if($userLoaded != null) 
 		{
-			$response['complete'] = true;
 			$user = array_values($userLoaded)[0];
-			$_SESSION['userID'] = $user->getID();
+			if($user->getAdmin())
+			{
+				$response['complete'] = true;
+				$user = array_values($userLoaded)[0];
+				$_SESSION['userID'] = $user->getID();
+			}
+			else
+				$response['complete'] = false;
 		}
 	}
 	catch(Exception $e) {
