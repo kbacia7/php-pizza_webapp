@@ -6,20 +6,58 @@ var errorTypes = {
 var notifyColors = ['success', 'warning', 'danger', 'danger'];
 var errorsTemplates = [];
 var errorsId = {
+	//Menu category
     MenuCategory_NoData: 0,
     MenuCategory_NoTitle: 1,
     MenuCategory_NoExists: 2,
-    MenuItem_NoData: 3,
-    MenuItem_NoTitle: 4,
-    MenuItem_NoExists: 5,
-    MenuItem_NoValidTitle: 6,
-    MenuItem_NoValidPrice: 7
+    MenuCategory_RemoveSuccess: 3,
+    MenuCategory_UpdateSuccess: 4,
+    MenuCategory_CreateSuccess: 5,
+	
+	//Menu item
+    MenuItem_NoData: 6,
+    MenuItem_NoTitle: 7,
+    MenuItem_NoExists: 8,
+    MenuItem_NoValidTitle: 9,
+    MenuItem_NoValidPrice: 10,
+    MenuItem_RemoveSuccess: 11,
+    MenuItem_UpdateSuccess: 12,
+    MenuItem_CreateSuccess: 13,
+	
+	//Config
+    Config_UpdateSuccess: 14,
+    Config_PizzeriaNull: 15,
+	Config_PizzeriaNoValid: 16,
+    Config_PizzeriaTooLong: 17,
+    Config_PizzeriaLocationEmpty: 18,
+    Config_PizzeriaLocationFormat: 19,
+    Config_TelephoneEmpty: 20,
+    Config_TelephoneFormat: 21,
+    Config_IconInvalid: 22,
+    Config_IconSizeTooMuch: 23,
+	Config_CurrencyEmpty: 24,
+    Config_CurrencyTooLong: 25,
+    Config_GalleryOneEmpty: 26,
+    Config_GalleryTwoEmpty: 27,
+	
+	//Gallery
+    Gallery_ImageDescriptionEmpty: 28,
+    Gallery_ImageSize: 29,
+    Gallery_ImageExtension: 30,
+    Gallery_ImageUploaded: 31,
+	
+	//Notification
+	Notification_SendSuccess: 32,
+    Notification_TitleInvalidChars: 34,
+    Notification_TitleEmpty: 35,
+    Notification_TitleTooLong: 36,
+	Notification_DescriptionEmpty: 37
 }
 
 function errorsLoopInit() {
     setInterval(() => {
-      //  errorsHandle();        
-    }, 5000);
+      errorsHandle();        
+    }, 1000);
 }
 
 function errorsHandle() {

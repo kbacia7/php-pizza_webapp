@@ -43,20 +43,34 @@ function configSetData(configObject) {
 }
 
 function configSave() {
+  let title = $("#inputName").val();
+  let pos = $("#inputLocation").val();
+  let c = $("#inputMoney").val();
+  let d1g = $("#inputGallery1").val();
+  let d2g = $("#inputGallery2").val();
+  let cN = $("#inputNumber").val();
+  if(title.length <= 0)
+	displayError(errorsTemplates[errorsId.Config_PizzeriaNull]);
+  else if(title.length > 30)
+	displayError(errorsTemplates[errorsId.Config_PizzeriaTooLong]);  
+  else if(is_valid_menu_title(title))
+    displayError(errorsTemplates[errorsId.Config_PizzeriaNoValid]);  
+  else {
   var file_data = $('#inputIcon').prop('files')[0];   
   var form_data = new FormData();                  
   form_data.append('file', file_data);
   let d = {
-    title:  $("#inputName").val(),
-    position: $("#inputLocation").val(),
-    cashChar: $("#inputMoney").val(),
-    descriptionGallery1: $("#inputGallery1").val(),
-    descriptionGallery2: $("#inputGallery2").val(),
-    contactNumber: $("#inputNumber").val()
+    title:  title,
+    position: pos,
+    cashChar: c,
+    descriptionGallery1: d1g,
+    descriptionGallery2: d2g,
+    contactNumber: cN
   }
   configAjaxUpdate(d);
   if(file_data !== undefined)
     configUploadIcon(form_data);
+  }
 }
 
 function configAjaxLoad() {
