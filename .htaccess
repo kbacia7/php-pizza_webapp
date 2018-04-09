@@ -21,3 +21,7 @@ deny from all
 <Files "admin*.php">
     Allow from all
 </Files>
+
+<Files "user*.php">
+    Allow from all
+</Files>
