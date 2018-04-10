@@ -61,7 +61,7 @@ class UserManager implements IEntityManager {
 		$uData = $q->fetch(PDO::FETCH_ASSOC);
 		if(sizeof($uData) > 0)
 		{
-			return self::load($uData['ID']);
+			return self::load(array("ID" => $uData['ID']));
 		}
 		return null;
 	}

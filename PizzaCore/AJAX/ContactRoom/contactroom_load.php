@@ -13,7 +13,7 @@ if($ID != null)
 {
 	try {	
 		$response['allowed'] = true;
-		if($_SESSION['admin'])
+		if(isset($_SESSION['admin']) && $_SESSION['admin'])
 			$loadRooms = ContactRoomManager::load(($ID !== "*") ?  $ID : null);
 		else 
 			$loadRooms = ContactRoomManager::load(array("owner" => $_SESSION['userID']));
