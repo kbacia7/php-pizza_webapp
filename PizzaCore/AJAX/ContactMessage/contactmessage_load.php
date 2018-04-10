@@ -13,7 +13,8 @@ if($ID != null)
 {
 	try {	
 		$response['allowed'] = true;
-		$loadMsgs = ContactMessageManager::load(($ID !== "*") ? $ID : null);
+		if($_SESSION['userID'] !== null)
+			$loadMsgs = ContactMessageManager::load(($ID !== "*") ? $ID : null);
 		$response['complete'] = true;	
 		$response['objects'] = ($loadMsgs);
 	}

@@ -7,7 +7,7 @@ $response = array(
 if($allowed !== null)
 {
 	try {	
-		if($_SESSION['userID'] != null)
+		if($_SESSION['userID'] != null && $_SESSION['admin'])
 			$response['allow'] = true;
 	}
 	catch(Exception $e) {

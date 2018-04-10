@@ -166,26 +166,26 @@
                     <form method="POST">
                         <div class="input">
                             <p>Imię</p>
-                            <input name="firstName" type="text" required />
+                            <input name="firstName" id="firstName" type="text" required />
                         </div>
                         <div class="input">
                             <p>Nazwisko</p>
-                            <input name="lastName" type="text" required />
+                            <input name="lastName" id="lastName" type="text" required />
                         </div>
                         <div class="input">
                             <p>E-mail</p>
-                            <input name="mail" type="email" required />
+                            <input name="mail" id="mail" type="email" required />
                         </div>
                         <div class="input">
                             <p>Temat</p>
-                            <input name="topic" type="text" required />
+                            <input name="topic" id="topic" type="text" required />
                         </div>
                         <div class="input">
                             <p>Wiadomość</p>
-                            <textarea name="val" required></textarea>
+                            <textarea name="val" id="message_form" required></textarea>
                         </div>
                         <div class="input">
-                            <input name="button" type="submit" value="Wyślij" />
+                            <input name="button" id="sendEmail" type="submit" value="Wyślij" />
                         </div>
                     </form>
             </div>
@@ -224,7 +224,8 @@
         var dialog;
         $(window).resize(function () { location.reload(); }); //Reload page after resize 
         $(document).ready(function () {
-            loadMenuItems().then(function () {       
+            loadMenuItems().then(function () {    
+                    userHandle();   
                     swipeMenuItems();
                     swipeMenuItemsData();
                     configAjaxLoad().then(function(o) {
@@ -281,25 +282,19 @@
 							$("#login").addClass("ui-state-error");
 						if($("#password").val().length > 0 && $("#login").val().length > 0)
 						{
-							$.ajax({
-								url: "PizzaCore/AJAX/User/login_valid.php",
-								type: "POST",
-								data: serializeDataForm,
-								complete: function(jData) {
-									var jsonRealData = JSON.parse(jData['responseText']);
-                                    if(jsonRealData['complete'])
-                                    {
-                                        dialog.dialog("close");
-                                        window.location = 'admin.php';
-                                    }
-									else
-									{
-										$("#password").addClass("ui-state-error");
-										$("#login").addClass("ui-state-error");
-										$(".error").text("Wygląda na to że podałeś nieprawidłowe hasło lub login!");
-									}
-								}
-							});
+							userAjaxLogin(serializeDataForm).then(function(jsonData) {
+                                if(jsonData['complete'] && jsonData['admin'])
+                                {
+                                    dialog.dialog("close");
+                                    window.location = 'admin.php';
+                                }
+                                else
+                                {
+                                    $("#password").addClass("ui-state-error");
+                                    $("#login").addClass("ui-state-error");
+                                    $(".error").text("Wygląda na to że podałeś nieprawidłowe hasło lub login!");
+                                }
+                            });
 						}
 					},
 					Anuluj: function() {

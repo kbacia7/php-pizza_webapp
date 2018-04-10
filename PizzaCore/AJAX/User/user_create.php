@@ -1,6 +1,4 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/PizzaCore/RequirePath.php');
 RequirePath::include_(true);
@@ -24,10 +22,22 @@ if($firstName != null && $lastName != null)
 			'lastName' => $lastName,
 			'password' => $p
 		);
-		UserManager::create($d);
+		$us = UserManager::create($d);
+		$bodyMsg = sprintf("Dziękujemy za kontakt %s %s. Postaramy się jak najszybciej odpowiedzieć, rozmowy prowadzone z nami jak i odpowiedzi wysyłaj proszę z <a href='%s/user.php?key=%s'>tego</a> miejsca. <b>Proszę, link ten umożliwia automatycznie przeglądanie wszystkich twoich rozmów z nami,  nie podawaj go NIKOMU</b>", $firstName, $lastName,$_SERVER['SERVER_NAME'], $p);
+		MailSender::send($eMail, "Kontakt z pizzerią", $bodyMsg, sprintf("%s %s", $firstName, $lastName));
+		
+		$d = array(
+			'title' => $topic,
+			'owner' => $us->getID()
+		);
+		$room = ContactRoomManager::create($d);
 
-		$bodyMsg = sprintf("Dziękujemy za kontakt %s %s. Postaramy się jak najszybciej odpowiedzieć, rozmowy prowadzone z nami jak i odpowiedzi wysyłaj proszę z tego miejsca. %s", $firstName, $lastName, $p);
-		mail($eMail, "Kontakt", $bodyMsg, "From: sender@pizzeriatemplate.cba.pl");
+		$d = array(
+			'message' => $message,
+			'author' => $us->getID(),
+			'roomID' =>	$room->getID()
+		);
+		ContactMessageManager::create($d);
 	}
 	catch(Exception $e) {
 		echo $e->getMessage();

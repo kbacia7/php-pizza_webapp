@@ -18,6 +18,7 @@ class UserManager implements IEntityManager {
 		$newUser = new User();
 		foreach($options as $k => $v)
 			$functionManager->excetuteBasicMethod($newUser, "set", $k, $v);
+		$functionManager->excetuteBasicMethod($newUser, "set", "ID", $queryBuild->getLastID());
 		return $newUser;
 	}
 	

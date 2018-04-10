@@ -1,7 +1,7 @@
 <?php
 class ContactRoom implements JsonSerializable {
 	private $title;
-	private $email;
+	private $owner;
 	private $ID;
 	
 	//Getters, setters 
@@ -10,9 +10,9 @@ class ContactRoom implements JsonSerializable {
 		return $this->title;
 	}
 	
-	public function getEmail()
+	public function getOwner()
 	{
-		return $this->email;
+		return $this->owner;
 	}
 
 	public function getID()
@@ -25,9 +25,9 @@ class ContactRoom implements JsonSerializable {
 		return $this->title = $_title;
 	}
 
-	public function setEmail($_mail)
+	public function setOwner($_own)
 	{
-		return $this->email = $_mail;
+		return $this->owner = $_own;
 	}
 
 	public function setID($_ID)
@@ -39,7 +39,7 @@ class ContactRoom implements JsonSerializable {
 	public function jsonSerialize() {
         return array(
 			"title" => $this->getTitle(),
-			"email" => $this->getEmail(),
+			"owner" => $this->getOwner(),
 			"ID" => $this->getID()
 		);
     }

@@ -43,6 +43,7 @@ class RequirePath {
 			require_once(__ROOT__ . 'PHPMailer/Exception.php');
 			require_once(__ROOT__ . 'PHPMailer/PHPMailer.php');
 			require_once(__ROOT__ . 'PHPMailer/SMTP.php');	
+			require_once(__ROOT__ . 'Mail/MailSender.php');
 		}
 
 		ErrorHandler::createErrorsModels();
