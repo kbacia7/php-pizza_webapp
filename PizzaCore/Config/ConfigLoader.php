@@ -5,9 +5,7 @@ class ConfigLoader
 	private $config = null;
 	private function LoadConfig()
 	{
-		$configFile = fopen(RequirePath::ConfigPath(), "r");
-		$jsonData = fread($configFile, filesize(RequirePath::ConfigPath()));
-		$configData = json_decode($jsonData, true);
+		$configData = yaml_parse_file(RequirePath::ConfigPath());
 		$this->config = $configData;
 	}
 	

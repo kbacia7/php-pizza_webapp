@@ -53,7 +53,7 @@ class RequirePath {
 
 	public static function ConfigPath()
 	{
-		return __ROOT__ . "Config/config.json";
+		return $_SERVER['DOCUMENT_ROOT'] . '/PizzaConfig/config.yaml';
 	}
 }
 ?>

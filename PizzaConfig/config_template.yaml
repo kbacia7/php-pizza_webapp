@@ -1,0 +1,25 @@
+---
+#Database connection setting
+dbName: pizza_db #Database Name
+dbHost: localhost #MySQL Host
+dbUser: root  #MySQL User
+dbPassword: ~ #MySQL Password
+  
+#OneSignal API configuration
+#You must create account on OneSignal (https://onesignal.com/) to use notifications and next insert here your keys
+#Instrucion: https://documentation.onesignal.com/docs/web-push-typical-setup
+oneSignalAppID: ~ #OneSignal API public key
+oneSignalRestAPIKey: ~ #OneSignal Private key
+
+#SMTP configuration
+#If you want working email's you need configure your SMTP server or use existing SMTP server (ex. Gmail)
+smtpHost: localhost #SMTP Host
+smtpPort: 567 #SMTP Port
+smtpSecure: tls #SMTP Encrypt protocol
+smtpUser: user #SMTP User
+smtpPassword: password #SMTP Password for user 
+smtpAuthorName: Pan Pomocnik #Names in email send to user
+
+#Special salt for passwords
+accSalt: ChangeItPlease! #Change it necessarily!
+---
