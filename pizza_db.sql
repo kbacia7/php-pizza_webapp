@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 08 Kwi 2018, 14:29
+-- Czas generowania: 15 Kwi 2018, 18:19
 -- Wersja serwera: 10.1.31-MariaDB
 -- Wersja PHP: 7.2.3
 
@@ -32,15 +32,19 @@ CREATE TABLE `accounts` (
   `ID` int(11) NOT NULL,
   `login` varchar(30) NOT NULL,
   `password` text NOT NULL,
-  `salt` text NOT NULL
+  `salt` text NOT NULL,
+  `admin` tinyint(1) NOT NULL,
+  `firstName` varchar(30) NOT NULL,
+  `lastName` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `accounts`
 --
 
-INSERT INTO `accounts` (`ID`, `login`, `password`, `salt`) VALUES
-(1, 'Kamil', 'f2b5eeab09ef0f2205e28128a1503711f8dbdd28f875103d32f043699089ba43', '0be858a063fcc41bc6cd8057fd47c409_NOFCDUCxz]DSoB');
+INSERT INTO `accounts` (`ID`, `login`, `password`, `salt`, `admin`, `firstName`, `lastName`) VALUES
+(1, 'Kamil', 'f2b5eeab09ef0f2205e28128a1503711f8dbdd28f875103d32f043699089ba43', '0be858a063fcc41bc6cd8057fd47c409_NOFCDUCxz]DSoB', 1, 'Jan ', 'Kowalski'),
+(35, 'kbacia7@gmail.com', 'cd2e4086debffac88030f1cbd6c554508cc34a3fac316b9f67d962dd93dd13c9', '938526a2d9fe391993e81ae24394321edxFB7ItePCVUr3q', 0, 'Kamil', 'Bacia');
 
 -- --------------------------------------------------------
 
@@ -64,6 +68,54 @@ CREATE TABLE `config` (
 
 INSERT INTO `config` (`ID`, `title`, `position`, `contactNumber`, `cashChar`, `descriptionGallery1`, `descriptionGallery2`) VALUES
 (1, 'Pizzeria', '51.588721, 19.141944', '(48) 715-354-234', 'PLN', 'Opis pierwszy', 'Opis drugi  ');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `contact_message`
+--
+
+CREATE TABLE `contact_message` (
+  `ID` int(11) NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `author` int(11) NOT NULL,
+  `dateSend` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `roomID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Zrzut danych tabeli `contact_message`
+--
+
+INSERT INTO `contact_message` (`ID`, `message`, `author`, `dateSend`, `roomID`) VALUES
+(27, 'fffff', 35, '2018-04-15 18:55:37', 14),
+(28, '3333', 35, '2018-04-15 18:57:34', 15),
+(48, 'hghg', 1, '2018-04-15 20:16:36', 14),
+(49, 'hghg', 1, '2018-04-15 20:16:48', 14),
+(50, 'hghg', 1, '2018-04-15 20:17:06', 14),
+(51, 'ffff', 1, '2018-04-15 20:17:42', 14),
+(52, 'ffff', 1, '2018-04-15 20:17:50', 14),
+(53, 'ghg', 1, '2018-04-15 20:17:54', 15);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `contact_room`
+--
+
+CREATE TABLE `contact_room` (
+  `ID` int(11) NOT NULL,
+  `title` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Zrzut danych tabeli `contact_room`
+--
+
+INSERT INTO `contact_room` (`ID`, `title`, `owner`) VALUES
+(14, 'dffd', 35),
+(15, 'dffd33', 35);
 
 -- --------------------------------------------------------
 
@@ -155,6 +207,21 @@ ALTER TABLE `config`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indeksy dla tabeli `contact_message`
+--
+ALTER TABLE `contact_message`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `roomID` (`roomID`),
+  ADD KEY `author` (`author`);
+
+--
+-- Indeksy dla tabeli `contact_room`
+--
+ALTER TABLE `contact_room`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `owner` (`owner`);
+
+--
 -- Indeksy dla tabeli `gallery_item`
 --
 ALTER TABLE `gallery_item`
@@ -181,13 +248,25 @@ ALTER TABLE `menu_item`
 -- AUTO_INCREMENT dla tabeli `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT dla tabeli `config`
 --
 ALTER TABLE `config`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT dla tabeli `contact_message`
+--
+ALTER TABLE `contact_message`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT dla tabeli `contact_room`
+--
+ALTER TABLE `contact_room`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT dla tabeli `gallery_item`
@@ -210,6 +289,19 @@ ALTER TABLE `menu_item`
 --
 -- Ograniczenia dla zrzutów tabel
 --
+
+--
+-- Ograniczenia dla tabeli `contact_message`
+--
+ALTER TABLE `contact_message`
+  ADD CONSTRAINT `contact_message_ibfk_1` FOREIGN KEY (`roomID`) REFERENCES `contact_room` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `contact_message_ibfk_2` FOREIGN KEY (`author`) REFERENCES `accounts` (`ID`);
+
+--
+-- Ograniczenia dla tabeli `contact_room`
+--
+ALTER TABLE `contact_room`
+  ADD CONSTRAINT `contact_room_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `accounts` (`ID`);
 
 --
 -- Ograniczenia dla tabeli `menu_item`
