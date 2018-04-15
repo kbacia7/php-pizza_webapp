@@ -26,17 +26,17 @@ function contactRoomLoad(o) {
   return new Promise(function(resolve) {
     let dA = contactRoomAdd($(document), o);
     let eTab = dA[0];
-    let eDiv = dA[1];
+    let tPane = dA[1];
     $(eTab).attr("id", "v-pills-conversation-tab" + o["ID"]);
     $(eTab).attr("href", "#v-pills-conversation" + o["ID"]);
     $(eTab).attr("aria-controls", "v-pills-conversation" + o["ID"]);
     $(eTab).find("span.contact-tab-title").text(o['title'] + " (#" + o["ID"] + ")");
-
-    $(eDiv).attr("id", "v-pills-tabContent" + o["ID"]);
-    let tPane = $(eDiv).find(".tab-pane").first();
+    $(eTab).attr("data-roomID", o["ID"]);
+    
     $(tPane).attr("id", "v-pills-conversation" + o["ID"]);
     $(tPane).attr("aria-labelledby", "v-pills-conversation-tab" + o["ID"]);
-    $(tPane).insertAfter($(".tab-pane").first());
+    $(tPane).attr("data-roomID", o["ID"]);
+    
     resolve(o["ID"]);
   });
 }
@@ -51,13 +51,18 @@ function contactRoomAdd(parent, objectRoom) {
     .insertBefore($(".never-use-contact-tab").first());
 
   let cloneNewContactRoom = $(parent)
-    .find(".never-use-contact-room-messages")
+    .find(".never-use-contact-tab-pane")
     .clone();
+
+  $(cloneNewContactRoom)
+    .removeClass("never-use-contact-tab-pane")
+    .removeClass("d-none")
+    .insertBefore($(".never-use-contact-tab-pane").first())
   return [cloneNewContactRoomTab, cloneNewContactRoom];
 }
 
 function contactRoomRemove(element) {
-  let aID = $(element).attr("id").slice(-1);
+  let aID = $(element).attr("data-roomID");
   $("a.nav-link[href$='" + aID + "']").tab('dispose');
   $("div.tab-pane[aria-labelledby$='" + aID + "']").tab('dispose');
   contactRoomAjaxRemove(

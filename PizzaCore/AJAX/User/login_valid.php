@@ -20,9 +20,7 @@ if($login != null && $password != null)
 			$_SESSION['userID'] = $user->getID();
 			if($user->getAdmin())
 				$_SESSION['admin'] = true;		
-			else
-				$_SESSION['admin'] = false;
-			$response['admin'] = $_SESSION["admin"];
+			$response['admin'] = LoginGuard::isAdmin();
 		}
 	}
 	catch(Exception $e) {

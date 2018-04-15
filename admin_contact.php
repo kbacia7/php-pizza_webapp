@@ -9,8 +9,8 @@
       </div>
     </div>
     <div class="col-9">
-      <div class="tab-content-" id="v-pills-tabContent">
-        <div class="tab-pane fade" id="v-pills-conversation" role="tabpanel" aria-labelledby="v-pills-conversation-tab">
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade never-use-contact-tab-pane d-none" id="v-pills-conversation" role="tabpanel" aria-labelledby="v-pills-conversation-tab">
           <div class="messages-contact">
             <div class="msg-contact mb-2 d-none never-use-contact-room-message-template">
               <p class="m-0"><b class="message-author-name">[NAZWA]</b> dnia <i class="message-author-date">[DATA]</i></p>

@@ -41,10 +41,17 @@ function contactMessageAdd(parent, roomID, AJAX) {
   if(AJAX) {
       let d = {
         message: $(thisRoom).find("form textarea").first().val(),
-        room: $(thisRoom).attr("aria-labelledby").slice(-1)
+        room: $(thisRoom).attr("data-roomID")
       }
       contactMessageAjaxAdd(d).then(function(data) {
-        $(cloneNewContactMessage).find(".message-author-name").text(savedAuthorsByID[data["author"]]["firstName"] + " " + savedAuthorsByID[data["author"]]["lastName"]);
+        if(savedAuthorsByID[data["author"]] == undefined) {
+          userAjaxGetName({ID: data["author"]}).then(function(userData) {
+            savedAuthorsByID[data["author"]] = userData;
+            $(cloneNewContactMessage).find(".message-author-name").text(savedAuthorsByID[data["author"]]["firstName"] + " " + savedAuthorsByID[data["author"]]["lastName"]);
+          });
+        }
+        else
+          $(cloneNewContactMessage).find(".message-author-name").text(savedAuthorsByID[data["author"]]["firstName"] + " " + savedAuthorsByID[data["author"]]["lastName"]);
         $(cloneNewContactMessage).find(".message-message").text(data["message"]);
         $(cloneNewContactMessage).find(".message-author-date").text(data["dateSend"]);
 
