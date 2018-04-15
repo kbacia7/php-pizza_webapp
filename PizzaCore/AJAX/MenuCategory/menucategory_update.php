@@ -17,7 +17,7 @@ if($ID != null && $data != null)
 	else
 	{
 		try {	
-			if($_SESSION['userID'] !== null)
+			if($_SESSION['userID'] !== null && array_key_exists("admin", $_SESSION))
 			{	
 				$response['complete'] = MenuCategoryManager::update($data, $ID);
 				$response['allowed'] = true;	

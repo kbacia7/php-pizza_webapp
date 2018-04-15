@@ -16,7 +16,7 @@ if($title != null)
 	else 
 	{
 		try {	
-			if($_SESSION['userID'] !== null)
+			if($_SESSION['userID'] !== null && array_key_exists("admin", $_SESSION))
 			{
 				$response['allowed'] = true;
 				$settings = array(

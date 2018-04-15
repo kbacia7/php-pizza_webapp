@@ -12,7 +12,7 @@ $response = array(
 if($ID != null)
 {
 	try {	
-		if($_SESSION['userID'] !== null)
+		if($_SESSION['userID'] !== null && array_key_exists("admin", $_SESSION))
 		{
 			$dArray = array("4k+", "FullHD2K", "laptops", "NormalPC", "smartphone", "tablets");
 			$imgPath = $_SERVER['DOCUMENT_ROOT'] . 'images';

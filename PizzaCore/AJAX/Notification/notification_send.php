@@ -12,7 +12,7 @@ $response = array(
 if($data != null)
 {
 	try {	
-		if($_SESSION['userID'] !== null)
+		if($_SESSION['userID'] !== null && array_key_exists("admin", $_SESSION))
 		{	
 			$response['complete'] = NotificationManager::send($data['title'], $data['message']);
 			$response['allowed'] = true;	

@@ -13,7 +13,7 @@ $response = array(
 if($gID !== null)
 {
 	try {	
-		if($_SESSION['userID'] !== null)
+		if($_SESSION['userID'] !== null && array_key_exists("admin", $_SESSION))
 		{
 			$response['allowed'] = true;
 			$dArray = array("4k+" => 1186, "FullHD2K" => 735, "laptops" => 500, "NormalPC" => 669, "smartphone" => 212, "tablets" => 390);
