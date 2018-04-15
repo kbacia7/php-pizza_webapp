@@ -25,7 +25,8 @@ function userGuestCreate() {
         lastName: $("#lastName").val(),
         eMail: $("#mail").val(),
         topic: $("#topic").val(),
-        message: $("#message_form").val()
+        message: $("#message_form").val(),
+        captcharesponse: $(".g-recaptcha-response").val()
     }
     userAjaxAdd(d);
 }

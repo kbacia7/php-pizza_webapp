@@ -20,6 +20,12 @@ smtpUser: user #SMTP User
 smtpPassword: password #SMTP Password for user 
 smtpAuthorName: Pan Pomocnik #Names in email send to user
 
+#Google reCAPTCHA
+#For Google reCAPTCHA Support you need register in reCaptcha service (https://www.google.com/recaptcha/) and paste here below your keys
+#Google default keys allow you to run reCaptcha on localhost without register but VALIDATION ALWAYS RETURN TRUE
+googleRESiteKey: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+googleRESecretKey: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
+
 #Special salt for passwords
 accSalt: ChangeItPlease! #Change it necessarily!
 ---

@@ -116,3 +116,15 @@ function configAjaxUpdate(data) {
   });
 }
 
+function configAjaxReCaptchaKey() {
+  return new Promise(function(resolve) {
+    $.ajax({
+      url: "PizzaCore/AJAX/Config/config_recaptcha.php",
+      type: "POST",
+      complete: function(jData) {
+        var jsonRealData = JSON.parse(jData["responseText"]);
+        resolve(jsonRealData["key"]);
+      }
+    });
+  });
+}

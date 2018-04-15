@@ -71,7 +71,7 @@
     <script src="jquery-ui.min.js">
         </script>
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="PizzaJS/MenuItem.js"></script>
     <script src="PizzaJS/MenuCategory.js"></script>
     <script src="PizzaJS/Paginator.js"></script>
@@ -185,6 +185,9 @@
                             <textarea name="val" id="message_form" required></textarea>
                         </div>
                         <div class="input">
+                            <div class="g-recaptcha"></div>
+                        </div>
+                        <div class="input">
                             <input name="button" id="sendEmail" type="submit" value="Wyślij" />
                         </div>
                     </form>
@@ -225,7 +228,6 @@
         $(window).resize(function () { location.reload(); }); //Reload page after resize 
         $(document).ready(function () {
             loadMenuItems().then(function () {    
-                    userHandle();   
                     swipeMenuItems();
                     swipeMenuItemsData();
                     configAjaxLoad().then(function(o) {
@@ -243,7 +245,7 @@
                         "prevpage": "RandomStringDisableUseIt",
                         "element": "[data-categoryid]"
                     });
-
+                    reCaptchaLoad();
                     firstSrcImg["src"] = $(".block4 #active").attr("src");
                     firstSrcImg["srcset"] = $(".block4 #active").attr("srcset");
                     imgGallWidth = $("#active").width();
@@ -566,6 +568,15 @@
                     });
                 });
             });
+        }
+
+        function reCaptchaLoad() {
+            configAjaxReCaptchaKey().then(function (reKey) {           
+                $(".g-recaptcha").attr("data-sitekey", reKey);
+                $.getScript( "https://www.google.com/recaptcha/api.js?hl=pl", function( data, textStatus, jqxhr ) {
+                });
+                userHandle();
+          });
         }
     </script>
    
