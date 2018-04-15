@@ -14,9 +14,9 @@ class RequirePath {
 		require_once(__ROOT__ . "Error/ErrorMessage.php");
 		
 		
-		require_once(__ROOT__ . "PizzaException.php");
+		require_once(__ROOT__ . "Utility/PizzaException.php");
 	
-		require_once(__ROOT__ . "FunctionManager.php");
+		require_once(__ROOT__ . "Utility/FunctionManager.php");
 		require_once(__ROOT__ . "Config/ConfigLoader.php");
 		require_once(__ROOT__ . "Database/DB.php");
 		require_once(__ROOT__ . "Database/QueryBuilder.php");
