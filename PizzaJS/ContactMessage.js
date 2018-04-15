@@ -1,3 +1,4 @@
+let savedAuthorsByID = {};
 function contactMessageLoadAll(room) {
   return new Promise(function(resolve) {
     var actions = [];
@@ -11,7 +12,15 @@ function contactMessageLoadAll(room) {
 function contactMessageLoad(o) {
   return new Promise(function(resolve) {
     let e = contactMessageAdd($(document), o["roomID"], false);
-    $(e).find(".message-author-name").text(o["author"]);
+    if(savedAuthorsByID[o["author"]] == undefined) {
+    userAjaxGetName({ID: o["author"]}).then(function(userData) {
+      savedAuthorsByID[o["author"]] = userData;
+      $(e).find(".message-author-name").text(savedAuthorsByID[o["author"]]["firstName"] + " " + savedAuthorsByID[o["author"]]["lastName"]);
+      });
+    }
+    else
+      $(e).find(".message-author-name").text(savedAuthorsByID[o["author"]]["firstName"] + " " + savedAuthorsByID[o["author"]]["lastName"]);
+      
     $(e).find(".message-message").text(o["message"]);
     $(e).find(".message-author-date").text(o["dateSend"]);
     resolve(o["ID"]);
@@ -32,11 +41,10 @@ function contactMessageAdd(parent, roomID, AJAX) {
   if(AJAX) {
       let d = {
         message: $(thisRoom).find("form textarea").first().val(),
-        author: "Jan Kowalski",
         room: $(thisRoom).attr("aria-labelledby").slice(-1)
       }
       contactMessageAjaxAdd(d).then(function(data) {
-        $(cloneNewContactMessage).find(".message-author-name").text(data["author"]);
+        $(cloneNewContactMessage).find(".message-author-name").text(savedAuthorsByID[data["author"]]["firstName"] + " " + savedAuthorsByID[data["author"]]["lastName"]);
         $(cloneNewContactMessage).find(".message-message").text(data["message"]);
         $(cloneNewContactMessage).find(".message-author-date").text(data["dateSend"]);
 

@@ -4,7 +4,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/PizzaCore/RequirePath.php');
 RequirePath::include_();
 
 $msg = isset($_POST['message']) ? ($_POST['message']) : null;
-$author = isset($_POST['author']) ? ($_POST['author']) : null;
 $roomID = isset($_POST['room']) ? ($_POST['room']) : null;
 
 $response = array(
@@ -20,7 +19,7 @@ if($msg != null)
 				$response['allowed'] = true;
 				$settings = array(
 					'message' => $msg,
-					'author' => $author,
+					'author' => $_SESSION['userID'],
 					'roomID' => $roomID
 				);
 				$response['object'] = ContactMessageManager::create($settings);

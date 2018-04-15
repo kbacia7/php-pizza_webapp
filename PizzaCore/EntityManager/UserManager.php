@@ -59,11 +59,10 @@ class UserManager implements IEntityManager {
 		$queryStr = sprintf("SELECT `ID` FROM %s WHERE password =  SHA2(CONCAT('%s', `salt`), 256) AND login = '%s'", self::$tableName, $password, $login);
 		$q = $queryBuild->customQuery($queryStr);
 		$uData = $q->fetch(PDO::FETCH_ASSOC);
-		if(sizeof($uData) > 0)
-		{
+		if(!$uData)
+			return null;
+		else
 			return self::load(array("ID" => $uData['ID']));
-		}
-		return null;
 	}
 
 	

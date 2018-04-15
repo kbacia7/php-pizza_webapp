@@ -5,12 +5,16 @@ function userHandle() {
 }
 
 function userIsValid() {
-    return new Promise(function(resolve) {
+    return new Promise(function(resolve, reject) {
+        let k = window.atob(getParameterByName("key")).split("|");
+        
         userAjaxLogin({
-            login:  getParameterByName("mail"),
-            password:  getParameterByName("key")
+            login:  k[1],
+            password:  k[0]
         }).then(function() {
             resolve();
+        }).catch(function (){
+            reject();
         });
     });
 }
@@ -42,7 +46,24 @@ function userAjaxLogin(data) {
             data: data,
             complete: function(jData) {
                 var jsonRealData = JSON.parse(jData['responseText']);
-                resolve(jsonRealData);
+                if(jsonRealData["complete"])
+                    resolve(jsonRealData);
+                else 
+                    reject();
+            }
+        });
+    });
+}
+
+function userAjaxGetName(data) {
+    return new Promise(function(resolve) {
+        $.ajax({
+            url: "PizzaCore/AJAX/User/user_info.php",
+            type: "POST",
+            data: data,
+            complete: function(jData) {
+                var jsonRealData = JSON.parse(jData['responseText']);
+                resolve(jsonRealData['object']);
             }
         });
     });

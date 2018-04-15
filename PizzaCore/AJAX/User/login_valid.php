@@ -7,7 +7,7 @@ $login = isset($_POST['login']) ? ($_POST['login']) : null;
 $password = isset($_POST['password']) ? ($_POST['password']) : null;
 $response = array(
 	'complete' => false,
-	'admin'
+	'admin' => false
 );
 if($login != null && $password != null)
 {
@@ -19,11 +19,10 @@ if($login != null && $password != null)
 			$user = array_values($userLoaded)[0];
 			$_SESSION['userID'] = $user->getID();
 			if($user->getAdmin())
-			{
-				$response['admin'] = true;
-			}
+				$_SESSION['admin'] = true;		
 			else
-				$response['admin'] = false;
+				$_SESSION['admin'] = false;
+			$response['admin'] = $_SESSION["admin"];
 		}
 	}
 	catch(Exception $e) {

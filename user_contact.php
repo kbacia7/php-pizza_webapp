@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-3">
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="nav-link never-use-contact-tab d-none" id="v-pills-conversation-tab" data-toggle="pill" href="#v-pills-conversation" role="tab" aria-controls="v-pills-conversation" aria-selected="true"><span class="contact-tab-title">Nazwa (#ID)</span><button type="button" class="float-right btn btn-sm btn-danger contact-remove-conversation"><i class="fas fa-trash"></i></button></a>
+        <a class="nav-link never-use-contact-tab d-none" id="v-pills-conversation-tab" data-toggle="pill" href="#v-pills-conversation" role="tab" aria-controls="v-pills-conversation" aria-selected="true"><span class="contact-tab-title">Nazwa (#ID)</span></a>
       </div>
     </div>
     <div class="col-9">

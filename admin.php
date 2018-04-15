@@ -23,6 +23,7 @@
     <script src="PizzaJS/Gallery.js"></script>
     <script src="PizzaJS/ContactMessage.js"></script>
     <script src="PizzaJS/ContactRoom.js"></script>
+    <script src="PizzaJS/User.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Your pizzeria</title>
 </head>
@@ -199,14 +200,14 @@
 
     function ajax_is_allowed()
     {
-        $.ajax({
+       $.ajax({
 		    url: "PizzaCore/AJAX/User/login_allowed.php",
             type: "POST",
     		data: {allowed: "check"},
 		    complete: function(jData) {
                 var jsonRealData = JSON.parse(jData['responseText']);
                 if(!jsonRealData['allow'])
-                    window.location = "index.php";             
+                     window.location = "index.php";             
 			}
         });
     }

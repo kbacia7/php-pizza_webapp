@@ -1,5 +1,6 @@
 Order Deny,Allow
 deny from all
+DirectoryIndex index.php
 
 # Page Content
 <Files ~ ".(css|js)$">
@@ -14,10 +15,6 @@ deny from all
     Allow from all
 </Files>
 
-<Files "index.php">
-    Allow from all
-</Files>
-
 <Files "admin*.php">
     Allow from all
 </Files>
@@ -25,3 +22,11 @@ deny from all
 <Files "user*.php">
     Allow from all
 </Files>
+
+<Files "index.php">
+    Allow from all
+</Files>
+
+<FilesMatch "^(/)?$">
+    Allow from all
+</FilesMatch>

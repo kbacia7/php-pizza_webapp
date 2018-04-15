@@ -23,7 +23,8 @@ if($firstName != null && $lastName != null)
 			'password' => $p
 		);
 		$us = UserManager::create($d);
-		$bodyMsg = sprintf("Dziękujemy za kontakt %s %s. Postaramy się jak najszybciej odpowiedzieć, rozmowy prowadzone z nami jak i odpowiedzi wysyłaj proszę z <a href='%s/user.php?key=%s'>tego</a> miejsca. <b>Proszę, link ten umożliwia automatycznie przeglądanie wszystkich twoich rozmów z nami,  nie podawaj go NIKOMU</b>", $firstName, $lastName,$_SERVER['SERVER_NAME'], $p);
+		$sKey = base64_encode(sprintf("%s|%s", $p, $eMail));
+		$bodyMsg = sprintf("<html><head><meta charset='utf=8'/></head><body>Dziękujemy za kontakt %s %s. Postaramy się jak najszybciej odpowiedzieć, rozmowy prowadzone z nami jak i odpowiedzi wysyłaj proszę z <a href='%s/user.php?key=%s'>tego</a> miejsca. <b>Proszę, link ten umożliwia automatycznie przeglądanie wszystkich twoich rozmów z nami,  nie podawaj go NIKOMU</b></body></html>", $firstName, $lastName,$_SERVER['SERVER_NAME'], $sKey);
 		MailSender::send($eMail, "Kontakt z pizzerią", $bodyMsg, sprintf("%s %s", $firstName, $lastName));
 		
 		$d = array(

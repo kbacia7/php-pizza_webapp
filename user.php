@@ -53,6 +53,8 @@
                 userIsValid().then(function() {
                     configSetData(o);
                     contactRoomHandle();
+                }).catch(function () {
+                    window.location.href = "/";
                 });
             });        
     });
