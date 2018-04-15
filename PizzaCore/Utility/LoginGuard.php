@@ -2,7 +2,7 @@
 class LoginGuard {
 	public static function isAdmin()
 	{
-        if(self::isAdmin() && array_key_exists("admin", $_SESSION))
+        if(self::isUser() && array_key_exists("admin", $_SESSION))
             return true;
         else 
             return false;

@@ -36,6 +36,7 @@ function contactRoomLoad(o) {
     let tPane = $(eDiv).find(".tab-pane").first();
     $(tPane).attr("id", "v-pills-conversation" + o["ID"]);
     $(tPane).attr("aria-labelledby", "v-pills-conversation-tab" + o["ID"]);
+    $(tPane).insertAfter($(".tab-pane").first());
     resolve(o["ID"]);
   });
 }
@@ -52,10 +53,6 @@ function contactRoomAdd(parent, objectRoom) {
   let cloneNewContactRoom = $(parent)
     .find(".never-use-contact-room-messages")
     .clone();
-  $(cloneNewContactRoom)
-    .removeClass("never-use-contact-room-messages")
-    .removeClass("d-none")
-    .insertBefore($(".never-use-contact-room-messages").first());
   return [cloneNewContactRoomTab, cloneNewContactRoom];
 }
 

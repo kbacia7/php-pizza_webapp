@@ -227,6 +227,9 @@
         var dialog;
         $(window).resize(function () { location.reload(); }); //Reload page after resize 
         $(document).ready(function () {
+            $("form").submit(function(e){
+                e.preventDefault();
+            });
             loadMenuItems().then(function () {    
                     swipeMenuItems();
                     swipeMenuItemsData();
