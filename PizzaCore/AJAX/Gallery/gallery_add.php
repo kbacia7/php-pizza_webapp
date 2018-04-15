@@ -14,7 +14,7 @@ $response = array(
 if($description != null)
 {
 		try {	
-			if($_SESSION['userID'] !== null && array_key_exists("admin", $_SESSION)) 
+			if(LoginGuard::isAdmin())
 			{
 				$response['allowed'] = true;
 				$settings = array(

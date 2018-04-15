@@ -13,13 +13,12 @@ $response = array(
 if($gID !== null)
 {
 	try {	
-		if($_SESSION['userID'] !== null && array_key_exists("admin", $_SESSION))
+		if(LoginGuard::isAdmin())
 		{
 			$response['allowed'] = true;
 			$dArray = array("4k+" => 1186, "FullHD2K" => 735, "laptops" => 500, "NormalPC" => 669, "smartphone" => 212, "tablets" => 390);
 			$filePath = $_SERVER['DOCUMENT_ROOT'] . '/images/';
 			$newFileName = hash("sha256", time());
-		//	unlink($iconPath);
 			$e = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 			if($e === "jpg")
 				$e = "jpeg";
@@ -28,7 +27,6 @@ if($gID !== null)
 			foreach($dArray as $k => $v)
 			{
 				$copyTo = sprintf("%s/%s/gallery%d/%s.%s", $filePath, $k, $gID, $newFileName ,$e);
-				//copy($newPath, $copyTo);
 				$imgRes = call_user_func(sprintf("imagecreatefrom%s", $e), $newPath);
 				imagescale($imgRes, $v);
 				call_user_func(sprintf("image%s", $e), $imgRes, $copyTo);

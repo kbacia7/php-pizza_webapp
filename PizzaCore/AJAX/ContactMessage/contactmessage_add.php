@@ -14,7 +14,7 @@ $response = array(
 if($msg != null)
 {
 		try {	
-			if($_SESSION['userID'] !== null)
+			if(LoginGuard::isUser())
 			{
 				$response['allowed'] = true;
 				$settings = array(

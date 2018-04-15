@@ -7,7 +7,7 @@ $response = array(
 if($allowed !== null)
 {
 	try {	
-		if($_SESSION['userID'] != null && array_key_exists("admin", $_SESSION))
+		if(LoginGuard::isAdmin())
 			$response['allow'] = true;
 	}
 	catch(Exception $e) {

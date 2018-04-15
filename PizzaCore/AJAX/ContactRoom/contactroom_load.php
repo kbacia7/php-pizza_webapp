@@ -12,13 +12,16 @@ $response = array(
 if($ID != null)
 {
 	try {	
-		$response['allowed'] = true;
-		if(isset($_SESSION['admin']) && $_SESSION['admin'])
-			$loadRooms = ContactRoomManager::load(($ID !== "*") ?  $ID : null);
-		else 
-			$loadRooms = ContactRoomManager::load(array("owner" => $_SESSION['userID']));
-		$response['complete'] = true;	
-		$response['objects'] = ($loadRooms);
+		if(LoginGuard::isUser())
+		{
+			$response['allowed'] = true;
+			if(LoginGuard::isAdmin())
+				$loadRooms = ContactRoomManager::load(($ID !== "*") ?  $ID : null);
+			else 
+				$loadRooms = ContactRoomManager::load(array("owner" => $_SESSION['userID']));
+			$response['complete'] = true;	
+			$response['objects'] = ($loadRooms);
+		}
 	}
 	catch(Exception $e) {
 		$response['complete'] = false;

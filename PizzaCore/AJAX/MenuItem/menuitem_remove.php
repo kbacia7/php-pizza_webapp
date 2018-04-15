@@ -12,7 +12,7 @@ $response = array(
 if($ID != null)
 {
 	try {	
-		if($_SESSION['userID'] !== null && array_key_exists("admin", $_SESSION))
+		if(LoginGuard::isAdmin())
 		{	
 			$response['complete'] = MenuItemManager::remove(array("ID" => $ID));
 			$response['allowed'] = true;

@@ -12,11 +12,13 @@ $response = array(
 if($ID != null)
 {
 	try {	
-		$response['allowed'] = true;
-		if($_SESSION['userID'] !== null)
+		if(LoginGuard::isUser())
+		{
+			$response['allowed'] = true;
 			$loadMsgs = ContactMessageManager::load(($ID !== "*") ? $ID : null);
-		$response['complete'] = true;	
-		$response['objects'] = ($loadMsgs);
+			$response['complete'] = true;	
+			$response['objects'] = ($loadMsgs);
+		}
 	}
 	catch(Exception $e) {
 		$response['complete'] = false;

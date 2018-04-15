@@ -36,6 +36,8 @@ class RequirePath {
 		require_once(__ROOT__ . "Error/ErrorTemplates.php");
 
 		require_once(__ROOT__ . "Notification/NotificationManager.php");
+
+		require_once(__ROOT__ . "Utility/LoginGuard.php");
 		require_once(__ROOT__ . "Utility/RandomString.php");
 
 		if($mail)

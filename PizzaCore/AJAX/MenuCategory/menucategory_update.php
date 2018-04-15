@@ -17,7 +17,7 @@ if($ID != null && $data != null)
 	else
 	{
 		try {	
-			if($_SESSION['userID'] !== null && array_key_exists("admin", $_SESSION))
+			if(LoginGuard::isAdmin())
 			{	
 				$response['complete'] = MenuCategoryManager::update($data, $ID);
 				$response['allowed'] = true;	

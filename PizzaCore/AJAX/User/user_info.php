@@ -11,7 +11,11 @@ $response = array(
 if($ID != null)
 {
 	try {
-		$response['object'] = (UserManager::load(array("ID" => $ID)))[0];
+		if(LoginGuard::isUser())
+		{
+			$response['complete'] = true;
+			$response['object'] = (UserManager::load(array("ID" => $ID)))[0];
+		}
 	}
 	catch(Exception $e) {
 		echo $e->getMessage();

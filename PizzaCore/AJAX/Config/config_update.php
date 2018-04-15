@@ -12,7 +12,7 @@ $response = array(
 if($data != null)
 {
 	try {	
-		if($_SESSION['userID'] !== null && array_key_exists("admin", $_SESSION))
+		if(LoginGuard::isAdmin())
 		{	
 			$response['complete'] = ConfigManager::update($data, 1);
 			$response['allowed'] = true;	
