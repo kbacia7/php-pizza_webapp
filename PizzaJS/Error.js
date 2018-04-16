@@ -69,6 +69,7 @@ function errorsHandle() {
 }
 
 function displayError(errorObj) {
+    if(errorObj == undefined) return;
     $.notify({
         // options
         title: "<b>" + errorObj.title + "</b><br/>",

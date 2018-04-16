@@ -65,8 +65,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-redirect="gallery_manager" href="#">Galeria</a>
                             </li>
+							<li class="nav-item">
+                                <a class="nav-link" data-redirect="user_manager" href="#">Użytkownicy</a>
+                            </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-redirect="mail_manager" href="#">Kontakt <span class="badge badge-pill badge-danger">9</span></a>
+                                <a class="nav-link" data-redirect="mail_manager" href="#">Kontakt</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-redirect="notification_manager" href="#">Powiadomienia</a>
@@ -94,7 +97,8 @@
                                     <div id="menu_manager"> <!-- MENU --> </div>
                                     <div id="config_manager"></div>
                                     <div id="gallery_manager"></div>
-                                    <div id="mail_manager"></div>
+									<div id="user_manager"></div>
+                                    <div id="mail_manager"></div>									
                                     <div id="notification_manager"></div>
                                 </div>
                             </div>
@@ -121,6 +125,7 @@
         $("#config_manager").load("admin_config.php");
         $("#menu_manager").load("admin_menu.php");
         $("#gallery_manager").load("admin_gallery.php");
+		$("#user_manager").load("admin_user.php");
         $("#mail_manager").load("admin_contact.php");
         $("#notification_manager").load("admin_notification.php");
         $("#waitDialog").modal('show');
@@ -133,6 +138,7 @@
             menuItemHandle();
             notificationHandle();
             galleryHandle();
+            userHandle();
             contactRoomHandle();
             configAjaxLoad().then(function (o) {
                 configSetForm(o);
@@ -197,6 +203,16 @@
     {
         return /^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/.test(text);
     }
+	
+	function is_valid_location(text)
+	{
+		return /^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/.test(text);
+	}
+	
+	function is_valid_telephone(text)
+	{
+		return /^\(\d{2}\)\ ?\d{3}-?\d{3}-?\d{3}$/.test(text);
+	}
 
     function ajax_is_allowed()
     {

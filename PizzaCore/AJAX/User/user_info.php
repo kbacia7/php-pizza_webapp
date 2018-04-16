@@ -14,7 +14,7 @@ if($ID != null)
 		if(LoginGuard::isUser())
 		{
 			$response['complete'] = true;
-			$response['object'] = (UserManager::load(array("ID" => $ID)))[0];
+			$response['object'] = UserManager::load(array("ID" => $ID))[0];
 		}
 	}
 	catch(Exception $e) {

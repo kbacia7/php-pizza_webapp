@@ -2,6 +2,10 @@ function userHandle() {
     $("body").on("click", "#sendEmail", function() {
         userGuestCreate();
     });
+
+    $("body").on("click", "#userSaveButton", function() {
+        $(this).parents("form").first().find(":disabled").prop("disabled", false);
+    });
 }
 
 function userIsValid() {

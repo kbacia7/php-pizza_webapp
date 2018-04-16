@@ -22,7 +22,7 @@
   <div class="form-group row">
     <label for="inputIcon" class="col-sm-2 col-form-label">Ikonka pizzeri</label>
     <div class="col-sm-10">
-      <input type="file" class="form-control-file" id="inputIcon">
+      <input type="file" class="form-control-file" id="inputIcon" accept=".png, .jpg, .jpeg" />
     </div>
   </div>
   <div class="form-group row">

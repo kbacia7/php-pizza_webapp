@@ -1,7 +1,45 @@
+let allowedImgTypes = ["image/png"];
 function configHandle() {
   $("body").on("click", "#configSaveButton", function() {
     configSave();
   });
+  $("body").on("submit", "form", function(e) {
+	e.preventDefault();
+  });
+}
+
+function configIsValidObject(cObj) {
+  if(cObj.title.length <= 0)
+	  return errorsTemplates[errorsId.Config_PizzeriaNull];
+  else if(cObj.title.length > 30)
+	  return errorsTemplates[errorsId.Config_PizzeriaTooLong];  
+  else if(!is_valid_menu_title(cObj.title))
+    return errorsTemplates[errorsId.Config_PizzeriaNoValid];  
+  else if(cObj.position.length <= 0)
+	  return errorsTemplates[errorsId.Config_PizzeriaLocationEmpty]; 
+  else if(!is_valid_location(cObj.position))
+	  return errorsTemplates[errorsId.Config_PizzeriaLocationFormat];   
+  else if(cObj.contactNumber.length <= 0)
+    return errorsTemplates[errorsId.Config_TelephoneEmpty]; 
+  else if(!is_valid_telephone(cObj.contactNumber))
+	  return errorsTemplates[errorsId.Config_TelephoneFormat];   
+  else if(cObj.cashChar.length <= 0)
+	  return errorsTemplates[errorsId.Config_CurrencyEmpty];    
+  else if(cObj.cashChar.length > 3)
+	  return errorsTemplates[errorsId.Config_CurrencyTooLong];    
+  else if(cObj.descriptionGallery1.length <= 0)
+	  return errorsTemplates[errorsId.Config_GalleryOneEmpty];  
+  else if(cObj.descriptionGallery2.length <= 0)
+    return errorsTemplates[errorsId.Config_GalleryTwoEmpty];  
+  return undefined;
+}
+
+function configIsValidIcon(iconData) {
+  if(allowedImgTypes.indexOf(iconData.type) == -1)
+    return errorsTemplates[errorsId.Config_IconInvalid];
+  else if(iconData.size > 10 * 1024)
+    return errorsTemplates[errorsId.Config_IconSizeTooMuch];
+  return undefined;
 }
 
 function configSetForm(configObject) {
@@ -49,16 +87,11 @@ function configSave() {
   let d1g = $("#inputGallery1").val();
   let d2g = $("#inputGallery2").val();
   let cN = $("#inputNumber").val();
-  if(title.length <= 0)
-	displayError(errorsTemplates[errorsId.Config_PizzeriaNull]);
-  else if(title.length > 30)
-	displayError(errorsTemplates[errorsId.Config_PizzeriaTooLong]);  
-  else if(is_valid_menu_title(title))
-    displayError(errorsTemplates[errorsId.Config_PizzeriaNoValid]);  
-  else {
+  
   var file_data = $('#inputIcon').prop('files')[0];   
   var form_data = new FormData();                  
   form_data.append('file', file_data);
+  
   let d = {
     title:  title,
     position: pos,
@@ -67,9 +100,20 @@ function configSave() {
     descriptionGallery2: d2g,
     contactNumber: cN
   }
+  let errors = configIsValidObject(d);
+  if(errors != undefined)
+    displayError(errors);
+  else {
   configAjaxUpdate(d);
-  if(file_data !== undefined)
-    configUploadIcon(form_data);
+  configSetForm(d);
+  if(file_data !== undefined) {
+
+    let iconErrors = configIsValidIcon(file_data);
+    if(iconErrors != undefined)
+      displayError(iconErrors);
+    else
+      configUploadIcon(form_data);
+  }
   }
 }
 
