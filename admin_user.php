@@ -1,16 +1,19 @@
 <h4 class="text-center">Użytkownicy</h4>
 <p class="m-0 text-center">Lista użytkowników portalu z możliwością nadawania uprawnień administratora i tworzeniem kont</p>
+<div class="text-center">
+	<button type="button" id="create-user" class="btn btn-success">+</button>
+</div>
 <div class="mt-4">
 <div class="col-12">
   <div class="row">
     <div class="col-3">
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="nav-link" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-account" role="tab" aria-controls="v-pills-account" aria-selected="false"><span class="user-tab-title">Nazwa (#ID)</span><button type="button" class="float-right btn btn-sm btn-danger user-remove-account"><i class="fas fa-trash"></i></button></a>
-      </div>
+        <a class="nav-link never-use-user-tab d-none" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-user" role="tab" aria-controls="v-pills-user" aria-selected="false"><span class="user-tab-title">Nazwa (#ID)</span><button type="button" class="float-right btn btn-sm btn-danger user-remove-account"><i class="fas fa-trash"></i></button></a>
+			</div>
     </div>
     <div class="col-9">
 		<div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade" id="v-pills-account" role="tabpanel" aria-labelledby="v-pills-account-tab">
+        <div class="tab-pane fade never-use-user-tab-pane d-none" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab">
           <div class="user-data-form">
 			<form id="userSaveForm">
 			  <div class="form-group row">
