@@ -1,6 +1,7 @@
 function userHandle() {
   $("body").on("click", "#sendEmail", function() {
     userGuestCreate();
+    
   });
 
   $("body").on("click", "#userSaveButton", function() {
@@ -18,8 +19,22 @@ function userHandle() {
     }
   });
 
+  $("body").on("click", ".user-remove-account", function() {
+    userRemove($(this).parents(".nav-link").first());
+  });
+
   $("body").on("click", "#create-user", function() {
-    userAdd($(document));
+    let d = {
+      firstName: "Nowy",
+      lastName: "Użytkownik",
+      login: "Nowy_" + userRandomString(5),
+      password: userRandomString(50),
+      admin: false
+    }
+    userAjaxAdd(d).then(function(jData) {
+      userLoad(jData);
+    });
+    
   });
   userLoadAll();
 }
@@ -113,6 +128,13 @@ function userUpdate(form) {
   $("input#inputUserPassword").val("");
 }
 
+function userRemove(tab) {
+  let id = $(tab).attr("data-roomid");
+  $("#v-pills-user" + id).fadeOut();
+  $(tab).fadeOut();
+  userAjaxRemove(id);
+}
+
 function userGuestCreate() {
   let d = {
     firstName: $("#firstName").val(),
@@ -139,11 +161,31 @@ function userAjaxUpdate(ID, data) {
   });
 }
 
-function userAjaxAdd(data) {
+function userAjaxRemove(ID) {
   $.ajax({
-    url: "PizzaCore/AJAX/User/user_create.php",
-    type: "POST",
-    data: data
+      url: "PizzaCore/AJAX/User/user_remove.php",
+      type: "POST",
+      data: { ID: ID },
+      complete: function (jData) {
+          var jsonRealData = JSON.parse(jData['responseText']);
+          if (jsonRealData['alllowed'] === false)
+              ajax_is_allowed();
+      }
+  });
+}
+
+function userAjaxAdd(data) {
+  return new Promise(function(resolve) {
+    $.ajax({
+      url: "PizzaCore/AJAX/User/user_create_admin.php",
+      type: "POST",
+      data: data,
+      complete: function(jData) {
+        var jsonRealData = JSON.parse(jData['responseText']);
+        if (jsonRealData["complete"])
+          resolve(jsonRealData['object']);
+      }
+    });
   });
 }
 
@@ -203,4 +245,11 @@ function getParameterByName(name, url) {
   if (!results) return null;
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function userRandomString(length) {
+  let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var result = '';
+  for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+  return result;
 }

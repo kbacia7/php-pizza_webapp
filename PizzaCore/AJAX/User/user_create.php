@@ -16,7 +16,6 @@ $validated = false;
 if($firstName != null && $lastName != null)
 {
 	try {
-
 		$validated = CaptchaValidator::validate($captcha);
 		if($validated) {
 			$userExists = UserManager::load(array("login" => $eMail));
