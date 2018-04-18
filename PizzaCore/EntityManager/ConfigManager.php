@@ -48,25 +48,41 @@ class ConfigManager implements IEntityManager {
 	{
 		if($data == null)
 			return (ErrorTemplatesId::MenuCategory_NoData);
-		else if(strlen($data['title']) <= 0)
-			return (ErrorTemplatesId::Config_PizzeriaNull);
-		else if(strlen($data['title']) > 30)
-			return (ErrorTemplatesId::Config_PizzeriaTooLong);
-		else if(strlen($data['position']) <= 0)
-			return (ErrorTemplatesId::Config_PizzeriaLocationEmpty);
-		else if(!preg_match("/^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/", $data['position']))
-			return (ErrorTemplatesId::Config_PizzeriaLocationFormat);
-		else if(strlen($data['contactNumber']) <= 0)
-			return (ErrorTemplatesId::Config_TelephoneEmpty);
-		else if(!preg_match("/^\(\d{2}\)\ ?\d{3}-?\d{3}-?\d{3}$/", $data['contactNumber']))
-			return (ErrorTemplatesId::Config_TelephoneFormat);
-		else if(strlen($data['cashChar']) <= 0)
-			return (ErrorTemplatesId::Config_CurrencyEmpty);
-		else if(strlen($data['cashChar']) > 3)
-			return (ErrorTemplatesId::Config_CurrencyTooLong);
-		else if(strlen($data['descriptionGallery1']) <= 0)
+
+		if(array_key_exists("title", $data)) {
+			if(strlen($data['title']) <= 0)
+				return (ErrorTemplatesId::Config_PizzeriaNull);
+			else if(strlen($data['title']) > 30)
+				return (ErrorTemplatesId::Config_PizzeriaTooLong);
+		}
+
+		if(array_key_exists("position", $data))
+		{
+			if(strlen($data['position']) <= 0)
+				return (ErrorTemplatesId::Config_PizzeriaLocationEmpty);
+			else if(!preg_match("/^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/", $data['position']))
+				return (ErrorTemplatesId::Config_PizzeriaLocationFormat);
+		}
+
+		if(array_key_exists("contactNumber", $data))
+		{
+			if(strlen($data['contactNumber']) <= 0)
+				return (ErrorTemplatesId::Config_TelephoneEmpty);
+			else if(!preg_match("/^\(\d{2}\)\ ?\d{3}-?\d{3}-?\d{3}$/", $data['contactNumber']))
+				return (ErrorTemplatesId::Config_TelephoneFormat);
+		}
+
+		if(array_key_exists("cashChar", $data))
+		{
+			if(strlen($data['cashChar']) <= 0)
+				return (ErrorTemplatesId::Config_CurrencyEmpty);
+			else if(strlen($data['cashChar']) > 3)
+				return (ErrorTemplatesId::Config_CurrencyTooLong);
+		}
+
+		if(strlen($data['descriptionGallery1']) <= 0 && array_key_exists("descriptionGallery1", $data))
 			return (ErrorTemplatesId::Config_GalleryOneEmpty);
-		else if(strlen($data['descriptionGallery2']) <= 0)
+		else if(strlen($data['descriptionGallery2']) <= 0 && array_key_exists("descriptionGallery2", $data))
 			return (ErrorTemplatesId::Config_GalleryTwoEmpty);
 		return ErrorTemplatesId::Config_UpdateSuccess;
 	}

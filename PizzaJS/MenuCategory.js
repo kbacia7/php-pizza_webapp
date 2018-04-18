@@ -132,15 +132,35 @@ function menuCategorySaveEdit(item) {
     let parentRoot = $(item).parents(".list-group-item").first();
     let newTitle = $(parentRoot).find(".menu-title-position-input").attr("value");
     let inputTitle = $(parentRoot).find(".menu-title-position-input");
-    if(is_valid_menu_title(newTitle))
-    {
+    let catID = $(parentRoot).parents("ul.list-group").attr("data-categoryid");
+    let o = {
+        title: newTitle
+    }
+    let err = menuCategoryIsValid(o);
+    if(err == undefined) {
         $(parentRoot).find(".menu-title-position").text(newTitle);
-        menuCategoryAjaxUpdate($(parentRoot).parents("ul.list-group").attr("data-categoryid"), { "title": newTitle });
+        menuCategoryAjaxUpdate(catID, o);
         menuCategoryCancelEdit(item, false);
     }
     else 
-        displayError(errorsTemplates[errorsId.MenuItem_NoValidTitle]);
+        displayError(err);
     
+}
+
+function menuCategoryIsValidTitle(title) 
+{
+    return (XRegExp("^[\\p{L},' ']+$")).test(title);
+}
+
+function menuCategoryIsValid(object) 
+{
+    if(object.title.length <= 0)
+      return errorsTemplates[errorsId.MenuCategory_NoTitle];
+    if(!menuCategoryIsValidTitle(object.title))
+      return errorsTemplates[errorsId.MenuCategory_NoTitle];
+    if(object == null)
+      return errorsTemplates[errorsId.MenuCategory_NoData];
+    return undefined;
 }
 
 function menuCategoryAjaxAdd(data, callback) //data - {title: "title"}

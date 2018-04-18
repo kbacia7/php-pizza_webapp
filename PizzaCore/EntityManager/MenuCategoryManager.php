@@ -48,5 +48,16 @@ class MenuCategoryManager implements IEntityManager {
 		$queryBuild->update(self::$tableName, $data, array("ID" => $id));
 		return true;
 	}
+
+	public static function isValidData($data)
+	{
+		if($data == null)
+			return ErrorTemplatesId::MenuCategory_NoExists;
+		else if($data["ID"] == null && array_key_exists("ID", $data))
+			return ErrorTemplatesId::MenuCategory_NoData;
+		else if(!preg_match("/^[\\p{L},' ']+$/", $data['title']) && array_key_exists("title", $data))
+			return ErrorTemplatesId::MenuItem_NoValidTitle;
+		return ErrorTemplatesId::MenuCategory_UpdateSuccess;
+	}
 }
 ?>

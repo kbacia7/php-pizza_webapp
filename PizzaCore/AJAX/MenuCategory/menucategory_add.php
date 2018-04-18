@@ -11,10 +11,7 @@ $response = array(
 );
 if($title != null)
 {
-	if(!preg_match("/^[\\p{L},' ']+$/", $title))
-		ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoValidTitle);
-	else 
-	{
+
 		try {	
 			if(LoginGuard::isAdmin())
 			{
@@ -22,17 +19,18 @@ if($title != null)
 				$settings = array(
 					'title' => $title
 				);
-				$response['object'] = MenuCategoryManager::create($settings);
-				$response['complete'] = true;	
+				$error = MenuCategoryManager::isValidData($settings);
+				if($error == ErrorTemplatesId::MenuCategory_UpdateSuccess)
+				{
+					$response['object'] = MenuCategoryManager::create($settings);
+					$response['complete'] = true;	
+				}
 				ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuCategory_CreateSuccess);
 			}
 		}
 		catch(Exception $e) {
 			$response['complete'] = false;
 		}
-	}
 }
-else
-	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuCategoryCreate_NoTitle);
 echo json_encode($response);
 ?>

@@ -14,8 +14,15 @@ if($ID != null)
 	try {	
 		if(LoginGuard::isAdmin())
 		{
-			$response['complete'] = MenuCategoryManager::remove(array("ID" => $ID));
-			$response['allowed'] = true;
+			$d = array(
+				"ID" => $ID,
+			);
+			$error = MenuCategoryManager::isValidData($d);
+			if($error == ErrorTemplatesId::MenuCategory_UpdateSuccess)
+			{
+				$response['complete'] = MenuCategoryManager::remove(array("ID" => $ID));
+				$response['allowed'] = true;
+			}
 			ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuCategory_RemoveSuccess);
 		}
 	}
@@ -23,7 +30,5 @@ if($ID != null)
 		$response['complete'] = false;
 	}
 }
-else
-	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuCategory_NoExists);
 echo json_encode($response);
 ?>
