@@ -48,5 +48,18 @@ class GalleryManager implements IEntityManager {
 		$queryBuild->update(self::$tableName, $data, array("ID" => $id));
 		return true;
 	}
+
+	public static function isValidData($data) 
+	{
+		if($data == null)
+			return ErrorTemplatesId::Gallery_ImageDescriptionEmpty; //TODO: Create error
+		else if(array_key_exists("ID", $data) && $data["ID"] == null)
+			return ErrorTemplatesId::Gallery_ImageDescriptionEmpty; //TODO: Create error
+		else if($data["galleryID"] != 1 && $data["galleryID"] != 2)
+			return ErrorTemplatesId::Gallery_ImageDescriptionEmpty; //TODO: Create error
+		else if(strlen($data["description"]) <= 0 && $data["galleryID"] == 1)
+			return ErrorTemplatesId::Gallery_ImageDescriptionEmpty; 		
+		return ErrorTemplatesId::Gallery_ImageUploaded; //TODO: Create error
+	}
 }
 ?>

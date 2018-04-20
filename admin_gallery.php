@@ -36,7 +36,7 @@
         <form>
           <div class="form-group">
             <label for="inputGalleryFile" class="col-form-label">Plik ze zdjęciem</label>
-            <input type="file" class="form-control-file" id="inputGalleryFile"/>
+            <input type="file" class="form-control-file" id="inputGalleryFile" accept=".png, .jpg, .bmp, .jpeg"/>
           </div>
           <div class="form-group">
             <label for="inputGalleryDescriptionCreate" class="col-form-label">Opis dodawanego zdjęcia</label>

@@ -11,19 +11,23 @@ $response = array(
 	'allowed' => false,
 	'object' => null
 );
-if($description != null)
+if($description != null && $path != null && $gID != null)
 {
 		try {	
 			if(LoginGuard::isAdmin())
 			{
-				$response['allowed'] = true;
 				$settings = array(
 					'path' => $path,
 					'description' => $description,
 					'galleryID' => $gID
 				);
-				$response['object'] = GalleryManager::create($settings);
-				$response['complete'] = true;	
+				$error = GalleryManager::isValidData($settings);
+				if($error == ErrorTemplatesId::Gallery_ImageUploaded) {
+					$response['allowed'] = true;				
+					$response['object'] = GalleryManager::create($settings);
+					$response['complete'] = true;	
+				}
+				ErrorHandler::createFromTemplate($error);
 			}
 		}
 		catch(Exception $e) {

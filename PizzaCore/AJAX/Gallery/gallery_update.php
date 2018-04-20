@@ -16,14 +16,22 @@ if($ID != null && $data != null)
 		try {	
 			if(LoginGuard::isAdmin())
 			{	
-				$response['complete'] = GalleryManager::update($data, $ID);
-				$response['allowed'] = true;	
+				$d = array(
+					'ID' => $ID,
+					'description' => $data["description"],
+				);
+				$error = GalleryManager::isValidData($d);
+				if($error == ErrorTemplatesId::Gallery_ImageUploaded) {
+					$response['complete'] = GalleryManager::update($data, $ID);
+					$response['allowed'] = true;	
+				}
+				ErrorHandler::createFromTemplate($error);
 			}
 		}
 		catch(Exception $e) {
 			$response['complete'] = false;
 		}
-	
+
 }
 echo json_encode($response);
 ?>
