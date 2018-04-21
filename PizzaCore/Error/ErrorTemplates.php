@@ -206,28 +206,22 @@ class ErrorTemplates {
             "description" => "Pomyślnie wysłano powiadomienie"
         ),
 		
-		ErrorTemplatesId::Notification_TitleInvalidChars => array(
-            "code" => ErrorTypes::ERROR,
-            "title" => "Niepoprawny tytuł powiadomienia",
-            "description" => "Powiadomienie posiada niepoprawne znaki specjalne w tytule"
-        ),
-		
 		ErrorTemplatesId::Notification_TitleEmpty => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pusty tytuł powiadomienia",
             "description" => "Tytuł powiadomienia nie może być pusty"
         ),
 		
-		ErrorTemplatesId::Notification_TitleTooLong => array(
-            "code" => ErrorTypes::ERROR,
-            "title" => "Za długi tytuł powiadomienia",
-            "description" => "Tytuł powiadomienia jest za długi (maks. 40 znaków)"
-        ),
-		
 		ErrorTemplatesId::Notification_DescriptionEmpty => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pusty tekst powiadomienia",
             "description" => "Tekst powiadomienia nie może pozostać pusty"
+        ),
+
+        ErrorTemplatesId::Notification_NoData => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Nie podano danych",
+            "description" => "Nie podano danych do wysłania powiadomienia"
         ),
 
         //User

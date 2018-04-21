@@ -4,11 +4,22 @@ function notificationHandle() {
   });
 }
 
+function notificationIsValid(obj) {
+  if(obj == null)
+    return errorsTemplates[errorsId.ContactMessage_NullMessage];
+  else if(obj.title.length <= 0)
+    return errorsTemplates[errorsId.ContactMessage_NullMessage];
+  else if(obj.message.length <= 0)
+    return errorsTemplates[errorsId.ContactMessage_NullMessage];
+  return undefined;
+}
+
 function notificationSend() {
   let d = {
     title: $("#inputNotificationTitle").val(),
     message: $("#inputNotificationMessage").val()
   }
+  let e = notificationIsValid(d);
   notificationAjaxSend(d);
 }
 

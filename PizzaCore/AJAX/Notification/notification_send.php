@@ -14,9 +14,13 @@ if($data != null)
 	try {	
 		if(LoginGuard::isAdmin())
 		{	
-			$response['complete'] = NotificationManager::send($data['title'], $data['message']);
-			$response['allowed'] = true;	
-			ErrorHandler::createFromTemplate(ErrorTemplatesId::Notification_SendSuccess);
+			$error = NotificationManager::isValidData($data);
+			if($error == ErrorTemplatesId::Notification_SendSuccess) {
+				$response['complete'] = NotificationManager::send($data['title'], $data['message']);
+				$response['allowed'] = true;	
+				ErrorHandler::createFromTemplate(ErrorTemplatesId::Notification_SendSuccess);
+			}
+			ErrorHandler::createFromTemplate($error);
 		}
 	}
 	catch(Exception $e) {
@@ -24,7 +28,5 @@ if($data != null)
 	}
 	
 }
-//else 
-//	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuCategory_NoData);
 echo json_encode($response);
 ?>

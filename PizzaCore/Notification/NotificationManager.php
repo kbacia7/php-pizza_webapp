@@ -31,5 +31,16 @@ class NotificationManager  {
 		curl_close($ch);
 		
 	}
+
+	public static function isValidData($data) {
+		if($data == null)
+			return ErrorTemplatesId::Notification_NoData;
+		else if(!array_key_exists("title", $data) || strlen($data['title']) <= 0)
+			return ErrorTemplatesId::Notification_TitleEmpty;
+		else if(!array_key_exists("message", $data) || strlen($data['message']) <= 0)
+			return ErrorTemplatesId::Notification_DescriptionEmpty;
+		return ErrorTemplatesId::Notification_SendSuccess;
+
+	}
 }
 ?>

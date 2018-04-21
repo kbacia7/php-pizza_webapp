@@ -52,6 +52,7 @@ var errorsId = {
     Notification_TitleEmpty: 35,
     Notification_TitleTooLong: 36,
     Notification_DescriptionEmpty: 37,
+    Notification_NoData: 99,
     
     //User
     User_NoExists: 38,

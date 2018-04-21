@@ -43,11 +43,10 @@ abstract class ErrorTemplatesId
 	
 	//Notification
 	const Notification_SendSuccess = 32;
-    const Notification_TitleInvalidChars = 34;
     const Notification_TitleEmpty = 35;
-    const Notification_TitleTooLong = 36;
     const Notification_DescriptionEmpty = 37;
-    
+    const Notification_NoData = 99;
+
     //User
     const User_NoExists = 38;
     const User_NoData = 39;
