@@ -55,7 +55,7 @@ class MenuCategoryManager implements IEntityManager {
 			return ErrorID::MenuCategory_DoesntExists;
 		else if($data["ID"] == null && array_key_exists("ID", $data))
 			return ErrorID::MenuCategory_EmptyData;
-		else if(!preg_match("/^[\\p{L},' ']+$/", $data['title']) && array_key_exists("title", $data))
+		else if(array_key_exists("title", $data) && !preg_match("/^[\\p{L},' ']+$/", $data['title']))
 			return ErrorID::MenuItem_InvalidTitle;
 		return ErrorID::MenuCategory_UpdateComplete;
 	}

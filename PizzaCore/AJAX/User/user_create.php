@@ -30,7 +30,7 @@ if($firstName != null && $lastName != null && $eMail != null && $topic != null &
 					'firstName' => $firstName,
 					'lastName' => $lastName,
 					'password' => $p,
-					'admin' => false
+					'admin' => 0
 				);
 				$error = UserManager::isValidData($d);
 				if($error == ErrorID::User_CreateComplete) {
@@ -49,7 +49,7 @@ if($firstName != null && $lastName != null && $eMail != null && $topic != null &
 					}
 				}
 				else
-					$c = true;
+					$c = false;
 
 				$d = array(
 					'title' => $topic,

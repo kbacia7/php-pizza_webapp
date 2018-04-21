@@ -50,7 +50,7 @@
     $(document).ready(function() { 
             $("#mail_manager").load("user_contact.php");
             configAjaxLoad().then(function (o) {
-                userIsValid().then(function() {
+                userIsValidConnected().then(function() {
                     configSetData(o);
                     contactRoomHandle();
                 }).catch(function () {

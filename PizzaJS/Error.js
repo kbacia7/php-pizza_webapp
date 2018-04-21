@@ -23,6 +23,8 @@ var errorsId = {
   MenuItem_RemoveComplete: 105,
   MenuItem_UpdateComplete: 106,
   MenuItem_CreateComplete: 107,
+  MenuItem_EmptyPrice: 108,
+  MenuItem_EmptyParent: 109,
 
   //Config
   Config_UpdateComplete: 200,
@@ -82,6 +84,7 @@ var errorsId = {
   ContactRoom_CreateComplete: 704
 };
 
+/* MAIN */
 function errorsLoopInit() {
   setInterval(() => {
     errorsHandle();
@@ -116,6 +119,7 @@ function displayError(errorObj) {
   );
 }
 
+/* AJAX */
 function errorsAjaxLoad() {
   return new Promise(function(resolve) {
     $.ajax({

@@ -88,6 +88,18 @@ class ErrorTemplates {
             "description" => "Pomyślnie utworzono element menu"
         ),
 
+        ErrorID::MenuItem_EmptyPrice => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Niewłaściwa cena",
+            "description" => "Brak ceny dla pozycji w menu"
+        ),
+
+        ErrorID::MenuItem_EmptyParent => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Niewłaściwe menu",
+            "description" => "Wygląda na to że menu do którego należy ten element już nie istnieje"
+        ),
+
 		//Config
         ErrorID::Config_UpdateComplete => array(
             "code" => ErrorTypes::SUCCESS,

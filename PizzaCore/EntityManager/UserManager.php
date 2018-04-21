@@ -96,7 +96,7 @@ class UserManager implements IEntityManager {
 			return ErrorID::User_EmptyPassword; 
 		else if(!array_key_exists("login", $data) || strlen($data['login']) < 5)
 			return ErrorID::User_EmptyLogin; 
-		else if(array_key_exists("login", $data) && !preg_match("/^[a-zA-Z0-9_]*$/", $data['login']))
+		else if(array_key_exists("login", $data) && !preg_match("/^[a-zA-Z0-9_.@]*$/", $data['login']))
 			return ErrorID::User_InvalidLogin; 
 		return ErrorID::User_CreateComplete;
 	}

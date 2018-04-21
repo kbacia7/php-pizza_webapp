@@ -48,5 +48,24 @@ class MenuItemManager implements IEntityManager {
 		$queryBuild->update(self::$tableName, $data, array("ID" => $id));
 		return true;
 	}
+
+	public static function isValidData($data) 
+	{
+		if($data == null)
+			return ErrorID::MenuItem_EmptyData;
+		else if(array_key_exists("ID", $data) && $data["ID"] == null)
+			return ErrorID::MenuItem_DoesntExists;
+		else if(!array_key_exists("price", $data) || strlen($data['price']) <= 0)
+			return ErrorID::MenuItem_EmptyPrice;
+		else if(!array_key_exists("title", $data) || strlen($data['title']) <= 0)
+			return ErrorID::MenuItem_EmptyTitle;
+		else if(array_key_exists("parent", $data) && strlen($data['parent']) <= 0)
+			return ErrorID::MenuItem_EmptyParent;
+		else if(array_key_exists("price", $data) && !preg_match("/^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/", $data['price']))
+			return ErrorID::MenuItem_InvalidPrice;
+		else if(array_key_exists("title", $data) && !preg_match("/^[\\p{L},' ']+$/", $data['title']))
+			return ErrorID::MenuItem_InvalidTitle;
+		return ErrorID::MenuItem_CreateComplete;
+	}
 }
 ?>

@@ -14,12 +14,7 @@ $response = array(
 
 if($title != null && $price != null && $parent != null)
 {
-	if(!preg_match("/^[\\p{L},' ']+$/", $title))
-		ErrorHandler::createFromTemplate(ErrorID::MenuItem_InvalidTitle);
-	if(!preg_match("/^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/", $price))
-		ErrorHandler::createFromTemplate(ErrorID::MenuItem_InvalidPrice);
-	else 
-	{
+
 		try {	
 			if(LoginGuard::isAdmin())
 			{
@@ -29,21 +24,19 @@ if($title != null && $price != null && $parent != null)
 					'price' => $price,
 					'parent' => $parent
 				);
-				$response['object'] = MenuItemManager::create($settings);
-				$response['complete'] = true;	
-				ErrorHandler::createFromTemplate(ErrorID::MenuItem_CreateComplete);
+				$error = MenuItemManager::isValidData($settings);
+				if($error == ErrorID::MenuItem_CreateComplete) {
+					$response['object'] = MenuItemManager::create($settings);
+					$response['complete'] = true;	
+					ErrorHandler::createFromTemplate(ErrorID::MenuItem_CreateComplete);
+				}
+				ErrorHandler::createFromTemplate($error);
 			}
 		}
 		catch(Exception $e) {
 			$response['complete'] = false;
 		}
-	}
 }
-else if($title == null)
-	ErrorHandler::createFromTemplate(ErrorID::MenuItem_EmptyTitle);
-else if($price == null)
-	ErrorHandler::createFromTemplate(ErrorID::MenuItem_NoPrice);
-else 
-	ErrorHandler::createFromTemplate(ErrorID::MenuItem_NoParent);
+
 echo json_encode($response);
 ?>

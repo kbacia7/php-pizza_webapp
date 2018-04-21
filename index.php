@@ -163,6 +163,7 @@
         <div class="boxes">
             <div class="boxmsg">
                 <h1>Kontakt</h1>
+                <p id="insert-errors-here"></p>
                     <form method="POST">
                         <div class="input">
                             <p>Imię</p>
@@ -231,8 +232,6 @@
                 e.preventDefault();
             });
             loadMenuItems().then(function () {    
-                    swipeMenuItems();
-                    swipeMenuItemsData();
                     configAjaxLoad().then(function(o) {
                         configSetData(o);
                         mapLoad(o['title'], o['position'].split(","));
@@ -254,7 +253,7 @@
                     imgGallWidth = $("#active").width();
                     $("#desc").text($(".galleryimages img").first().attr("data-description"));
 
-                    //Add last gallery image with first
+
                     var lGimg = $(".galleryimages img").last();
                     lGimg.css("margin-left", -imgGallWidth);
                     lGimg.insertBefore($(".galleryimages img").first());
@@ -312,13 +311,6 @@
             dialog.dialog("open");
         });
 
-
-
-        /*
-            Function Name: mapLoad
-            Arguments: 0
-            This function loads the google map and insert in element with class .map (the default is div.map in block 5)
-        */
         function mapLoad(title, location_) {
             var pizzeria = new google.maps.LatLng(parseFloat(location_[0]), parseFloat(location_[1])); //Pizzeria position on Google Map
             var map = new google.maps.Map(document.getElementsByClassName('map')[0], { //Create Map
@@ -332,11 +324,7 @@
             });
         }
 
-        /*
-            Function Name: gallSwipeLeft
-            Arguments: 0
-            Changes photos to next in the gallery after click arrow (div.block2)
-        */
+
         function gallSwipeLeft() {
             var active = $("#active");
             var nActive = active.next();
@@ -363,11 +351,6 @@
             
         }
 
-        /*
-            Function Name: gallSwiperRight
-            Arguments: 0
-            Changes photos to prev in the gallery after click arrow (div.block2)
-        */
         function gallSwiperRight() {
             var active = $("#active");
             var lActive = active.prev();
@@ -395,11 +378,6 @@
 
         }
 
-        /*
-            Function Name: fadeImageGallery
-            Arguments: 0
-            Changes photos in the gallery (div.block4)
-        */
         function fadeImageGallery() {
             var totalImgCount = $(".block4 img").length;
             var activeImg = $(".block4 #active"); 
@@ -419,147 +397,6 @@
                     setTimeout(fadeImageGallery, secGallImg * 1000);
                 });
             });
-        }
-
-        /*
-            Function Name: swipeMenuItemsData
-            Arguments: 0
-            Add swipe the pages of the .menuitem
-        */
-        function swipeMenuItemsData() {
-            if ($(".menuitem > ul > li").find(":hidden").not("script").length > 0) {
-                var specialID = 0;
-                $(".menuitem").each(function () {
-                    $(this).attr("data-specialMenuID", specialID);
-                    specialID++;
-                });
-              
-               $(".menuitem").on("swiperight", function (ev) {
-                   nextMenuItemPage(ev.target);
-                });
-
-               $(".textarr").on("click", function (ev) {
-                   if ($(ev.target).text() == ">")
-                   {
-                       nextMenuItemPage($(ev.target).parent(".menuitem"));
-                   }
-                   else if ($(ev.target).text() == "<")
-                   {
-                       prevMenuItemPage($(ev.target).parent(".menuitem"));
-                   }
-               });
-
-               $(".menuitem").on("swipeleft", function (ev) {
-                   prevMenuItemPage(ev.target);
-               });
-            }        
-        }
-
-        /*
-            Function Name: swipeMenuItems
-            Arguments: 0
-            Add move the finger of items .menuitem
-        */
-        function swipeMenuItems()
-        {
-            if ($(".menuitem").find(":hidden").not("script").length > 0) { //if any hidden .menuitem exists
-               
-                //Next menu items
-                $(".fade_screen").on("swiperight", function (ev) { 
-                    paginatorNextPage();
-                });
-
-                //Prev menu items
-                $(".fade_screen").on("swipeleft", function (ev) {
-                    paginatorPrevPage();
-                });
-            }
-        }
-
-        /*
-            Function Name: nextMenuItemPage
-            Arguments: 1
-            Arguments 0: ev - Element that calls a function
-            Function loads the next menu page
-        */
-        function nextMenuItemPage(ev) {
-            var ulThis = $(ev).find("ul");
-            var menuItemID = $(ev).attr("data-specialMenuID");
-           /* if (savedData[menuItemID] != undefined) {
-                var minIndexElements = savedData[menuItemID][3] * savedData[menuItemID][1].length;
-                if (minIndexElements < savedData[menuItemID][0].length) {
-                    ulThis.fadeOut("fast", function () {
-                        var arrayElements = savedData[menuItemID][0].slice(minIndexElements, minIndexElements + savedData[menuItemID][1].length);
-                        ulThis.html(getHTMLFromArray(arrayElements, 'li'));
-                        savedData[menuItemID][3]++;
-                        $(ev.target).find("ul > li").css("display", "block");
-                        ulThis.fadeIn("fast");
-                    });
-                }
-            }*/
-        }
-
-         /*
-            Function Name: prevMenuItemPage
-            Arguments: 1
-            Arguments 0: ev - Element that calls a function
-            Function loads the previous menu page
-        */
-        function prevMenuItemPage(ev) {
-            var ulThis = $(ev).find("ul");
-            var menuItemID = $(ev).attr("data-specialMenuID");
-        /*    if (savedData[menuItemID] != undefined) {
-                var minIndexElements = (savedData[menuItemID][3] - 1) * savedData[menuItemID][1].length;
-                if (savedData[menuItemID][3] > 1) {
-                    ulThis.fadeOut("fast", function () {
-                        var arrayElements = savedData[menuItemID][0].slice(minIndexElements - savedData[menuItemID][1].length, minIndexElements);
-                        ulThis.html(getHTMLFromArray(arrayElements, 'li'));
-                        savedData[menuItemID][3]--;
-                        $(ev.target).find("ul > li").css("display", "block");
-                        ulThis.fadeIn("fast");
-                    });
-                }
-            }*/
-        }
-
-        /*
-            Function Name: getHTMLFromArray
-            Arguments: 2
-            Arguments 0: arr - Array with data
-            Arguments 1 (optional): addEl - The element to which the code from the array will be entered
-            Joins array elements and adds them to the element specified in the second argument
-        */
-        function getHTMLFromArray(arr, addEl = "") {
-            var i = 0;
-            var htmlSrc = "";
-            while (arr[i] !== undefined) {
-                var addHTML = $(arr[i]).html();
-                if (addEl !== "") {
-                    addHTML = '<' + addEl + '>' + $(arr[i]).html() + '</' + addEl + '>';
-                }
-                htmlSrc += addHTML;
-                i++;
-            }
-            return htmlSrc;
-        }
-
-        /*
-            Function Name: minLength
-            Arguments: 1
-            Arguments 0: selector - Selector for elements
-            Returns the smallest number of display elements
-        */
-        function minLength(selector) {
-            var minLen = 100;
-            $(selector).each(function () {
-                var thisElShow = $(this).find("ul > li").filter(function () {
-                    return $(this).css('display').toLowerCase().indexOf('none') == -1
-                }).length;
-                if (thisElShow < minLen) {
-                    minLen = thisElShow;
-                }
-            });
-            return minLen;
         }
 
         function loadMenuItems() {
@@ -582,7 +419,5 @@
           });
         }
     </script>
-   
-
 </body>
 </html>

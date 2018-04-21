@@ -1,4 +1,6 @@
 let savedAuthorsByID = {};
+
+/* MAIN */
 function contactMessageLoadAll(room) {
   return new Promise(function(resolve) {
     var actions = [];
@@ -40,15 +42,6 @@ function contactMessageLoad(o) {
       .text(o["dateSend"]);
     resolve(o["ID"]);
   });
-}
-
-function contactMessageIsValid(obj) {
-  if (obj == null) return errorsTemplates[errorsId.ContactMessage_DoesntExists];
-  else if (obj.message.length <= 0)
-    return errorsTemplates[errorsId.ContactMessage_EmptyMessage];
-  else if (obj.room.length <= 0)
-    return errorsTemplates[errorsId.ContactMessage_EmptyRoom];
-  return undefined;
 }
 
 function contactMessageAdd(parent, roomID, AJAX) {
@@ -99,21 +92,32 @@ function contactMessageAdd(parent, roomID, AJAX) {
       });
     } else displayError(e);
   }
-    if (e == undefined) {
-      cloneNewContactMessage = $(thisRoom)
-        .find(".never-use-contact-room-message-template")
-        .clone();
-      $(cloneNewContactMessage)
-        .removeClass("never-use-contact-room-message-template")
-        .removeClass("d-none")
-        .insertBefore(
-          $(thisRoom).find(".never-use-contact-room-message-template")
-        );
-    }
-  
+  if (e == undefined) {
+    cloneNewContactMessage = $(thisRoom)
+      .find(".never-use-contact-room-message-template")
+      .clone();
+    $(cloneNewContactMessage)
+      .removeClass("never-use-contact-room-message-template")
+      .removeClass("d-none")
+      .insertBefore(
+        $(thisRoom).find(".never-use-contact-room-message-template")
+      );
+  }
   return cloneNewContactMessage;
 }
 
+/* Validation */
+function contactMessageIsValid(obj) {
+  if (obj == null) return errorsTemplates[errorsId.ContactMessage_DoesntExists];
+  else if (obj.message.length <= 0)
+    return errorsTemplates[errorsId.ContactMessage_EmptyMessage];
+  else if (obj.room.length <= 0)
+    return errorsTemplates[errorsId.ContactMessage_EmptyRoom];
+  return undefined;
+}
+
+
+/* AJAX */
 function contactMessageAjaxAdd(data) {
   return new Promise(function(resolve) {
     $.ajax({

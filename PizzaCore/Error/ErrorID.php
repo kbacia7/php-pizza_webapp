@@ -18,6 +18,8 @@ abstract class ErrorID
     const MenuItem_RemoveComplete = 105;
     const MenuItem_UpdateComplete = 106;
     const MenuItem_CreateComplete = 107;
+    const MenuItem_EmptyPrice = 108;
+    const MenuItem_EmptyParent = 109;
 	
 	//Config
     const Config_UpdateComplete = 200;

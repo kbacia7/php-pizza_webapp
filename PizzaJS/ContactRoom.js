@@ -1,13 +1,22 @@
+/* MAIN */
 function contactRoomHandle() {
-    $("body").on("click", ".contact-remove-conversation", function() {
-        contactRoomRemove($(this).parents(".nav-link").first());
-    });
+  $("body").on("click", ".contact-remove-conversation", function() {
+    contactRoomRemove(
+      $(this)
+        .parents(".nav-link")
+        .first()
+    );
+  });
 
-    $("body").on("click", ".contact-send", function() {
-        contactMessageAdd($(document), undefined, true);
-        $(this).parents("form").first().find("#inputContact").val("");
-    });
-    contactRoomLoadAll();
+  $("body").on("click", ".contact-send", function() {
+    contactMessageAdd($(document), undefined, true);
+    $(this)
+      .parents("form")
+      .first()
+      .find("#inputContact")
+      .val("");
+  });
+  contactRoomLoadAll();
 }
 
 function contactRoomLoadAll() {
@@ -15,10 +24,10 @@ function contactRoomLoadAll() {
     var actions = [];
     contactRoomAjaxLoad("*").then(function(data) {
       actions = data["objects"].map(contactRoomLoad);
-      Promise.all(actions).then(function (rIDs) {
+      Promise.all(actions).then(function(rIDs) {
         rIDs.map(contactMessageLoadAll);
         resolve(actions);
-      });     
+      });
     });
   });
 }
@@ -31,13 +40,15 @@ function contactRoomLoad(o) {
     $(eTab).attr("id", "v-pills-conversation-tab" + o["ID"]);
     $(eTab).attr("href", "#v-pills-conversation" + o["ID"]);
     $(eTab).attr("aria-controls", "v-pills-conversation" + o["ID"]);
-    $(eTab).find("span.contact-tab-title").text(o['title'] + " (#" + o["ID"] + ")");
+    $(eTab)
+      .find("span.contact-tab-title")
+      .text(o["title"] + " (#" + o["ID"] + ")");
     $(eTab).attr("data-roomID", o["ID"]);
-    
+
     $(tPane).attr("id", "v-pills-conversation" + o["ID"]);
     $(tPane).attr("aria-labelledby", "v-pills-conversation-tab" + o["ID"]);
     $(tPane).attr("data-roomID", o["ID"]);
-    
+
     resolve(o["ID"]);
   });
 }
@@ -58,22 +69,21 @@ function contactRoomAdd(parent, objectRoom) {
   $(cloneNewContactRoom)
     .removeClass("never-use-contact-tab-pane")
     .removeClass("d-none")
-    .insertBefore($(".never-use-contact-tab-pane").first())
+    .insertBefore($(".never-use-contact-tab-pane").first());
   return [cloneNewContactRoomTab, cloneNewContactRoom];
 }
 
 function contactRoomRemove(element) {
   let aID = $(element).attr("data-roomID");
-  $("a.nav-link[href$='" + aID + "']").tab('dispose');
-  $("div.tab-pane[aria-labelledby$='" + aID + "']").tab('dispose');
-  contactRoomAjaxRemove(
-    aID
-  );
+  $("a.nav-link[href$='" + aID + "']").tab("dispose");
+  $("div.tab-pane[aria-labelledby$='" + aID + "']").tab("dispose");
+  contactRoomAjaxRemove(aID);
 
   $("div.tab-pane[aria-labelledby$='" + aID + "']").remove();
   $(element).remove();
 }
 
+/* AJAX */
 function contactRoomAjaxAdd(data, callback) {
   $.ajax({
     url: "PizzaCore/AJAX/ContactRoom/contactroom_add.php",

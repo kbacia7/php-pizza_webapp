@@ -15,10 +15,9 @@ function paginatorInit(settings) {
     paginatorElement = settings['element'];
 
     $(paginatorGlobalElements).css("display", "none");
-    //$("[data-categoryid]").parents(".global-menu-root").css("display", "none");
     paginatorShowCategories(1, 3);
 
-    $("body").on("click", paginatorNextPageSel/*".paginator-next-page"*/, () => {
+    $("body").on("click", paginatorNextPageSel, () => {
         paginatorNextPage();
     });
 
@@ -73,5 +72,5 @@ function paginatorIsLastPage() {
 }
 
 function paginatorCategoriesOnPage() {
-    return $(paginatorIsVisibleSel/*"[data-categoryid]:visible"*/).length;
+    return $(paginatorIsVisibleSel).length;
 }

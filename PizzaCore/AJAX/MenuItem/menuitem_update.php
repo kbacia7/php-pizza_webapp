@@ -12,28 +12,27 @@ $response = array(
 
 if($ID != null && $data != null)
 {
-	if(!preg_match("/^[\\p{L},' ']+$/", $data['title']))
-		ErrorHandler::createFromTemplate(ErrorID::MenuItem_InvalidTitle);
-	if(!preg_match("/^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/", $data['price']))
-		ErrorHandler::createFromTemplate(ErrorID::MenuItem_InvalidPrice);
-	else 
-	{
+
 		try {	
 			if(LoginGuard::isAdmin())
 			{	
-				$response['complete'] = MenuItemManager::update($data, $ID);
-				$response['allowed'] = true;
-				ErrorHandler::createFromTemplate(ErrorID::MenuItem_UpdateComplete);	
+				$d = array(
+					'title' => $data['title'],
+					'price' => $data['price'],
+					'ID' => $ID
+				);
+				$error = MenuItemManager::isValidData($d);
+				if($error == ErrorID::MenuItem_CreateComplete) {
+					$response['complete'] = MenuItemManager::update($data, $ID);
+					$response['allowed'] = true;
+					ErrorHandler::createFromTemplate(ErrorID::MenuItem_UpdateComplete);	
+				}
+				ErrorHandler::createFromTemplate($error);
 			}
 		}
 		catch(Exception $e) {
 			$response['complete'] = false;
 		}
-	}
 }
-else if($ID == null)
-	ErrorHandler::createFromTemplate(ErrorID::MenuItem_DoesntExists);
-else 
-	ErrorHandler::createFromTemplate(ErrorID::MenuItem_EmptyData);
 echo json_encode($response);
 ?>

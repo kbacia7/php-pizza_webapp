@@ -6,6 +6,8 @@ let galleryAllowedImgTypes = [
   "image/jpeg"
 ];
 let isAnyActive = [false, false];
+
+/* MAIN */
 function galleryHandle() {
   $("body").on("mouseenter", ".imageslot", function() {
     $(this)
@@ -55,11 +57,9 @@ function galleryHandle() {
   });
 
   $("body").on("click", "#galleryAddImg", function() {
-    if(actuallyGalleryID == 2) {
+    if (actuallyGalleryID == 2) {
       $("#inputGalleryDescriptionCreate").prop("disabled", true);
-    }
-    else
-      $("#inputGalleryDescriptionCreate").prop("disabled", false);
+    } else $("#inputGalleryDescriptionCreate").prop("disabled", false);
     $("#addGallery").modal("show");
   });
 
@@ -109,22 +109,6 @@ function galleryChange(ID) {
   actuallyGalleryID = ID;
 }
 
-function galleryIsValid(obj) {
-  if (obj.galleryID > 2 && obj.galleryID < 1)
-    return errorsTemplates[errorsId.Gallery_InvalidGalleryID];
-  if (obj.description.length <= 0 && obj.galleryID == 1)
-    return errorsTemplates[errorsId.Gallery_EmptyImageDescription];
-  return undefined;
-}
-
-function galleryIsValidImg(img) {
-  if (galleryAllowedImgTypes.indexOf(img.type) == -1)
-    return errorsTemplates[errorsId.Gallery_InvalidImageEx];
-  else if (img.size > 10 * 1024 * 1024)
-    return errorsTemplates[errorsId.Gallery_InvalidImageSize];
-  return undefined;
-}
-
 function galleryUpdate(ID) {
   $("[data-galleryitemid=" + ID + "]").attr(
     "data-galleryItemDesc",
@@ -164,10 +148,10 @@ function galleryAdd(galleryObj, AJAX) {
             mustWait = true;
           } else return displayError(e);
         });
-      } else{
+      } else {
         displayError(vImg);
         displayError(e);
-      } 
+      }
     }
 
     Promise.all(promiseWait).then(function() {
@@ -235,6 +219,24 @@ function galleryRemove(el) {
   galleryAjaxRemove($(el).attr("data-galleryItemID"));
 }
 
+/* Validation */
+function galleryIsValid(obj) {
+  if (obj.galleryID > 2 && obj.galleryID < 1)
+    return errorsTemplates[errorsId.Gallery_InvalidGalleryID];
+  if (obj.description.length <= 0 && obj.galleryID == 1)
+    return errorsTemplates[errorsId.Gallery_EmptyImageDescription];
+  return undefined;
+}
+
+function galleryIsValidImg(img) {
+  if (galleryAllowedImgTypes.indexOf(img.type) == -1)
+    return errorsTemplates[errorsId.Gallery_InvalidImageEx];
+  else if (img.size > 10 * 1024 * 1024)
+    return errorsTemplates[errorsId.Gallery_InvalidImageSize];
+  return undefined;
+}
+
+/* AJAX */
 function galleryAjaxLoad(ID) {
   return new Promise(function(resolve) {
     $.ajax({
