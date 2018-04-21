@@ -78,32 +78,22 @@
     <script src="PizzaJS/Gallery.js"></script>
     <script src="PizzaJS/Config.js"></script>
     <script src="PizzaJS/User.js"></script>
-    <title>Your pizzeria</title>
+    <title>Ładowanie...</title>
 </head>
 
 <body>
     <div class="block1">
         <div class="header">
-            <h1 id="header-title">asYour pizzeria</h1>
+            <h1 id="header-title">Ładowanie...</h1>
         </div>
     </div>
     <div class="block2">
-        <p id="block2-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo vel purus interdum ultrices. Suspendisse sit
-            amet aliquam sem. Pellentesque vel nibh nisl. Nulla sed neque sit amet quam ultricies porttitor at vitae mauris.
-            Donec nec magna et nisl ullamcorper mattis sodales at est</p>
+        <p id="block2-description">Ładowanie...</p>
         <div class="gallery">
             <div class="galleryview">
                 <img id="left" class="arrow" src="images/arrow.png" />
                 <img id="right" class="arrow" src="images/arrow.png" />
                 <div class="galleryimages">
-                 <!--   <img id="active" src="images/4k+/gallery1/pizza-block2_gallery1.jpeg" srcset="images/smartphone/gallery1/pizza-block2_gallery1.jpeg 210w, 
-                         images/tablets/gallery1/pizza-block2_gallery1.jpeg 390w,
-                         images/laptops/gallery1/pizza-block2_gallery1.jpeg 500w,
-                         images/NormalPC/gallery1/pizza-block2_gallery1.jpeg 669w,
-                         images/FullHD2K/gallery1/pizza-block2_gallery1.jpeg 735w,
-                         images/4k+/gallery1/pizza-block2_gallery1.jpeg 1186w" sizes="(max-width: 599px) 210px, (min-width: 600px) and (max-width: 900px) 390px, (min-width: 901px) and (max-width: 1359px) 500px, (min-width: 1360px) and (max-width: 1919px) 669px, (min-width: 1920px) and (max-width: 2199px) 735px, (min-width: 2200px) 1186px"
-                        data-description="Nunc id semper leo. Cras dictum vulputate libero, nec dictum felis. Etiam rhoncus viverra velit ut mollis. Sed consectetur accumsan turpis, sed semper erat mattis eu1_1_!_1"
-                    />-->
                     <img id="active" class="never-used-gallery-slot-g1" src="images/4k+/gallery1/[FILENAME]" srcset="images/smartphone/gallery1/[FILENAME] 210w, 
                          images/tablets/gallery1/[FILENAME] 390w,
                          images/laptops/gallery1/[FILENAME] 500w,
@@ -134,19 +124,12 @@
                         <div class="add-new-menu"></div>
                     </li>
                 </ul>
-                <p class="textarr paginator-prev-page" style="float: left">
-                    <</p>
-                        <p class="textarr paginator-next-page" style="float: right">></p>
             </div>
             <div class="add-new-category-button"></div>
         </div>
     </div>
     <div class="block4">
-        <p id="block4-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo vel purus interdum ultrices. Suspendisse sit
-            amet aliquam sem. Pellentesque vel nibh nisl. Nulla sed neque sit amet quam ultricies porttitor at vitae mauris.
-            Donec nec magna et nisl ullamcorper mattis sodales at est. Aliquam iaculis scelerisque sem, eu faucibus justo
-            dictum quis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis et
-            risus tortor</p>
+        <p id="block4-description">Ładowanie...</p>
 
         <img id="active" class="never-used-gallery-slot-g2" src="images/4k+/gallery2/[FILENAME]" srcset="images/smartphone/gallery2/[FILENAME] 440w,
              images/tablets/gallery2/[FILENAME] 586w,

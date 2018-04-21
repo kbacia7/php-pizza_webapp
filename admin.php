@@ -25,7 +25,7 @@
     <script src="PizzaJS/ContactRoom.js"></script>
     <script src="PizzaJS/User.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Your pizzeria</title>
+    <title>Ładowanie...</title>
 </head>
 <body>
 
