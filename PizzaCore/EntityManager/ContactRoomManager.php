@@ -48,5 +48,18 @@ class ContactRoomManager implements IEntityManager {
 		$queryBuild->update(self::$tableName, $data, array("ID" => $id));
 		return true;
 	}
+
+	public static function isValidData($data) 
+	{
+		if($data == null)
+			return ErrorTemplatesId::ContactRoom_NoExists;
+		else if(!array_key_exists("title", $data) || strlen($data['title']) <= 0)
+			return ErrorTemplatesId::ContactRoom_NullTitle;
+		else if(!array_key_exists("owner", $data) || strlen($data['owner']) <= 0)
+			return ErrorTemplatesId::ContactRoom_NullOwner;
+		else if(array_key_exists("title", $data) && !preg_match("/^[\s\p{L}]+$/u", $data['title']))
+			return ErrorTemplatesId::ContactRoom_NoValidTitle;
+		return ErrorTemplatesId::ContactRoom_CreateSuccess;
+	}
 }
 ?>

@@ -22,8 +22,13 @@ if($msg != null)
 					'author' => $_SESSION['userID'],
 					'roomID' => $roomID
 				);
-				$response['object'] = ContactMessageManager::create($settings);
-				$response['complete'] = true;	
+				$error = ContactMessageManager::isValidData($settings);
+				if($error == ErrorTemplatesId::ContactMessage_CreateSuccess) {
+					$response['object'] = ContactMessageManager::create($settings);
+					$response['complete'] = true;	
+					ErrorHandler::createFromTemplate($error);
+				}
+				ErrorHandler::createFromTemplate($error);
 			}
 		}
 		catch(Exception $e) {

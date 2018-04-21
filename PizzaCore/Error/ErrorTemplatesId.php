@@ -60,5 +60,19 @@ abstract class ErrorTemplatesId
     const User_NullLogin = 46;
     const User_LoginInvalidChars = 47;
     const User_CreateSuccess = 48;
+
+    //Contact Messages
+    const ContactMessage_NoExists = 49;
+    const ContactMessage_NullMessage = 50;
+    const ContactMessage_NullAuthor = 51;
+    const ContactMessage_NullRoom = 52;
+    const ContactMessage_CreateSuccess = 53;
+
+    //Contact Room
+    const ContactRoom_NoExists = 54;
+    const ContactRoom_NullTitle = 55;
+    const ContactRoom_NullOwner = 56;
+    const ContactRoom_NoValidTitle = 57;
+    const ContactRoom_CreateSuccess = 58;
 }
 ?>

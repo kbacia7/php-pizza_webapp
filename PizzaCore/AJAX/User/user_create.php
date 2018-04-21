@@ -50,18 +50,29 @@ if($firstName != null && $lastName != null && $eMail != null && $topic != null &
 				}
 				else
 					$c = true;
+
 				$d = array(
 					'title' => $topic,
 					'owner' => $us->getID()
 				);
-				$room = ContactRoomManager::create($d);
+				$error = ContactRoomManager::isValidData($d);
+				if($error == ErrorTemplatesId::ContactRoom_CreateSuccess) {
+					$room = ContactRoomManager::create($d);
+				}
+				else 
+					$c = false;
 
 				$d = array(
 					'message' => $message,
 					'author' => $us->getID(),
 					'roomID' =>	$room->getID()
 				);
-				ContactMessageManager::create($d);
+				$error = ContactMessageManager::isValidData($d);
+				if($error == ErrorTemplatesId::ContactMessage_CreateSuccess) {
+					ContactMessageManager::create($d);
+				}
+				else
+					$c = false;
 				$response['complete'] = $c;
 		}
 	}

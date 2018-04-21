@@ -49,5 +49,18 @@ class ContactMessageManager implements IEntityManager {
 		$queryBuild->update(self::$tableName, $data, array("ID" => $id));
 		return true;
 	}
+
+	public static function isValidData($data) 
+	{
+		if($data == null)
+			return ErrorTemplatesId::ContactMessage_NoExists;
+		else if(!array_key_exists("message", $data) || strlen($data['message']) <= 0)
+			return ErrorTemplatesId::ContactMessage_NullMessage;
+		else if(!array_key_exists("author", $data) || strlen($data['author']) <= 0)
+			return ErrorTemplatesId::ContactMessage_NullAuthor;
+		else if(!array_key_exists("roomID", $data) || strlen($data['roomID']) <= 0)
+			return ErrorTemplatesId::ContactMessage_NullRoom;
+		return ErrorTemplatesId::ContactMessage_CreateSuccess;
+	}
 }
 ?>

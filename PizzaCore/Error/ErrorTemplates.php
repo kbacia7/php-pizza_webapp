@@ -295,7 +295,69 @@ class ErrorTemplates {
             "code" => ErrorTypes::SUCCESS,
              "title" => "Zaktualizowano użytkownika",
              "description" => "Pomyślnie zaktualizowano użytkownika"
-         ),
+        ),
+
+        //Contact Room
+        ErrorTemplatesId::ContactRoom_NoExists => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Nie podano danych",
+            "description" => "Nie podano danych dla nowej rozmowy"
+        ),
+
+        ErrorTemplatesId::ContactRoom_NullTitle => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Pusty tytuł",
+            "description" => "Tytuł rozmowy jest pusty"
+        ),
+
+        ErrorTemplatesId::ContactRoom_NullOwner => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Pusty założyciel",
+            "description" => "Założyciel rozmowy jest niepoprawny"
+        ),
+
+        ErrorTemplatesId::ContactRoom_NoValidTitle => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Niepoprawny tytuł",
+            "description" => "Tytuł rozmowy może zawierać tylko znaki A-Z wraz z polskimi znakami"
+        ),
+        
+        ErrorTemplatesID::ContactRoom_CreateSuccess => array(
+            "code" => ErrorTypes::SUCCESS,
+             "title" => "Utworzono pokój",
+             "description" => "Pomyślnie utworzono rozmowę"
+        ),
+
+        //Contact Message
+        ErrorTemplatesId::ContactMessage_NoExists => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Nie podano danych",
+            "description" => "Nie podano danych dla nowej wiadomości"
+        ),
+
+        ErrorTemplatesId::ContactMessage_NullMessage => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Pusta wiadomość",
+            "description" => "Wiadomość jest pusta"
+        ),
+
+        ErrorTemplatesId::ContactMessage_NullAuthor => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Pusty autor wiadomości",
+            "description" => "Autor wiadomości jest niepoprawny"
+        ),
+
+        ErrorTemplatesId::ContactMessage_NullRoom => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Niepoprawna rozmowa",
+            "description" => "Rozmowa do której chcesz dodać wiadomość jest niepoprawna"
+        ),
+        
+        ErrorTemplatesID::ContactMessage_CreateSuccess => array(
+            "code" => ErrorTypes::SUCCESS,
+             "title" => "Utworzono wiadomość",
+             "description" => "Dodano wiadomość do rozmowy"
+        ),
     );
 }
 ?>

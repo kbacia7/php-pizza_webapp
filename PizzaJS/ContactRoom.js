@@ -5,6 +5,7 @@ function contactRoomHandle() {
 
     $("body").on("click", ".contact-send", function() {
         contactMessageAdd($(document), undefined, true);
+        $(this).parents("form").first().find("#inputContact").val("");
     });
     contactRoomLoadAll();
 }

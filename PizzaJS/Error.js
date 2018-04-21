@@ -65,6 +65,20 @@ var errorsId = {
     User_NullLogin: 46,
     User_LoginInvalidChars: 47,
     User_CreateSuccess: 48,
+
+    //Contact Messages
+    ContactMessage_NoExists: 49,
+    ContactMessage_NullMessage: 50,
+    ContactMessage_NullAuthor: 51,
+    ContactMessage_NullRoom: 52,
+    ContactMessage_CreateSuccess: 53,
+
+    //Contact Room
+    ContactRoom_NoExists: 54,
+    ContactRoom_NullTitle: 55,
+    ContactRoom_NullOwner: 56,
+    ContactRoom_NoValidTitle: 57,
+    ContactRoom_CreateSuccess: 58,
 }
 
 function errorsLoopInit() {
