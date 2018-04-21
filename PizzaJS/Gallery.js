@@ -55,6 +55,11 @@ function galleryHandle() {
   });
 
   $("body").on("click", "#galleryAddImg", function() {
+    if(actuallyGalleryID == 2) {
+      $("#inputGalleryDescriptionCreate").prop("disabled", true);
+    }
+    else
+      $("#inputGalleryDescriptionCreate").prop("disabled", false);
     $("#addGallery").modal("show");
   });
 
@@ -105,8 +110,6 @@ function galleryChange(ID) {
 }
 
 function galleryIsValid(obj) {
-  if (obj.path.length <= 0)
-    return errorsTemplates[errorsId.Gallery_EmtyPath]; 
   if (obj.galleryID > 2 && obj.galleryID < 1)
     return errorsTemplates[errorsId.Gallery_InvalidGalleryID];
   if (obj.description.length <= 0 && obj.galleryID == 1)
@@ -137,12 +140,18 @@ function galleryAdd(galleryObj, AJAX) {
   return new Promise(function(resolve, reject) {
     let promiseWait = [];
     if (AJAX) {
+      d = {
+        path: "",
+        description: $("#inputGalleryDescriptionCreate").val(),
+        galleryID: actuallyGalleryID
+      };
+      e = galleryIsValid(d);
       var file_data = $("#inputGalleryFile").prop("files")[0];
       var form_data = new FormData();
       form_data.append("file", file_data);
       form_data.append("galleryID", actuallyGalleryID);
       let vImg = galleryIsValidImg(file_data);
-      if (vImg == undefined) {
+      if (vImg == undefined && e == undefined) {
         promiseWait.push(galleryAjaxUploadFile(form_data));
         Promise.all(promiseWait).then(function(fileName) {
           d = {
@@ -155,7 +164,10 @@ function galleryAdd(galleryObj, AJAX) {
             mustWait = true;
           } else return displayError(e);
         });
-      } else return displayError(vImg);
+      } else{
+        displayError(vImg);
+        displayError(e);
+      } 
     }
 
     Promise.all(promiseWait).then(function() {

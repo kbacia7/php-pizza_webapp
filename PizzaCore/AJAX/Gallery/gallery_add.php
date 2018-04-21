@@ -11,7 +11,7 @@ $response = array(
 	'allowed' => false,
 	'object' => null
 );
-if($description != null && $path != null && $gID != null)
+if($path != null && $gID != null)
 {
 		try {	
 			if(LoginGuard::isAdmin())
@@ -22,7 +22,7 @@ if($description != null && $path != null && $gID != null)
 					'galleryID' => $gID
 				);
 				$error = GalleryManager::isValidData($settings);
-				if($error == ErrorID::Gallery_ImageUploadedComplete) {
+				if($error == ErrorID::Gallery_AddComplete) {
 					$response['allowed'] = true;				
 					$response['object'] = GalleryManager::create($settings);
 					$response['complete'] = true;	
