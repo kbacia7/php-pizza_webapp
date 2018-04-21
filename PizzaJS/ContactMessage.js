@@ -40,6 +40,7 @@ function contactMessageLoad(o) {
     $(e)
       .find(".message-author-date")
       .text(o["dateSend"]);
+    $(e).removeClass("d-none");
     resolve(o["ID"]);
   });
 }
@@ -89,6 +90,7 @@ function contactMessageAdd(parent, roomID, AJAX) {
         $(cloneNewContactMessage)
           .find(".message-author-date")
           .text(data["dateSend"]);
+        $(cloneNewContactMessage).removeClass("d-none");
       });
     } else displayError(e);
   }
@@ -98,7 +100,6 @@ function contactMessageAdd(parent, roomID, AJAX) {
       .clone();
     $(cloneNewContactMessage)
       .removeClass("never-use-contact-room-message-template")
-      .removeClass("d-none")
       .insertBefore(
         $(thisRoom).find(".never-use-contact-room-message-template")
       );
