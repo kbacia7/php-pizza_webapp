@@ -195,10 +195,46 @@ class ErrorTemplates {
 		
 		ErrorID::Gallery_ImageUploadedComplete => array(
            "code" => ErrorTypes::SUCCESS,
-            "title" => "Dodano zdjęcie do galerii",
-            "description" => "Pomyślnie dodano zdjęcie do galerii"
+            "title" => "Wgrano zdjęcie na serwer",
+            "description" => "Pomyślnie wgrano zdjęcie na serwer"
         ),
-		
+
+        ErrorID::Gallery_EmtyPath => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Nazwa pliku galerii",
+            "description" => "Nazwa pliku w galerii nie może być pusta"
+        ),
+
+        ErrorID::Gallery_InvalidGalleryID => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Nieprawidłowe ID galerii",
+            "description" => "ID Galerii jest nieprawidłowe"
+        ),
+
+        ErrorID::Gallery_EmptyData => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Puste dane",
+            "description" => "Wpisane dane dla galerii są puste"
+        ),
+        
+        ErrorID::Gallery_EmptyData => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Puste dane",
+            "description" => "Wpisane dane dla galerii są puste"
+        ),
+
+        ErrorID::Gallery_DoesntExists => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Element galerii nie istnieje",
+            "description" => "Ten element galerii już nie istnieje"
+        ),
+
+        ErrorID::Gallery_AddComplete => array(
+            "code" => ErrorTypes::SUCCESS,
+             "title" => "Dodano zdjęcie do galerii",
+             "description" => "Pomyślnie dodano zdjęcie do galerii"
+         ),
+
 		//Notification
         ErrorID::Notification_SendComplete => array(
             "code" => ErrorTypes::SUCCESS,

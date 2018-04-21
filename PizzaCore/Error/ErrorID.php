@@ -40,6 +40,11 @@ abstract class ErrorID
     const Gallery_InvalidImageSize = 301;
     const Gallery_InvalidImageEx = 302;
     const Gallery_ImageUploadedComplete = 303;
+    const Gallery_EmtyPath = 304;
+    const Gallery_InvalidGalleryID = 305;
+    const Gallery_EmptyData = 306;
+    const Gallery_DoesntExists = 307;
+    const Gallery_AddComplete = 308;
 	
 	//Notification
 	const Notification_SendComplete = 400;

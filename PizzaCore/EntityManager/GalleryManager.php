@@ -52,14 +52,14 @@ class GalleryManager implements IEntityManager {
 	public static function isValidData($data) 
 	{
 		if($data == null)
-			return ErrorID::Gallery_EmptyImageDescription; //TODO: Create error
+			return ErrorID::Gallery_EmptyData;
 		else if(array_key_exists("ID", $data) && $data["ID"] == null)
-			return ErrorID::Gallery_EmptyImageDescription; //TODO: Create error
+			return ErrorID::Gallery_DoesntExists;
 		else if($data["galleryID"] != 1 && $data["galleryID"] != 2)
-			return ErrorID::Gallery_EmptyImageDescription; //TODO: Create error
+			return ErrorID::Gallery_InvalidGalleryID; 
 		else if(strlen($data["description"]) <= 0 && $data["galleryID"] == 1)
 			return ErrorID::Gallery_EmptyImageDescription; 		
-		return ErrorID::Gallery_ImageUploadedComplete; //TODO: Create error
+		return ErrorID::Gallery_AddComplete;
 	}
 }
 ?>

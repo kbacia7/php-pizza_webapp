@@ -45,6 +45,8 @@ var errorsId = {
   Gallery_InvalidImageSize: 301,
   Gallery_InvalidImageEx: 302,
   Gallery_ImageUploadedComplete: 303,
+  Gallery_EmtyPath: 304,
+  Gallery_InvalidGalleryID: 305,
 
   //Notification
   Notification_SendComplete: 400,

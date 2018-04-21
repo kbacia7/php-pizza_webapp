@@ -106,9 +106,9 @@ function galleryChange(ID) {
 
 function galleryIsValid(obj) {
   if (obj.path.length <= 0)
-    return errorsTemplates[errorsId.Gallery_EmptyImageDescription]; //TODO: Create new error
+    return errorsTemplates[errorsId.Gallery_EmtyPath]; 
   if (obj.galleryID > 2 && obj.galleryID < 1)
-    return errorsTemplates[errorsId.Gallery_EmptyImageDescription]; //TODO: Create new error
+    return errorsTemplates[errorsId.Gallery_InvalidGalleryID];
   if (obj.description.length <= 0 && obj.galleryID == 1)
     return errorsTemplates[errorsId.Gallery_EmptyImageDescription];
   return undefined;
