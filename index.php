@@ -188,7 +188,7 @@
         </div>
     </div>
 
-    <div id="dialog" title="Logowanie" data-dialog="true">
+    <div id="dialog" title="Logowanie" data-dialog="true" style="display: none">
         <p class="validateTips">Aby otrzymać dostep do panelu administratora musisz się zalogować</p>
         <p class="validateTips error"></p>
 
@@ -252,46 +252,14 @@
                     });
 
                     setTimeout(fadeImageGallery, secGallImg * 1000);
+                    $("body").keypress(function (e) {
+                        if(e.which == 76)
+                            loginFormOpen();
+                    });
                 });
             });
 
-            dialog = $( "#dialog" ).dialog({
-				autoOpen: false,
-				height: 310,
-				width: 350,
-				modal: true,
-				buttons: {
-					OK: function() {
-						var serializeDataForm  = $("#login_form").serialize();
-						if($("#password").val().length <= 0)
-							$("#password").addClass("ui-state-error");
-						if($("#login").val().length <= 0)
-							$("#login").addClass("ui-state-error");
-						if($("#password").val().length > 0 && $("#login").val().length > 0)
-						{
-							userAjaxLogin(serializeDataForm).then(function(jsonData) {
-                                if(jsonData['complete'] && jsonData['admin'])
-                                {
-                                    dialog.dialog("close");
-                                    window.location = 'admin.php';
-                                }
-                                else
-                                {
-                                    $("#password").addClass("ui-state-error");
-                                    $("#login").addClass("ui-state-error");
-                                    $(".error").text("Wygląda na to że podałeś nieprawidłowe hasło lub login!");
-                                }
-                            });
-						}
-					},
-					Anuluj: function() {
-						dialog.dialog( "close" );
-					}
-				},
-				close: function() {
-				}
-			});
-            dialog.dialog("open");
+            
         });
 
         function mapLoad(title, location_) {
@@ -400,6 +368,46 @@
                 });
                 userHandle();
           });
+        }
+
+        function loginFormOpen() {
+            dialog = $( "#dialog" ).dialog({
+				autoOpen: false,
+				height: 310,
+				width: 350,
+				modal: true,
+				buttons: {
+					OK: function() {
+						var serializeDataForm  = $("#login_form").serialize();
+						if($("#password").val().length <= 0)
+							$("#password").addClass("ui-state-error");
+						if($("#login").val().length <= 0)
+							$("#login").addClass("ui-state-error");
+						if($("#password").val().length > 0 && $("#login").val().length > 0)
+						{
+							userAjaxLogin(serializeDataForm).then(function(jsonData) {
+                                if(jsonData['complete'] && jsonData['admin'])
+                                {
+                                    dialog.dialog("close");
+                                    window.location = 'admin.php';
+                                }
+                                else
+                                {
+                                    $("#password").addClass("ui-state-error");
+                                    $("#login").addClass("ui-state-error");
+                                    $(".error").text("Wygląda na to że podałeś nieprawidłowe hasło lub login!");
+                                }
+                            });
+						}
+					},
+					Anuluj: function() {
+						dialog.dialog( "close" );
+					}
+				},
+				close: function() {
+				}
+			});
+            dialog.dialog("open");
         }
     </script>
 </body>
