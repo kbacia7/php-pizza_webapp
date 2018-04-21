@@ -24,7 +24,7 @@ if($firstName != null && $lastName != null && $login != null && $p != null && $i
 				'admin' => $isAdmin
 			);
 			$error = UserManager::isValidData($d);
-			if($error == ErrorTemplatesId::User_CreateSuccess)
+			if($error == ErrorID::User_CreateComplete)
 			{
 				$response['object'] = UserManager::create($d);
 				$response['complete'] = true;

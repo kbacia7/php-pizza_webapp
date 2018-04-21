@@ -112,23 +112,23 @@ function userAdd(parent) {
 
 function userIsValid(obj) {
     if(obj == null)
-			return errorsTemplates[errorsId.User_NoExists];
+			return errorsTemplates[errorsId.User_DoesntExists];
 		else if((obj.admin !== 1 && obj.admin !== 0))
-			return errorsTemplates[errorsId.User_NullAdmin];
+			return errorsTemplates[errorsId.User_EmptyAdmin];
 		else if(obj.firstName.length <= 0)
-			return errorsTemplates[errorsId.User_NullFirstName];
+			return errorsTemplates[errorsId.User_EmptyFirstName];
 		else if(obj.lastName.length <= 0)
-      return errorsTemplates[errorsId.User_NullLastName];
+      return errorsTemplates[errorsId.User_EmptyLastName];
     else if(obj.login.length < 5)
-			return errorsTemplates[errorsId.User_NullLogin];
+			return errorsTemplates[errorsId.User_EmptyLogin];
 		else if(!userIsValidName(obj.firstName))
-			return errorsTemplates[errorsId.User_NoValidFirstName];
+			return errorsTemplates[errorsId.User_InvalidFirstName];
 		else if(!userIsValidName(obj.lastName))
-			return errorsTemplates[errorsId.User_NoValidLastName];
+			return errorsTemplates[errorsId.User_InvalidLastName];
 		else if(obj.password.length > 0 && obj.password.length < 5)
-			return errorsTemplates[errorsId.User_NullPassword];
+			return errorsTemplates[errorsId.User_EmptyPassword];
 		else if(!(/^[a-zA-Z0-9_]*$/.test(obj.login)))
-			return errorsTemplates[errorsId.User_LoginInvalidChars];
+			return errorsTemplates[errorsId.User_InvalidLogin];
 		return undefined;
 }
 

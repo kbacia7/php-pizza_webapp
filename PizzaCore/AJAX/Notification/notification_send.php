@@ -15,10 +15,10 @@ if($data != null)
 		if(LoginGuard::isAdmin())
 		{	
 			$error = NotificationManager::isValidData($data);
-			if($error == ErrorTemplatesId::Notification_SendSuccess) {
+			if($error == ErrorID::Notification_SendComplete) {
 				$response['complete'] = NotificationManager::send($data['title'], $data['message']);
 				$response['allowed'] = true;	
-				ErrorHandler::createFromTemplate(ErrorTemplatesId::Notification_SendSuccess);
+				ErrorHandler::createFromTemplate(ErrorID::Notification_SendComplete);
 			}
 			ErrorHandler::createFromTemplate($error);
 		}

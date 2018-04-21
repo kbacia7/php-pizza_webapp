@@ -27,7 +27,7 @@ if($ID != null && $data != null)
 				);
 				
 				$error = UserManager::isValidData($d);
-				if($error == ErrorTemplatesId::User_CreateSuccess) {
+				if($error == ErrorID::User_CreateComplete) {
 					$response['complete'] = UserManager::update($data, $ID);
 					$response['allowed'] = true;
 					ErrorHandler::createFromTemplate($error);	

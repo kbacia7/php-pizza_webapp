@@ -43,11 +43,11 @@ function contactMessageLoad(o) {
 }
 
 function contactMessageIsValid(obj) {
-  if (obj == null) return errorsTemplates[errorsId.ContactMessage_NoExists];
+  if (obj == null) return errorsTemplates[errorsId.ContactMessage_DoesntExists];
   else if (obj.message.length <= 0)
-    return errorsTemplates[errorsId.ContactMessage_NullMessage];
+    return errorsTemplates[errorsId.ContactMessage_EmptyMessage];
   else if (obj.room.length <= 0)
-    return errorsTemplates[errorsId.ContactMessage_NullRoom];
+    return errorsTemplates[errorsId.ContactMessage_EmptyRoom];
   return undefined;
 }
 

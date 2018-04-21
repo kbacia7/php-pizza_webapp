@@ -33,7 +33,7 @@ if($firstName != null && $lastName != null && $eMail != null && $topic != null &
 					'admin' => false
 				);
 				$error = UserManager::isValidData($d);
-				if($error == ErrorTemplatesId::User_CreateSuccess) {
+				if($error == ErrorID::User_CreateComplete) {
 					if($userExists == null)
 					{
 						$us = UserManager::create($d);
@@ -56,7 +56,7 @@ if($firstName != null && $lastName != null && $eMail != null && $topic != null &
 					'owner' => $us->getID()
 				);
 				$error = ContactRoomManager::isValidData($d);
-				if($error == ErrorTemplatesId::ContactRoom_CreateSuccess) {
+				if($error == ErrorID::ContactRoom_CreateComplete) {
 					$room = ContactRoomManager::create($d);
 				}
 				else 
@@ -68,7 +68,7 @@ if($firstName != null && $lastName != null && $eMail != null && $topic != null &
 					'roomID' =>	$room->getID()
 				);
 				$error = ContactMessageManager::isValidData($d);
-				if($error == ErrorTemplatesId::ContactMessage_CreateSuccess) {
+				if($error == ErrorID::ContactMessage_CreateComplete) {
 					ContactMessageManager::create($d);
 				}
 				else

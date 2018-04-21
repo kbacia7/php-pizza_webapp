@@ -22,7 +22,7 @@ if($description != null && $path != null && $gID != null)
 					'galleryID' => $gID
 				);
 				$error = GalleryManager::isValidData($settings);
-				if($error == ErrorTemplatesId::Gallery_ImageUploaded) {
+				if($error == ErrorID::Gallery_ImageUploadedComplete) {
 					$response['allowed'] = true;				
 					$response['object'] = GalleryManager::create($settings);
 					$response['complete'] = true;	

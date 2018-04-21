@@ -22,6 +22,6 @@ if($ID != null)
 	}
 }
 else 
-	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoExists);
+	ErrorHandler::createFromTemplate(ErrorID::MenuItem_DoesntExists);
 echo json_encode($response);
 ?>

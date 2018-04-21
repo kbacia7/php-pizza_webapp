@@ -28,7 +28,7 @@ if($gID !== null && array_key_exists("file", $_FILES))
 				$newPath = sprintf("%s%s.%s", $filePath, $newFileName, $e);
 				move_uploaded_file($_FILES['file']['tmp_name'], $newPath);
 				if($_FILES['file']['size'] > 10 * 1024 * 1024)
-					ErrorHandler::createFromTemplate(ErrorTemplatesId::Gallery_ImageSize);
+					ErrorHandler::createFromTemplate(ErrorID::Gallery_InvalidImageSize);
 				else {
 					foreach($dArray as $k => $v)
 					{
@@ -40,11 +40,11 @@ if($gID !== null && array_key_exists("file", $_FILES))
 					unlink($newPath);
 					$response['filename'] = sprintf("%s.%s", $newFileName, $e);
 					$response['complete'] = true;	
-					ErrorHandler::createFromTemplate(ErrorTemplatesId::Gallery_ImageUploaded);
+					ErrorHandler::createFromTemplate(ErrorID::Gallery_ImageUploadedComplete);
 				}
 			}
 			else 
-				ErrorHandler::createFromTemplate(ErrorTemplatesId::Gallery_ImageExtension);
+				ErrorHandler::createFromTemplate(ErrorID::Gallery_InvalidImageEx);
 		}
 	}
 	catch(Exception $e) {

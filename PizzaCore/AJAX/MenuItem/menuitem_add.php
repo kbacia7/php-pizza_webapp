@@ -15,9 +15,9 @@ $response = array(
 if($title != null && $price != null && $parent != null)
 {
 	if(!preg_match("/^[\\p{L},' ']+$/", $title))
-		ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoValidTitle);
+		ErrorHandler::createFromTemplate(ErrorID::MenuItem_InvalidTitle);
 	if(!preg_match("/^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/", $price))
-		ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoValidPrice);
+		ErrorHandler::createFromTemplate(ErrorID::MenuItem_InvalidPrice);
 	else 
 	{
 		try {	
@@ -31,7 +31,7 @@ if($title != null && $price != null && $parent != null)
 				);
 				$response['object'] = MenuItemManager::create($settings);
 				$response['complete'] = true;	
-				ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_CreateSuccess);
+				ErrorHandler::createFromTemplate(ErrorID::MenuItem_CreateComplete);
 			}
 		}
 		catch(Exception $e) {
@@ -40,10 +40,10 @@ if($title != null && $price != null && $parent != null)
 	}
 }
 else if($title == null)
-	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoTitle);
+	ErrorHandler::createFromTemplate(ErrorID::MenuItem_EmptyTitle);
 else if($price == null)
-	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoPrice);
+	ErrorHandler::createFromTemplate(ErrorID::MenuItem_NoPrice);
 else 
-	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoParent);
+	ErrorHandler::createFromTemplate(ErrorID::MenuItem_NoParent);
 echo json_encode($response);
 ?>

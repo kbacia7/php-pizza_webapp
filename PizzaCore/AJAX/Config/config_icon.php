@@ -16,10 +16,10 @@ try {
 		unlink($iconPath);
 		$e = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 		if($e != "png")
-			ErrorHandler::createFromTemplate(ErrorTemplatesId::Config_IconInvalid);
+			ErrorHandler::createFromTemplate(ErrorID::Config_InvalidIconEx);
 		else {
 			if($_FILES['file']['size'] > 10 * 1024)
-				ErrorHandler::createFromTemplate(ErrorTemplatesId::Config_IconSizeTooMuch);
+				ErrorHandler::createFromTemplate(ErrorID::Config_InvalidIconSize);
 			else {
 				move_uploaded_file($_FILES['file']['tmp_name'], $iconPath);
 				$response['complete'] = true;	

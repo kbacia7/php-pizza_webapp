@@ -3,171 +3,171 @@ class ErrorTemplates {
 	public static $templates = array(
 
 		//Menu Category
-        ErrorTemplatesId::MenuCategory_NoData => array(
+        ErrorID::MenuCategory_EmptyData => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Brak danych",
             "description" => "Brak danych wymaganych do zaktualizowania kategorii"
         ),
 
-        ErrorTemplatesId::MenuCategory_NoTitle => array(
+        ErrorID::MenuCategory_EmptyTitle => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Niewłaściwy tytuł",
             "description" => "Musisz podać tytuł"
         ),
 
-        ErrorTemplatesId::MenuCategory_NoExists => array(
+        ErrorID::MenuCategory_DoesntExists => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Kategoria nie istnieje",
             "description" => "Wygląda na to że podana kategoria nie istnieje"
         ),
 		
-		ErrorTemplatesID::MenuCategory_RemoveSuccess => array(
+		ErrorID::MenuCategory_RemoveComplete => array(
             "code" => ErrorTypes::SUCCESS,
             "title" => "Usunięto kategorię",
             "description" => "Pomyślnie usunięto kategorię menu"
         ),
 
-        ErrorTemplatesID::MenuCategory_UpdateSuccess => array(
+        ErrorID::MenuCategory_UpdateComplete => array(
             "code" => ErrorTypes::SUCCESS,
             "title" => "Zaktualizowano tytuł kategorii",
             "description" => "Pomyślnie zaktualizowano tytuł kategorii menu"
         ),
 
-        ErrorTemplatesID::MenuCategory_CreateSuccess => array(
+        ErrorID::MenuCategory_CreateComplete => array(
             "code" => ErrorTypes::SUCCESS,
             "title" => "Utworzono kategorię",
             "description" => "Pomyślnie utworzono kategorię menu"
         ),
 		
 		//Menu item
-        ErrorTemplatesId::MenuItem_NoData => array(
+        ErrorID::MenuItem_EmptyData => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Brak danych",
             "description" => "Brak danych wymaganych do zaktualizowania elementu menu"
         ),
 
-        ErrorTemplatesId::MenuItem_NoTitle => array(
+        ErrorID::MenuItem_EmptyTitle => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Niewłaściwy tytuł",
             "description" => "Musisz podać tytuł"
         ),
 
-        ErrorTemplatesId::MenuItem_NoExists => array(
+        ErrorID::MenuItem_DoesntExists => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Element menu nie istnieje",
             "description" => "Wygląda na to że podany element menu nie istnieje"
         ),
 
-        ErrorTemplatesID::MenuItem_NoValidTitle => array(
+        ErrorID::MenuItem_InvalidTitle => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Niepoprawny tytuł",
             "description" => "Wygląda na to że podany tytuł jest nieprawdiłowy"
         ),
 
-        ErrorTemplatesID::MenuItem_NoValidPrice => array(
+        ErrorID::MenuItem_InvalidPrice => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Niepoprawny format ceny",
             "description" => "Wygląda na to że podany format ceny jest nieprawidłowy"
         ),
 
-        ErrorTemplatesID::MenuItem_RemoveSuccess => array(
+        ErrorID::MenuItem_RemoveComplete => array(
             "code" => ErrorTypes::SUCCESS,
             "title" => "Usunięto element menu",
             "description" => "Pomyślnie usunięto element menu"
         ),
 
-        ErrorTemplatesID::MenuItem_UpdateSuccess => array(
+        ErrorID::MenuItem_UpdateComplete => array(
             "code" => ErrorTypes::SUCCESS,
             "title" => "Zaktualizowano element menu",
             "description" => "Pomyślnie zaktualizowano element menu"
         ),
 
-        ErrorTemplatesID::MenuItem_CreateSuccess => array(
+        ErrorID::MenuItem_CreateComplete => array(
             "code" => ErrorTypes::SUCCESS,
             "title" => "Utworzono element menu",
             "description" => "Pomyślnie utworzono element menu"
         ),
 
 		//Config
-        ErrorTemplatesID::Config_UpdateSuccess => array(
+        ErrorID::Config_UpdateComplete => array(
             "code" => ErrorTypes::SUCCESS,
             "title" => "Zaktualizowano konfigurację",
             "description" => "Pomyślnie zaktualizowano konfigurację"
         ),
 		
-		ErrorTemplatesID::Config_PizzeriaNull => array(
+		ErrorID::Config_EmptyPizzeriaName => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pusta nazwa pizzerii",
             "description" => "Nazwa pizzerri nie może być pusta"
         ),
 		
-		ErrorTemplatesID::Config_PizzeriaNoValid => array(
+		ErrorID::Config_InvalidPizzeriaName => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Niewłaściwa nazwa pizzerii",
             "description" => "Nazwa pizzerri nie może zawierać znaków specjalnych"
         ),
 		
-		ErrorTemplatesID::Config_PizzeriaTooLong => array(
+		ErrorID::Config_LongPizzeriaName => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Niewłaściwa nazwa pizzerii",
             "description" => "Nazwa pizzerri nie może za długa (maks. 30 znaków)"
         ),
 		
-		ErrorTemplatesID::Config_PizzeriaLocationEmpty => array(
+		ErrorID::Config_EmptyPizzeriaLocation => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Puste współrzędne",
             "description" => "Współrzędne pizzerii nie mogą pozostawać puste"
         ),
 		
-		ErrorTemplatesID::Config_PizzeriaLocationFormat => array(
+		ErrorID::Config_InvalidPizzeriaLocation => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Nieprawidłowy format współrzędnych",
             "description" => "Współrzędne mają niepoprawny format, poprawne współrzędne można pobrać z Google Map"
         ),
 		
-		ErrorTemplatesID::Config_TelephoneEmpty => array(
+		ErrorID::Config_EmptyTelephone => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pusty numer telefonu",
             "description" => "Numer telefonu kontaktowego nie może pozostawać pusty"
         ),
 		
-		ErrorTemplatesID::Config_TelephoneFormat => array(
+		ErrorID::Config_InvalidTelephone => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Nieprawidłowy format numeru telefonu",
             "description" => "Numer telefonu ma niepoprawny format"
         ),
 		
-		ErrorTemplatesID::Config_IconInvalid => array(
+		ErrorID::Config_InvalidIconEx => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Niepoprawne rozszerzenie ikonki",
             "description" => "Ikonka ma niepoprawne rozszerzenie"
         ),
 		
-		ErrorTemplatesID::Config_IconSizeTooMuch => array(
+		ErrorID::Config_InvalidIconSize => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Za duża ikonka",
             "description" => "Ikonka jest za duża, domyślnie PHP akceptuje do 2MB"
         ),
 		
-		ErrorTemplatesID::Config_CurrencyEmpty => array(
+		ErrorID::Config_EmptyCurrency => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Waluta jest pusta",
             "description" => "Symbol waluty nie może być pusty"
         ),
 		
-		ErrorTemplatesID::Config_CurrencyTooLong => array(
+		ErrorID::Config_LongCurrency => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Symbol waluty jest za długi",
             "description" => "Symbol waluty ma za dużo znaków"
         ),
 		
-		ErrorTemplatesID::Config_GalleryOneEmpty => array(
+		ErrorID::Config_EmptyGalleryOne => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Opis pierwszej galerii",
             "description" => "Opis pierwszej galerii nie może byc pusty"
         ),
 		
-		ErrorTemplatesID::Config_GalleryTwoEmpty => array(
+		ErrorID::Config_EmptyGalleryTwo => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Opis drugiej galerii",
             "description" => "Opis drugiej galerii nie może byc pusty"
@@ -175,179 +175,179 @@ class ErrorTemplates {
 		
 		
 		//Gallery
-		ErrorTemplatesID::Gallery_ImageDescriptionEmpty => array(
+		ErrorID::Gallery_EmptyImageDescription => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Opis zdjecia w galerii",
             "description" => "Opis zdjęcia w galerii nie może być pusty"
         ),
 		
-		ErrorTemplatesID::Gallery_ImageSize => array(
+		ErrorID::Gallery_InvalidImageSize => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Rozmiar zdjecia galerii",
             "description" => "Rozmiar zdjęcia w galerii nie może być większy niż 2 MB"
         ),
 		
-		ErrorTemplatesID::Gallery_ImageExtension => array(
+		ErrorID::Gallery_InvalidImageEx => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Rozszerzenie zdjecia galerii",
             "description" => "Zdjęcie w galerii prawdopodobnie ma błędne rozszerzenie"
         ),
 		
-		ErrorTemplatesID::Gallery_ImageUploaded => array(
+		ErrorID::Gallery_ImageUploadedComplete => array(
            "code" => ErrorTypes::SUCCESS,
             "title" => "Dodano zdjęcie do galerii",
             "description" => "Pomyślnie dodano zdjęcie do galerii"
         ),
 		
 		//Notification
-        ErrorTemplatesId::Notification_SendSuccess => array(
+        ErrorID::Notification_SendComplete => array(
             "code" => ErrorTypes::SUCCESS,
             "title" => "Wysłano powiadomienie",
             "description" => "Pomyślnie wysłano powiadomienie"
         ),
 		
-		ErrorTemplatesId::Notification_TitleEmpty => array(
+		ErrorID::Notification_EmptyTitle => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pusty tytuł powiadomienia",
             "description" => "Tytuł powiadomienia nie może być pusty"
         ),
 		
-		ErrorTemplatesId::Notification_DescriptionEmpty => array(
+		ErrorID::Notification_EmptyMessage => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pusty tekst powiadomienia",
             "description" => "Tekst powiadomienia nie może pozostać pusty"
         ),
 
-        ErrorTemplatesId::Notification_NoData => array(
+        ErrorID::Notification_EmptyData => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Nie podano danych",
             "description" => "Nie podano danych do wysłania powiadomienia"
         ),
 
         //User
-        ErrorTemplatesId::User_NoExists => array(
+        ErrorID::User_DoesntExists => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Nie podano danych",
             "description" => "Nie podano danych dla nowego użytkownika"
         ),
 		
-		ErrorTemplatesId::User_NoData => array(
+		ErrorID::User_EmptyData => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Nie znaleziono użytkownika",
             "description" => "Nie znaleziono odpowiedniego użytkownika"
         ),
 		
-		ErrorTemplatesId::User_NullFirstName => array(
+		ErrorID::User_EmptyFirstName => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pustę imię",
             "description" => "Imię użytkwonika jest puste"
         ),
 
-        ErrorTemplatesId::User_NullAdmin => array(
+        ErrorID::User_EmptyAdmin => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pusty administrator",
             "description" => "Nieokreślono uprawnień użytkownika"
         ),
 		
-		ErrorTemplatesId::User_NullLastName => array(
+		ErrorID::User_EmptyLastName => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pustę nazwisko",
             "description" => "Nazwisko użytkownika jest puste"
         ),
 		
-		ErrorTemplatesId::User_NoValidFirstName => array(
+		ErrorID::User_InvalidFirstName => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Niepoprawne imię",
             "description" => "Imię zawiera nieprawidłowe znaki które nie występują w normalnych imieniu"
         ),
 
-        ErrorTemplatesId::User_NoValidLastName => array(
+        ErrorID::User_InvalidLastName => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Niepoprawne nazwisko",
             "description" => "Nazwisko zawiera nieprawidłowe znaki które nie występują w normalnych imieniu"
         ),
 
-        ErrorTemplatesId::User_NullPassword => array(
+        ErrorID::User_EmptyPassword => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pustę hasło",
             "description" => "Hasło użytkownika jest za krótkie (minimum 5 znaków)"
         ),
 
-        ErrorTemplatesId::User_NullLogin => array(
+        ErrorID::User_EmptyLogin => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pusty login",
             "description" => "Login użytkownika jest za krótki (minimum 5 znaków)"
         ),
 
-        ErrorTemplatesId::User_LoginInvalidChars => array(
+        ErrorID::User_InvalidLogin => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Niepoprawny login",
             "description" => "Login może zawierać tylko znaki A-Z i cyfry 0-9"
         ),
         
-        ErrorTemplatesID::User_CreateSuccess => array(
+        ErrorID::User_CreateComplete => array(
             "code" => ErrorTypes::SUCCESS,
              "title" => "Zaktualizowano użytkownika",
              "description" => "Pomyślnie zaktualizowano użytkownika"
         ),
 
         //Contact Room
-        ErrorTemplatesId::ContactRoom_NoExists => array(
+        ErrorID::ContactRoom_DoesntExists => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Nie podano danych",
             "description" => "Nie podano danych dla nowej rozmowy"
         ),
 
-        ErrorTemplatesId::ContactRoom_NullTitle => array(
+        ErrorID::ContactRoom_EmptyTitle => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pusty tytuł",
             "description" => "Tytuł rozmowy jest pusty"
         ),
 
-        ErrorTemplatesId::ContactRoom_NullOwner => array(
+        ErrorID::ContactRoom_EmptyOwner => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pusty założyciel",
             "description" => "Założyciel rozmowy jest niepoprawny"
         ),
 
-        ErrorTemplatesId::ContactRoom_NoValidTitle => array(
+        ErrorID::ContactRoom_InvalidTitle => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Niepoprawny tytuł",
             "description" => "Tytuł rozmowy może zawierać tylko znaki A-Z wraz z polskimi znakami"
         ),
         
-        ErrorTemplatesID::ContactRoom_CreateSuccess => array(
+        ErrorID::ContactRoom_CreateComplete => array(
             "code" => ErrorTypes::SUCCESS,
              "title" => "Utworzono pokój",
              "description" => "Pomyślnie utworzono rozmowę"
         ),
 
         //Contact Message
-        ErrorTemplatesId::ContactMessage_NoExists => array(
+        ErrorID::ContactMessage_DoesntExists => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Nie podano danych",
             "description" => "Nie podano danych dla nowej wiadomości"
         ),
 
-        ErrorTemplatesId::ContactMessage_NullMessage => array(
+        ErrorID::ContactMessage_EmptyMessage => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pusta wiadomość",
             "description" => "Wiadomość jest pusta"
         ),
 
-        ErrorTemplatesId::ContactMessage_NullAuthor => array(
+        ErrorID::ContactMessage_EmptyAuthor => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Pusty autor wiadomości",
             "description" => "Autor wiadomości jest niepoprawny"
         ),
 
-        ErrorTemplatesId::ContactMessage_NullRoom => array(
+        ErrorID::ContactMessage_EmptyRoom => array(
             "code" => ErrorTypes::ERROR,
             "title" => "Niepoprawna rozmowa",
             "description" => "Rozmowa do której chcesz dodać wiadomość jest niepoprawna"
         ),
         
-        ErrorTemplatesID::ContactMessage_CreateSuccess => array(
+        ErrorID::ContactMessage_CreateComplete => array(
             "code" => ErrorTypes::SUCCESS,
              "title" => "Utworzono wiadomość",
              "description" => "Dodano wiadomość do rozmowy"

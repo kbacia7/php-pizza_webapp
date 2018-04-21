@@ -10,35 +10,35 @@ function configHandle() {
 
 function configIsValidObject(cObj) {
   if(cObj.title.length <= 0)
-	  return errorsTemplates[errorsId.Config_PizzeriaNull];
+	  return errorsTemplates[errorsId.Config_EmptyPizzeriaName];
   else if(cObj.title.length > 30)
-	  return errorsTemplates[errorsId.Config_PizzeriaTooLong];  
+	  return errorsTemplates[errorsId.Config_LongPizzeriaName];  
   else if(!is_valid_menu_title(cObj.title))
-    return errorsTemplates[errorsId.Config_PizzeriaNoValid];  
+    return errorsTemplates[errorsId.Config_InvalidPizzeriaName];  
   else if(cObj.position.length <= 0)
-	  return errorsTemplates[errorsId.Config_PizzeriaLocationEmpty]; 
+	  return errorsTemplates[errorsId.Config_EmptyPizzeriaLocation]; 
   else if(!is_valid_location(cObj.position))
-	  return errorsTemplates[errorsId.Config_PizzeriaLocationFormat];   
+	  return errorsTemplates[errorsId.Config_InvalidPizzeriaLocation];   
   else if(cObj.contactNumber.length <= 0)
-    return errorsTemplates[errorsId.Config_TelephoneEmpty]; 
+    return errorsTemplates[errorsId.Config_EmptyTelephone]; 
   else if(!is_valid_telephone(cObj.contactNumber))
-	  return errorsTemplates[errorsId.Config_TelephoneFormat];   
+	  return errorsTemplates[errorsId.Config_InvalidTelephone];   
   else if(cObj.cashChar.length <= 0)
-	  return errorsTemplates[errorsId.Config_CurrencyEmpty];    
+	  return errorsTemplates[errorsId.Config_EmptyCurrency];    
   else if(cObj.cashChar.length > 3)
-	  return errorsTemplates[errorsId.Config_CurrencyTooLong];    
+	  return errorsTemplates[errorsId.Config_LongCurrency];    
   else if(cObj.descriptionGallery1.length <= 0)
-	  return errorsTemplates[errorsId.Config_GalleryOneEmpty];  
+	  return errorsTemplates[errorsId.Config_EmptyGalleryOne];  
   else if(cObj.descriptionGallery2.length <= 0)
-    return errorsTemplates[errorsId.Config_GalleryTwoEmpty];  
+    return errorsTemplates[errorsId.Config_EmptyGalleryTwo];  
   return undefined;
 }
 
 function configIsValidIcon(iconData) {
   if(allowedImgTypes.indexOf(iconData.type) == -1)
-    return errorsTemplates[errorsId.Config_IconInvalid];
+    return errorsTemplates[errorsId.Config_InvalidIconEx];
   else if(iconData.size > 10 * 1024)
-    return errorsTemplates[errorsId.Config_IconSizeTooMuch];
+    return errorsTemplates[errorsId.Config_InvalidIconSize];
   return undefined;
 }
 

@@ -6,11 +6,11 @@ function notificationHandle() {
 
 function notificationIsValid(obj) {
   if(obj == null)
-    return errorsTemplates[errorsId.ContactMessage_NullMessage];
+    return errorsTemplates[errorsId.ContactMessage_EmptyMessage];
   else if(obj.title.length <= 0)
-    return errorsTemplates[errorsId.ContactMessage_NullMessage];
+    return errorsTemplates[errorsId.ContactMessage_EmptyMessage];
   else if(obj.message.length <= 0)
-    return errorsTemplates[errorsId.ContactMessage_NullMessage];
+    return errorsTemplates[errorsId.ContactMessage_EmptyMessage];
   return undefined;
 }
 

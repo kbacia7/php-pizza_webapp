@@ -32,7 +32,7 @@ class RequirePath {
 
 		require_once(__ROOT__ . "Error/ErrorTypes.php");
 		require_once(__ROOT__ . "Error/ErrorHandler.php");
-		require_once(__ROOT__ . "Error/ErrorTemplatesId.php");
+		require_once(__ROOT__ . "Error/ErrorID.php");
 		require_once(__ROOT__ . "Error/ErrorTemplates.php");
 
 		require_once(__ROOT__ . "Notification/NotificationManager.php");

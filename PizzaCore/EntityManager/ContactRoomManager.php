@@ -52,14 +52,14 @@ class ContactRoomManager implements IEntityManager {
 	public static function isValidData($data) 
 	{
 		if($data == null)
-			return ErrorTemplatesId::ContactRoom_NoExists;
+			return ErrorID::ContactRoom_DoesntExists;
 		else if(!array_key_exists("title", $data) || strlen($data['title']) <= 0)
-			return ErrorTemplatesId::ContactRoom_NullTitle;
+			return ErrorID::ContactRoom_EmptyTitle;
 		else if(!array_key_exists("owner", $data) || strlen($data['owner']) <= 0)
-			return ErrorTemplatesId::ContactRoom_NullOwner;
+			return ErrorID::ContactRoom_EmptyOwner;
 		else if(array_key_exists("title", $data) && !preg_match("/^[\s\p{L}]+$/u", $data['title']))
-			return ErrorTemplatesId::ContactRoom_NoValidTitle;
-		return ErrorTemplatesId::ContactRoom_CreateSuccess;
+			return ErrorID::ContactRoom_InvalidTitle;
+		return ErrorID::ContactRoom_CreateComplete;
 	}
 }
 ?>

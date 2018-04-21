@@ -16,7 +16,7 @@ if($ID != null)
 		{	
 			$response['complete'] = MenuItemManager::remove(array("ID" => $ID));
 			$response['allowed'] = true;
-			ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_RemoveSuccess);	
+			ErrorHandler::createFromTemplate(ErrorID::MenuItem_RemoveComplete);	
 		}
 	}
 	catch(Exception $e) {
@@ -24,6 +24,6 @@ if($ID != null)
 	}
 }
 else 
-	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoExists); 
+	ErrorHandler::createFromTemplate(ErrorID::MenuItem_DoesntExists); 
 echo json_encode($response);
 ?>

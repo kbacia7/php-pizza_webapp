@@ -18,12 +18,12 @@ if($ID != null)
 				"ID" => $ID,
 			);
 			$error = MenuCategoryManager::isValidData($d);
-			if($error == ErrorTemplatesId::MenuCategory_UpdateSuccess)
+			if($error == ErrorID::MenuCategory_UpdateComplete)
 			{
 				$response['complete'] = MenuCategoryManager::remove(array("ID" => $ID));
 				$response['allowed'] = true;
 			}
-			ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuCategory_RemoveSuccess);
+			ErrorHandler::createFromTemplate(ErrorID::MenuCategory_RemoveComplete);
 		}
 	}
 	catch(Exception $e) {

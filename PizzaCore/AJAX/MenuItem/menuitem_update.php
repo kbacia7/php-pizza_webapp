@@ -13,9 +13,9 @@ $response = array(
 if($ID != null && $data != null)
 {
 	if(!preg_match("/^[\\p{L},' ']+$/", $data['title']))
-		ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoValidTitle);
+		ErrorHandler::createFromTemplate(ErrorID::MenuItem_InvalidTitle);
 	if(!preg_match("/^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/", $data['price']))
-		ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoValidPrice);
+		ErrorHandler::createFromTemplate(ErrorID::MenuItem_InvalidPrice);
 	else 
 	{
 		try {	
@@ -23,7 +23,7 @@ if($ID != null && $data != null)
 			{	
 				$response['complete'] = MenuItemManager::update($data, $ID);
 				$response['allowed'] = true;
-				ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_UpdateSuccess);	
+				ErrorHandler::createFromTemplate(ErrorID::MenuItem_UpdateComplete);	
 			}
 		}
 		catch(Exception $e) {
@@ -32,8 +32,8 @@ if($ID != null && $data != null)
 	}
 }
 else if($ID == null)
-	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoExists);
+	ErrorHandler::createFromTemplate(ErrorID::MenuItem_DoesntExists);
 else 
-	ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuItem_NoData);
+	ErrorHandler::createFromTemplate(ErrorID::MenuItem_EmptyData);
 echo json_encode($response);
 ?>

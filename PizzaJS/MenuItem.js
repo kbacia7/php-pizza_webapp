@@ -59,9 +59,9 @@ function menuItemSaveEdit(item) {
         menuItemCancelEdit(item, false);
     }
     else if (!is_valid_menu_title(newTitle))
-        displayError(errorsTemplates[errorsId.MenuItem_NoValidTitle]);
+        displayError(errorsTemplates[errorsId.MenuItem_InvalidTitle]);
     else if (!is_valid_menu_price(newPrice))
-        displayError(errorsTemplates[errorsId.MenuItem_NoValidPrice]);
+        displayError(errorsTemplates[errorsId.MenuItem_InvalidPrice]);
 }
 
 function menuItemCancelEdit(item, restore) {

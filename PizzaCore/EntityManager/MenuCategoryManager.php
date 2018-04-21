@@ -52,12 +52,12 @@ class MenuCategoryManager implements IEntityManager {
 	public static function isValidData($data)
 	{
 		if($data == null)
-			return ErrorTemplatesId::MenuCategory_NoExists;
+			return ErrorID::MenuCategory_DoesntExists;
 		else if($data["ID"] == null && array_key_exists("ID", $data))
-			return ErrorTemplatesId::MenuCategory_NoData;
+			return ErrorID::MenuCategory_EmptyData;
 		else if(!preg_match("/^[\\p{L},' ']+$/", $data['title']) && array_key_exists("title", $data))
-			return ErrorTemplatesId::MenuItem_NoValidTitle;
-		return ErrorTemplatesId::MenuCategory_UpdateSuccess;
+			return ErrorID::MenuItem_InvalidTitle;
+		return ErrorID::MenuCategory_UpdateComplete;
 	}
 }
 ?>

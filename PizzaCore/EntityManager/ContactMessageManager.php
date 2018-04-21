@@ -53,14 +53,14 @@ class ContactMessageManager implements IEntityManager {
 	public static function isValidData($data) 
 	{
 		if($data == null)
-			return ErrorTemplatesId::ContactMessage_NoExists;
+			return ErrorID::ContactMessage_DoesntExists;
 		else if(!array_key_exists("message", $data) || strlen($data['message']) <= 0)
-			return ErrorTemplatesId::ContactMessage_NullMessage;
+			return ErrorID::ContactMessage_EmptyMessage;
 		else if(!array_key_exists("author", $data) || strlen($data['author']) <= 0)
-			return ErrorTemplatesId::ContactMessage_NullAuthor;
+			return ErrorID::ContactMessage_EmptyAuthor;
 		else if(!array_key_exists("roomID", $data) || strlen($data['roomID']) <= 0)
-			return ErrorTemplatesId::ContactMessage_NullRoom;
-		return ErrorTemplatesId::ContactMessage_CreateSuccess;
+			return ErrorID::ContactMessage_EmptyRoom;
+		return ErrorID::ContactMessage_CreateComplete;
 	}
 }
 ?>

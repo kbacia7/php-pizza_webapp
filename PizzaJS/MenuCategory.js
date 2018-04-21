@@ -155,11 +155,11 @@ function menuCategoryIsValidTitle(title)
 function menuCategoryIsValid(object) 
 {
     if(object.title.length <= 0)
-      return errorsTemplates[errorsId.MenuCategory_NoTitle];
+      return errorsTemplates[errorsId.MenuCategory_EmptyTitle];
     if(!menuCategoryIsValidTitle(object.title))
-      return errorsTemplates[errorsId.MenuCategory_NoTitle];
+      return errorsTemplates[errorsId.MenuCategory_EmptyTitle];
     if(object == null)
-      return errorsTemplates[errorsId.MenuCategory_NoData];
+      return errorsTemplates[errorsId.MenuCategory_EmptyData];
     return undefined;
 }
 

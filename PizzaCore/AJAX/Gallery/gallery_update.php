@@ -21,7 +21,7 @@ if($ID != null && $data != null)
 					'description' => $data["description"],
 				);
 				$error = GalleryManager::isValidData($d);
-				if($error == ErrorTemplatesId::Gallery_ImageUploaded) {
+				if($error == ErrorID::Gallery_ImageUploadedComplete) {
 					$response['complete'] = GalleryManager::update($data, $ID);
 					$response['allowed'] = true;	
 				}

@@ -23,7 +23,7 @@ if($msg != null)
 					'roomID' => $roomID
 				);
 				$error = ContactMessageManager::isValidData($settings);
-				if($error == ErrorTemplatesId::ContactMessage_CreateSuccess) {
+				if($error == ErrorID::ContactMessage_CreateComplete) {
 					$response['object'] = ContactMessageManager::create($settings);
 					$response['complete'] = true;	
 					ErrorHandler::createFromTemplate($error);

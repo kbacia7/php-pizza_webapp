@@ -15,7 +15,7 @@ if($data != null)
 		if(LoginGuard::isAdmin())
 		{	
 			$error = ConfigManager::isValidData($data);
-			if($error == ErrorTemplatesId::Config_UpdateSuccess)
+			if($error == ErrorID::Config_UpdateComplete)
 			{
 				$response['complete'] = ConfigManager::update($data, 1);
 				$response['allowed'] = true;	

@@ -106,19 +106,19 @@ function galleryChange(ID) {
 
 function galleryIsValid(obj) {
   if (obj.path.length <= 0)
-    return errorsTemplates[errorsId.Gallery_ImageDescriptionEmpty]; //TODO: Create new error
+    return errorsTemplates[errorsId.Gallery_EmptyImageDescription]; //TODO: Create new error
   if (obj.galleryID > 2 && obj.galleryID < 1)
-    return errorsTemplates[errorsId.Gallery_ImageDescriptionEmpty]; //TODO: Create new error
+    return errorsTemplates[errorsId.Gallery_EmptyImageDescription]; //TODO: Create new error
   if (obj.description.length <= 0 && obj.galleryID == 1)
-    return errorsTemplates[errorsId.Gallery_ImageDescriptionEmpty];
+    return errorsTemplates[errorsId.Gallery_EmptyImageDescription];
   return undefined;
 }
 
 function galleryIsValidImg(img) {
   if (galleryAllowedImgTypes.indexOf(img.type) == -1)
-    return errorsTemplates[errorsId.Gallery_ImageExtension];
+    return errorsTemplates[errorsId.Gallery_InvalidImageEx];
   else if (img.size > 10 * 1024 * 1024)
-    return errorsTemplates[errorsId.Gallery_ImageSize];
+    return errorsTemplates[errorsId.Gallery_InvalidImageSize];
   return undefined;
 }
 

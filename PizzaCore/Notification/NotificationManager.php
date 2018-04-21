@@ -34,12 +34,12 @@ class NotificationManager  {
 
 	public static function isValidData($data) {
 		if($data == null)
-			return ErrorTemplatesId::Notification_NoData;
+			return ErrorID::Notification_EmptyData;
 		else if(!array_key_exists("title", $data) || strlen($data['title']) <= 0)
-			return ErrorTemplatesId::Notification_TitleEmpty;
+			return ErrorID::Notification_EmptyTitle;
 		else if(!array_key_exists("message", $data) || strlen($data['message']) <= 0)
-			return ErrorTemplatesId::Notification_DescriptionEmpty;
-		return ErrorTemplatesId::Notification_SendSuccess;
+			return ErrorID::Notification_EmptyMessage;
+		return ErrorID::Notification_SendComplete;
 
 	}
 }

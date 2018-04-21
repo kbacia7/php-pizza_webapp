@@ -21,7 +21,7 @@ if($ID != null && $data != null)
 					"title" => $data["title"]
 				);
 				$error = MenuCategoryManager::isValidData($d);
-				if($error == ErrorTemplatesId::MenuCategory_UpdateSuccess)
+				if($error == ErrorID::MenuCategory_UpdateComplete)
 				{
 					$response['complete'] = MenuCategoryManager::update($data, $ID);
 					$response['allowed'] = true;

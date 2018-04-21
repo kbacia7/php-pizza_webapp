@@ -79,26 +79,26 @@ class UserManager implements IEntityManager {
 	public static function isValidData($data)
 	{
 		if($data == null)
-			return ErrorTemplatesId::User_NoExists;
+			return ErrorID::User_DoesntExists;
 		else if(!array_key_exists("admin", $data) || strlen($data['admin']) <= 0)
-			return ErrorTemplatesId::User_NullAdmin;
+			return ErrorID::User_EmptyAdmin;
 		else if(array_key_exists("ID", $data) && $data["ID"] == null)
-			return ErrorTemplatesId::User_NoData;
+			return ErrorID::User_EmptyData;
 		else if(!array_key_exists("firstName", $data) || strlen($data['firstName']) <= 0)
-			return ErrorTemplatesId::User_NullFirstName;
+			return ErrorID::User_EmptyFirstName;
 		else if(!array_key_exists("lastName", $data) || strlen($data['lastName']) <= 0)
-			return ErrorTemplatesId::User_NullLastName;
+			return ErrorID::User_EmptyLastName;
 		else if(array_key_exists("firstName", $data) && !preg_match("/^[\s\p{L}]+$/u", $data['firstName']))
-			return ErrorTemplatesId::User_NoValidFirstName;
+			return ErrorID::User_InvalidFirstName;
 		else if(array_key_exists("lastName", $data) && !preg_match("/^[\s\p{L}]+$/u", $data['lastName']))
-			return ErrorTemplatesId::User_NoValidLastName;
+			return ErrorID::User_InvalidLastName;
 		else if(!array_key_exists("password", $data) || strlen($data['password']) < 5)
-			return ErrorTemplatesId::User_NullPassword; 
+			return ErrorID::User_EmptyPassword; 
 		else if(!array_key_exists("login", $data) || strlen($data['login']) < 5)
-			return ErrorTemplatesId::User_NullLogin; 
+			return ErrorID::User_EmptyLogin; 
 		else if(array_key_exists("login", $data) && !preg_match("/^[a-zA-Z0-9_]*$/", $data['login']))
-			return ErrorTemplatesId::User_LoginInvalidChars; 
-		return ErrorTemplatesId::User_CreateSuccess;
+			return ErrorID::User_InvalidLogin; 
+		return ErrorID::User_CreateComplete;
 	}
 	
 }

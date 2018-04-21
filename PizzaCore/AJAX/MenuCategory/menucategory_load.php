@@ -16,7 +16,7 @@ if($ID != null)
 			"ID" => $ID,
 		);
 		$error = MenuCategoryManager::isValidData($d);
-		if($error == ErrorTemplatesId::MenuCategory_UpdateSuccess)
+		if($error == ErrorID::MenuCategory_UpdateComplete)
 		{
 			$response['allowed'] = true;
 			$loadedMenuCategory = MenuCategoryManager::load(($ID !== "*") ? $ID : null);

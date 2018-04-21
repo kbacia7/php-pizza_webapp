@@ -20,12 +20,12 @@ if($title != null)
 					'title' => $title
 				);
 				$error = MenuCategoryManager::isValidData($settings);
-				if($error == ErrorTemplatesId::MenuCategory_UpdateSuccess)
+				if($error == ErrorID::MenuCategory_UpdateComplete)
 				{
 					$response['object'] = MenuCategoryManager::create($settings);
 					$response['complete'] = true;	
 				}
-				ErrorHandler::createFromTemplate(ErrorTemplatesId::MenuCategory_CreateSuccess);
+				ErrorHandler::createFromTemplate(ErrorID::MenuCategory_CreateComplete);
 			}
 		}
 		catch(Exception $e) {
