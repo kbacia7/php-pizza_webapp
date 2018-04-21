@@ -245,7 +245,7 @@ function galleryAjaxLoad(ID) {
       data: { ID: ID },
       complete: function(jData) {
         var jsonRealData = JSON.parse(jData["responseText"]);
-        if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+        if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
         else {
           resolve(jsonRealData);
         }
@@ -264,7 +264,7 @@ function galleryAjaxAdd(data) {
         var jsonRealData = JSON.parse(jData["responseText"]);
         if (jsonRealData["alllowed"] === false)
           //shortcut !jsonRealData['allowed'] didn't work :(
-          ajax_is_allowed();
+          userAjaxIsAdmin();
         else {
           resolve(jsonRealData["object"]);
         }
@@ -280,7 +280,7 @@ function galleryAjaxRemove(ID) {
     data: { ID: ID },
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
     }
   });
 }
@@ -292,7 +292,7 @@ function galleryAjaxUpdate(ID, data) {
     data: { ID: ID, data: data },
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
     }
   });
 }
@@ -308,7 +308,7 @@ function galleryAjaxUploadFile(file) {
       processData: false,
       complete: function(jData) {
         var jsonRealData = JSON.parse(jData["responseText"]);
-        if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+        if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
         else {
           resolve(jsonRealData["filename"]);
         }

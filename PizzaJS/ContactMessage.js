@@ -127,7 +127,7 @@ function contactMessageAjaxAdd(data) {
       data: data,
       complete: function(jData) {
         var jsonRealData = JSON.parse(jData["responseText"]);
-        if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+        if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
         else {
           resolve(jsonRealData["object"]);
         }
@@ -144,7 +144,7 @@ function contactMessageAjaxLoad(ID) {
       data: { ID: ID },
       complete: function(jData) {
         var jsonRealData = JSON.parse(jData["responseText"]);
-        if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+        if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
         else {
           resolve(jsonRealData);
         }

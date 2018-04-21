@@ -101,8 +101,8 @@ function menuItemCancelEdit(item, restore) {
   let inputPriceMenu = $(parentRoot).find(".menu-price-input");
 
   if (restore) {
-    restore_prev_value(inputTitleMenu);
-    restore_prev_value(inputPriceMenu);
+    inputRestoreLastValue(inputTitleMenu);
+    inputRestoreLastValue(inputPriceMenu);
   }
 
   $(parentRoot)
@@ -141,10 +141,10 @@ function menuItemEditMode(item) {
   let inputTitleMenu = $(parentRoot).find(".menu-name-input");
   let aTitle = $(inputTitleMenu).val();
 
-  if (is_valid_menu_title(aTitle)) input_set_prev_value(inputTitleMenu, aTitle);
+  if (menuItemIsValidTitle(aTitle)) inputSetLastValue(inputTitleMenu, aTitle);
 
-  if (is_valid_menu_price(aPrice))
-    input_set_prev_value(newMenuPriceInput, aPrice);
+  if (menuItemIsValidPrice(aPrice))
+    inputSetLastValue(newMenuPriceInput, aPrice);
 
   $(newMenuPriceInput).attr("value", aPrice);
 
@@ -218,7 +218,7 @@ function menuItemAjaxAdd(data, callback) {
     data: data,
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
       else {
         //error handle?
         callback(jsonRealData["object"]);
@@ -234,7 +234,7 @@ function menuItemAjaxLoad(ID, callback) {
     data: { ID: ID },
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
       else {
         callback(jsonRealData);
       }
@@ -249,7 +249,7 @@ function menuItemAjaxRemove(ID) {
     data: { ID: ID },
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
     }
   });
 }
@@ -261,7 +261,7 @@ function menuItemAjaxUpdate(ID, data) {
     data: { ID: ID, data: data },
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
     }
   });
 }

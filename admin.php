@@ -111,16 +111,6 @@
     </div>     
     </div>
     <script type="text/javascript">
-    Date.prototype.toHumanFormat = function() {
-        var mm = this.getMonth() + 1; // getMonth() is zero-based
-        var dd = this.getDate();
-
-        return [this.getFullYear(),
-                (mm>9 ? '' : '0') + mm,
-                (dd>9 ? '' : '0') + dd
-                ].join('');
-    };
-
     $(document).ready(function() {
         $("#config_manager").load("admin_config.php");
         $("#menu_manager").load("admin_menu.php");
@@ -132,8 +122,8 @@
         errorsTemplatesAjaxLoad().then(function (templates) {
             errorsTemplates = templates;
             errorsLoopInit();
-            hide_unused();
-            ajax_is_allowed();
+            hideUnused();
+            userAjaxIsAdmin();
             configHandle();
             menuItemHandle();
             notificationHandle();
@@ -179,54 +169,21 @@
         });     
     }
 
-    function hide_unused()
+    function hideUnused()
     {
         $("#main_start > div").not(".active_element").css("display", "none");
     }
 
-    function input_set_prev_value(input, value)
+    function inputSetLastValue(input, value)
     {
         $(input).attr('data-prev_value', value);
     }
 
-    function restore_prev_value(input)
+    function inputRestoreLastValue(input)
     {
         $(input).val($(input).attr('data-prev_value'));
     }
 
-    function is_valid_menu_title(text)
-    {
-        return (XRegExp("^[\\p{L},' ']+$")).test(text);
-    }
-
-    function is_valid_menu_price(text)
-    {
-        return /^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/.test(text);
-    }
-	
-	function is_valid_location(text)
-	{
-		return /^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/.test(text);
-	}
-	
-	function is_valid_telephone(text)
-	{
-		return /^\(\d{2}\)\ ?\d{3}-?\d{3}-?\d{3}$/.test(text);
-	}
-
-    function ajax_is_allowed()
-    {
-       $.ajax({
-		    url: "PizzaCore/AJAX/User/login_allowed.php",
-            type: "POST",
-    		data: {allowed: "check"},
-		    complete: function(jData) {
-                var jsonRealData = JSON.parse(jData['responseText']);
-                if(!jsonRealData['allow'])
-                     window.location = "index.php";             
-			}
-        });
-    }
     </script>
 </body>
 </html>

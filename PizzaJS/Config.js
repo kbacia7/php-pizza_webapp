@@ -89,15 +89,15 @@ function configIsValidObject(cObj) {
     return errorsTemplates[errorsId.Config_EmptyPizzeriaName];
   else if (cObj.title.length > 30)
     return errorsTemplates[errorsId.Config_LongPizzeriaName];
-  else if (!is_valid_menu_title(cObj.title))
+  else if (!menuItemIsValidTitle(cObj.title))
     return errorsTemplates[errorsId.Config_InvalidPizzeriaName];
   else if (cObj.position.length <= 0)
     return errorsTemplates[errorsId.Config_EmptyPizzeriaLocation];
-  else if (!is_valid_location(cObj.position))
+  else if (!configIsValidLocation(cObj.position))
     return errorsTemplates[errorsId.Config_InvalidPizzeriaLocation];
   else if (cObj.contactNumber.length <= 0)
     return errorsTemplates[errorsId.Config_EmptyTelephone];
-  else if (!is_valid_telephone(cObj.contactNumber))
+  else if (!configIsValidTelephone(cObj.contactNumber))
     return errorsTemplates[errorsId.Config_InvalidTelephone];
   else if (cObj.cashChar.length <= 0)
     return errorsTemplates[errorsId.Config_EmptyCurrency];
@@ -118,6 +118,14 @@ function configIsValidIcon(iconData) {
   return undefined;
 }
 
+function configIsValidLocation(location) {
+  return /^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/.test(text);
+}
+
+function configIsValidTelephone(tel) {
+  return /^\(\d{2}\)\ ?\d{3}-?\d{3}-?\d{3}$/.test(text);
+}
+
 /*AJAX*/
 function configAjaxLoad() {
   return new Promise(function(resolve) {
@@ -126,7 +134,7 @@ function configAjaxLoad() {
       type: "POST",
       complete: function(jData) {
         var jsonRealData = JSON.parse(jData["responseText"]);
-        if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+        if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
         else {
           resolve(jsonRealData["objects"]);
         }
@@ -145,7 +153,7 @@ function configUploadIcon(icon) {
     processData: false,
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
     }
   });
 }
@@ -157,7 +165,7 @@ function configAjaxUpdate(data) {
     data: { data: data },
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
     }
   });
 }

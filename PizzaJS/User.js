@@ -165,13 +165,18 @@ function userGuestCreate() {
     message: $("#message_form").val(),
     captcharesponse: $(".g-recaptcha-response").val()
   };
-  userAjaxRegister(d).then(function(jData) {
-    $("form")[0].reset();
-    $("#insert-errors-here").text("Dziękujemy za kontakt, sprawdź swoja skrzynkę email!");
-  })
-  .catch(function() {
-    $("#insert-errors-here").text("Coś poszło nie tak, czy wypełniłeś wszystkie pola prawidłowo?");
-  });
+  userAjaxRegister(d)
+    .then(function(jData) {
+      $("form")[0].reset();
+      $("#insert-errors-here").text(
+        "Dziękujemy za kontakt, sprawdź swoja skrzynkę email!"
+      );
+    })
+    .catch(function() {
+      $("#insert-errors-here").text(
+        "Coś poszło nie tak, czy wypełniłeś wszystkie pola prawidłowo?"
+      );
+    });
 }
 
 /* Validation */
@@ -239,7 +244,7 @@ function userAjaxRemove(ID) {
     data: { ID: ID },
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
     }
   });
 }
@@ -253,8 +258,7 @@ function userAjaxAdd(data) {
       complete: function(jData) {
         var jsonRealData = JSON.parse(jData["responseText"]);
         if (jsonRealData["complete"]) resolve(jsonRealData["object"]);
-        else 
-          reject();
+        else reject();
       }
     });
   });
@@ -269,8 +273,7 @@ function userAjaxRegister(data) {
       complete: function(jData) {
         var jsonRealData = JSON.parse(jData["responseText"]);
         if (jsonRealData["complete"]) resolve(jsonRealData["object"]);
-        else 
-          reject();
+        else reject();
       }
     });
   });
@@ -313,7 +316,7 @@ function userAjaxLoad(ID) {
       data: { ID: ID },
       complete: function(jData) {
         var jsonRealData = JSON.parse(jData["responseText"]);
-        if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+        if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
         else {
           resolve(jsonRealData);
         }
@@ -322,6 +325,19 @@ function userAjaxLoad(ID) {
   });
 }
 
+function userAjaxIsAdmin() {
+  $.ajax({
+    url: "PizzaCore/AJAX/User/login_allowed.php",
+    type: "POST",
+    data: { allowed: "check" },
+    complete: function(jData) {
+      var jsonRealData = JSON.parse(jData["responseText"]);
+      if (!jsonRealData["allow"]) window.location = "index.php";
+    }
+  });
+}
+
+/* Utilits */
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
   name = name.replace(/[\[\]]/g, "\\$&");

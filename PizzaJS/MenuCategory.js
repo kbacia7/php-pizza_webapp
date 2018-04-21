@@ -92,8 +92,8 @@ function menuCategoryEditMode(item) {
     .first();
   let titleText = $(actuallyTitle).text();
 
-  if (is_valid_menu_title(titleText))
-    input_set_prev_value(menuTitleInput, titleText);
+  if (menuItemIsValidTitle(titleText))
+    inputSetLastValue(menuTitleInput, titleText);
 
   $(menuTitleInput).val(titleText);
   $(actuallyTitle).css("display", "none");
@@ -147,7 +147,7 @@ function menuCategoryCancelEdit(item, restore) {
   let menuTitleInput = $(parentRoot).find(".menu-title-position-input");
   $(menuTitleInput).fadeOut(200);
 
-  if (restore) restore_prev_value(menuTitleInput);
+  if (restore) inputRestoreLastValue(menuTitleInput);
 
   $(parentRoot)
     .find(".menu-title-position")
@@ -210,7 +210,7 @@ function menuCategoryAjaxAdd(
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
       if (jsonRealData["alllowed"] === false)
-        ajax_is_allowed();
+        userAjaxIsAdmin();
       else {
         callback(jsonRealData["object"]);
       }
@@ -226,7 +226,7 @@ function menuCategoryAjaxLoad(ID) {
       data: { ID: ID },
       complete: function(jData) {
         var jsonRealData = JSON.parse(jData["responseText"]);
-        if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+        if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
         else {
           resolve(jsonRealData);
         }
@@ -242,7 +242,7 @@ function menuCategoryAjaxRemove(ID) {
     data: { ID: ID },
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
     }
   });
 }
@@ -254,7 +254,7 @@ function menuCategoryAjaxUpdate(ID, data) {
     data: { ID: ID, data: data },
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
     }
   });
 }

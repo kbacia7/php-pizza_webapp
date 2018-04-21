@@ -91,7 +91,7 @@ function contactRoomAjaxAdd(data, callback) {
     data: data,
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
       else {
         callback(jsonRealData["object"]);
       }
@@ -107,7 +107,7 @@ function contactRoomAjaxLoad(ID) {
       data: { ID: ID },
       complete: function(jData) {
         var jsonRealData = JSON.parse(jData["responseText"]);
-        if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+        if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
         else {
           resolve(jsonRealData);
         }
@@ -123,7 +123,7 @@ function contactRoomAjaxRemove(ID) {
     data: { ID: ID },
     complete: function(jData) {
       var jsonRealData = JSON.parse(jData["responseText"]);
-      if (jsonRealData["alllowed"] === false) ajax_is_allowed();
+      if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
     }
   });
 }
