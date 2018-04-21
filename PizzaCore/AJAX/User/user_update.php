@@ -18,8 +18,22 @@ if($ID != null && $data != null)
 			{	
 				if($data["password"] == null)
 					unset($data["password"]);
-				$response['complete'] = UserManager::update($data, $ID);
-				$response['allowed'] = true;	
+				$d = array(
+					'login' => $data['login'],
+					'firstName' => $data['firstName'],
+					'lastName' => $data['lastName'],
+					'password' => array_key_exists("password", $data) ? ($data["password"]) : ("1234567"),
+					'admin' => $data['admin'],
+				);
+				
+				$error = UserManager::isValidData($d);
+				if($error == ErrorTemplatesId::User_CreateSuccess) {
+					$response['complete'] = UserManager::update($data, $ID);
+					$response['allowed'] = true;
+					ErrorHandler::createFromTemplate($error);	
+				}
+				ErrorHandler::createFromTemplate($error);
+				
 			}
 		}
 		catch(Exception $e) {

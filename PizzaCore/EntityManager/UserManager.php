@@ -74,9 +74,32 @@ class UserManager implements IEntityManager {
 		$salt = hash("md5", $data["accSalt"]) . $r->Random(15); //MD5(GlobalHash) + random string
 		$password = hash("sha256", $p . $salt, false); //Sha256(password + salt)
 		return array($salt, $password);
-		
 	}
 
+	public static function isValidData($data)
+	{
+		if($data == null)
+			return ErrorTemplatesId::User_NoExists;
+		else if(!array_key_exists("admin", $data) || strlen($data['admin']) <= 0)
+			return ErrorTemplatesId::User_NullAdmin;
+		else if(array_key_exists("ID", $data) && $data["ID"] == null)
+			return ErrorTemplatesId::User_NoData;
+		else if(!array_key_exists("firstName", $data) || strlen($data['firstName']) <= 0)
+			return ErrorTemplatesId::User_NullFirstName;
+		else if(!array_key_exists("lastName", $data) || strlen($data['lastName']) <= 0)
+			return ErrorTemplatesId::User_NullLastName;
+		else if(array_key_exists("firstName", $data) && !preg_match("/^[\s\p{L}]+$/u", $data['firstName']))
+			return ErrorTemplatesId::User_NoValidFirstName;
+		else if(array_key_exists("lastName", $data) && !preg_match("/^[\s\p{L}]+$/u", $data['lastName']))
+			return ErrorTemplatesId::User_NoValidLastName;
+		else if(!array_key_exists("password", $data) || strlen($data['password']) < 5)
+			return ErrorTemplatesId::User_NullPassword; 
+		else if(!array_key_exists("login", $data) || strlen($data['login']) < 5)
+			return ErrorTemplatesId::User_NullLogin; 
+		else if(array_key_exists("login", $data) && !preg_match("/^[a-zA-Z0-9_]*$/", $data['login']))
+			return ErrorTemplatesId::User_LoginInvalidChars; 
+		return ErrorTemplatesId::User_CreateSuccess;
+	}
 	
 }
 ?>

@@ -12,8 +12,7 @@ $response = array(
 	'complete' => false,
 	'object' => null
 );
-$validated = false;
-if($firstName != null && $lastName != null)
+if($firstName != null && $lastName != null && $login != null && $p != null && $isAdmin != null)
 {
 	try {
 		if(LoginGuard::isAdmin()) {
@@ -24,8 +23,14 @@ if($firstName != null && $lastName != null)
 				'password' => $p,
 				'admin' => $isAdmin
 			);
-			$response['object'] = UserManager::create($d);
-			$response['complete'] = true;
+			$error = UserManager::isValidData($d);
+			if($error == ErrorTemplatesId::User_CreateSuccess)
+			{
+				$response['object'] = UserManager::create($d);
+				$response['complete'] = true;
+				ErrorHandler::createFromTemplate($error);
+			}
+			ErrorHandler::createFromTemplate($error);
 		}
 	}
 	catch(Exception $e) {

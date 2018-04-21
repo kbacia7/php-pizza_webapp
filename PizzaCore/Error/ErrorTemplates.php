@@ -228,8 +228,74 @@ class ErrorTemplates {
             "code" => ErrorTypes::ERROR,
             "title" => "Pusty tekst powiadomienia",
             "description" => "Tekst powiadomienia nie może pozostać pusty"
-        )
+        ),
+
+        //User
+        ErrorTemplatesId::User_NoExists => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Nie podano danych",
+            "description" => "Nie podano danych dla nowego użytkownika"
+        ),
+		
+		ErrorTemplatesId::User_NoData => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Nie znaleziono użytkownika",
+            "description" => "Nie znaleziono odpowiedniego użytkownika"
+        ),
+		
+		ErrorTemplatesId::User_NullFirstName => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Pustę imię",
+            "description" => "Imię użytkwonika jest puste"
+        ),
+
+        ErrorTemplatesId::User_NullAdmin => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Pusty administrator",
+            "description" => "Nieokreślono uprawnień użytkownika"
+        ),
+		
+		ErrorTemplatesId::User_NullLastName => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Pustę nazwisko",
+            "description" => "Nazwisko użytkownika jest puste"
+        ),
+		
+		ErrorTemplatesId::User_NoValidFirstName => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Niepoprawne imię",
+            "description" => "Imię zawiera nieprawidłowe znaki które nie występują w normalnych imieniu"
+        ),
+
+        ErrorTemplatesId::User_NoValidLastName => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Niepoprawne nazwisko",
+            "description" => "Nazwisko zawiera nieprawidłowe znaki które nie występują w normalnych imieniu"
+        ),
+
+        ErrorTemplatesId::User_NullPassword => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Pustę hasło",
+            "description" => "Hasło użytkownika jest za krótkie (minimum 5 znaków)"
+        ),
+
+        ErrorTemplatesId::User_NullLogin => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Pusty login",
+            "description" => "Login użytkownika jest za krótki (minimum 5 znaków)"
+        ),
+
+        ErrorTemplatesId::User_LoginInvalidChars => array(
+            "code" => ErrorTypes::ERROR,
+            "title" => "Niepoprawny login",
+            "description" => "Login może zawierać tylko znaki A-Z i cyfry 0-9"
+        ),
         
+        ErrorTemplatesID::User_CreateSuccess => array(
+            "code" => ErrorTypes::SUCCESS,
+             "title" => "Zaktualizowano użytkownika",
+             "description" => "Pomyślnie zaktualizowano użytkownika"
+         ),
     );
 }
 ?>

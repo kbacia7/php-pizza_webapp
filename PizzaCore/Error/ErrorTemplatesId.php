@@ -46,7 +46,19 @@ abstract class ErrorTemplatesId
     const Notification_TitleInvalidChars = 34;
     const Notification_TitleEmpty = 35;
     const Notification_TitleTooLong = 36;
-	const Notification_DescriptionEmpty = 37;
-	
+    const Notification_DescriptionEmpty = 37;
+    
+    //User
+    const User_NoExists = 38;
+    const User_NoData = 39;
+    const User_NullAdmin = 40;
+    const User_NullFirstName = 41;
+    const User_NullLastName = 42;
+    const User_NoValidFirstName = 43;
+    const User_NoValidLastName = 44;
+    const User_NullPassword = 45;
+    const User_NullLogin = 46;
+    const User_LoginInvalidChars = 47;
+    const User_CreateSuccess = 48;
 }
 ?>

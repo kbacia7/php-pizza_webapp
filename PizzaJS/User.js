@@ -26,7 +26,7 @@ function userHandle() {
   $("body").on("click", "#create-user", function() {
     let d = {
       firstName: "Nowy",
-      lastName: "Użytkownik",
+      lastName: "Uzytkownik",
       login: "Nowy_" + userRandomString(5),
       password: userRandomString(50),
       admin: false
@@ -108,6 +108,34 @@ function userAdd(parent) {
   return [cloneNewUserTab, cloneNewUserPage];
 }
 
+
+
+function userIsValid(obj) {
+    if(obj == null)
+			return errorsTemplates[errorsId.User_NoExists];
+		else if((obj.admin !== 1 && obj.admin !== 0))
+			return errorsTemplates[errorsId.User_NullAdmin];
+		else if(obj.firstName.length <= 0)
+			return errorsTemplates[errorsId.User_NullFirstName];
+		else if(obj.lastName.length <= 0)
+      return errorsTemplates[errorsId.User_NullLastName];
+    else if(obj.login.length < 5)
+			return errorsTemplates[errorsId.User_NullLogin];
+		else if(!userIsValidName(obj.firstName))
+			return errorsTemplates[errorsId.User_NoValidFirstName];
+		else if(!userIsValidName(obj.lastName))
+			return errorsTemplates[errorsId.User_NoValidLastName];
+		else if(obj.password.length > 0 && obj.password.length < 5)
+			return errorsTemplates[errorsId.User_NullPassword];
+		else if(!(/^[a-zA-Z0-9_]*$/.test(obj.login)))
+			return errorsTemplates[errorsId.User_LoginInvalidChars];
+		return undefined;
+}
+
+function userIsValidName(name) {
+  return (XRegExp(/^[\s\p{L}]+$/u)).test(name);
+}
+
 function userUpdate(form) {
   let ID = $(form).parents(".tab-pane").first().attr("data-roomID");
   let fName = $(form).find("input#inputUserFirstName").val();
@@ -123,15 +151,20 @@ function userUpdate(form) {
     admin: admin
 
   }
-  //Data validate here
-  userAjaxUpdate(ID, d);
-  $("input#inputUserPassword").val("");
+  let e = userIsValid(d);
+  if(e == undefined) {
+    userAjaxUpdate(ID, d);
+    $("input#inputUserPassword").val("");
+  }
+  else {
+    displayError(e);
+  }
 }
 
 function userRemove(tab) {
   let id = $(tab).attr("data-roomid");
-  $("#v-pills-user" + id).fadeOut();
-  $(tab).fadeOut();
+  $("#v-pills-user" + id).remove();
+  $(tab).remove();
   userAjaxRemove(id);
 }
 

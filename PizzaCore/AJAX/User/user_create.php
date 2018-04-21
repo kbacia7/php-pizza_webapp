@@ -13,10 +13,12 @@ $response = array(
 	'complete' => false
 );
 $validated = false;
-if($firstName != null && $lastName != null)
+if($firstName != null && $lastName != null && $eMail != null && $topic != null && $message != null 
+	&& $captcha != null)
 {
 	try {
 		$validated = CaptchaValidator::validate($captcha);
+		$c = true;
 		if($validated) {
 			$userExists = UserManager::load(array("login" => $eMail));
 			$us = null;
@@ -27,21 +29,27 @@ if($firstName != null && $lastName != null)
 					'login' => $eMail,
 					'firstName' => $firstName,
 					'lastName' => $lastName,
-					'password' => $p
+					'password' => $p,
+					'admin' => false
 				);
-				if($userExists == null)
-				{
-					$us = UserManager::create($d);
-					$sKey = base64_encode(sprintf("%s|%s", $p, $eMail));
-					$bodyMsg = sprintf("<html><head><meta charset='utf=8'/></head><body>Dziękujemy za kontakt %s %s. Postaramy się jak najszybciej odpowiedzieć, rozmowy prowadzone z nami jak i odpowiedzi wysyłaj proszę z <a href='%s/user.php?key=%s'>tego</a> miejsca. <b>Proszę, link ten umożliwia automatycznie przeglądanie wszystkich twoich rozmów z nami,  nie podawaj go NIKOMU</b></body></html>", $firstName, $lastName,$_SERVER['SERVER_NAME'], $sKey);
-					MailSender::send($eMail, "Kontakt z pizzerią", $bodyMsg, sprintf("%s %s", $firstName, $lastName));
+				$error = UserManager::isValidData($d);
+				if($error == ErrorTemplatesId::User_CreateSuccess) {
+					if($userExists == null)
+					{
+						$us = UserManager::create($d);
+						$sKey = base64_encode(sprintf("%s|%s", $p, $eMail));
+						$bodyMsg = sprintf("<html><head><meta charset='utf=8'/></head><body>Dziękujemy za kontakt %s %s. Postaramy się jak najszybciej odpowiedzieć, rozmowy prowadzone z nami jak i odpowiedzi wysyłaj proszę z <a href='%s/user.php?key=%s'>tego</a> miejsca. <b>Proszę, link ten umożliwia automatycznie przeglądanie wszystkich twoich rozmów z nami,  nie podawaj go NIKOMU</b></body></html>", $firstName, $lastName,$_SERVER['SERVER_NAME'], $sKey);
+						MailSender::send($eMail, "Kontakt z pizzerią", $bodyMsg, sprintf("%s %s", $firstName, $lastName));
+					}
+					else 
+					{
+						$us = $userExists[0];
+						$bodyMsg = sprintf("<html><head><meta charset='utf=8'/></head><body>Dziękujemy za kontakt %s %s. Postaramy się jak najszybciej odpowiedzieć, rozmowy prowadzone z nami jak i odpowiedzi wysyłaj proszę ze specjalnego linka który otrzymałeś za pierwszym razem.</body></html>", $firstName, $lastName);
+						MailSender::send($eMail, "Kontakt z pizzerią", $bodyMsg, sprintf("%s %s", $firstName, $lastName));
+					}
 				}
-				else 
-				{
-					$us = $userExists[0];
-					$bodyMsg = sprintf("<html><head><meta charset='utf=8'/></head><body>Dziękujemy za kontakt %s %s. Postaramy się jak najszybciej odpowiedzieć, rozmowy prowadzone z nami jak i odpowiedzi wysyłaj proszę ze specjalnego linka który otrzymałeś za pierwszym razem.</body></html>", $firstName, $lastName);
-					MailSender::send($eMail, "Kontakt z pizzerią", $bodyMsg, sprintf("%s %s", $firstName, $lastName));
-				}
+				else
+					$c = true;
 				$d = array(
 					'title' => $topic,
 					'owner' => $us->getID()
@@ -54,6 +62,7 @@ if($firstName != null && $lastName != null)
 					'roomID' =>	$room->getID()
 				);
 				ContactMessageManager::create($d);
+				$response['complete'] = $c;
 		}
 	}
 	catch(Exception $e) {

@@ -51,7 +51,20 @@ var errorsId = {
     Notification_TitleInvalidChars: 34,
     Notification_TitleEmpty: 35,
     Notification_TitleTooLong: 36,
-	Notification_DescriptionEmpty: 37
+    Notification_DescriptionEmpty: 37,
+    
+    //User
+    User_NoExists: 38,
+    User_NoData: 39,
+    User_NullAdmin: 40,
+    User_NullFirstName: 41,
+    User_NullLastName: 42,
+    User_NoValidFirstName: 43,
+    User_NoValidLastName: 44,
+    User_NullPassword: 45,
+    User_NullLogin: 46,
+    User_LoginInvalidChars: 47,
+    User_CreateSuccess: 48,
 }
 
 function errorsLoopInit() {
