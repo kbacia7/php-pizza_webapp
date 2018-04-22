@@ -335,9 +335,16 @@ class ErrorTemplates {
         
         ErrorID::User_CreateComplete => array(
             "code" => ErrorTypes::SUCCESS,
+             "title" => "Utworzono użytkownika",
+             "description" => "Pomyślnie utworzono użytkownika"
+        ),
+
+        ErrorID::User_UpdateComplete => array(
+            "code" => ErrorTypes::SUCCESS,
              "title" => "Zaktualizowano użytkownika",
              "description" => "Pomyślnie zaktualizowano użytkownika"
         ),
+
 
         //Contact Room
         ErrorID::ContactRoom_DoesntExists => array(

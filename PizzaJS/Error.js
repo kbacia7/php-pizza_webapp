@@ -68,6 +68,7 @@ var errorsId = {
   User_EmptyLogin: 508,
   User_InvalidLogin: 509,
   User_CreateComplete: 510,
+  User_UpdateComplete: 511,
 
   //Contact Messages
   ContactMessage_DoesntExists: 600,

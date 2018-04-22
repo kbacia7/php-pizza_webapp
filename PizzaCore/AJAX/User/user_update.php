@@ -28,7 +28,8 @@ if ($ID != null && $data != null) {
             $error = UserManager::isValidData($d);
             if ($error == -1) {
                 $response['complete'] = UserManager::update($data, $ID);
-                $response['allowed'] = true;
+				$response['allowed'] = true;
+				ErrorHandler::createFromTemplate(ErrorID::User_UpdateComplete);
 			}
 			else
             	ErrorHandler::createFromTemplate($error);

@@ -66,6 +66,7 @@ abstract class ErrorID
     const User_EmptyLogin = 508;
     const User_InvalidLogin = 509;
     const User_CreateComplete = 510;
+    const User_UpdateComplete = 511;
 
     //Contact Messages
     const ContactMessage_DoesntExists = 600;

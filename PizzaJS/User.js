@@ -142,7 +142,7 @@ function userUpdate(form) {
   };
   let e = userIsValid(d);
   if (e == undefined) {
-    $("#v-pills-user-tab" + ID).text(userFormatTabTitle(login, ID));
+    $("#v-pills-user-tab" + ID).find("span.user-tab-title").text(userFormatTabTitle(login, ID));
     userAjaxUpdate(ID, d);
     $("input#inputUserPassword").val("");
     contactRoomReload();
@@ -155,6 +155,7 @@ function userFormatTabTitle(login, ID)
 {
   return (login + " (#" + ID + ")");
 }
+
 function userRemove(tab) {
   let id = $(tab).attr("data-roomid");
   $("#v-pills-user" + id).remove();
