@@ -34,7 +34,7 @@ if ($firstName != null && $lastName != null && $eMail != null && $topic != null 
                 'admin' => 0,
             );
             $error = UserManager::isValidData($d);
-            if ($error == ErrorID::User_CreateComplete) {
+            if ($error == -1) {
                 if ($userExists == null) {
                     $us = UserManager::create($d);
                     $sKey = base64_encode(sprintf("%s|%s", $p, $eMail));
@@ -58,7 +58,7 @@ if ($firstName != null && $lastName != null && $eMail != null && $topic != null 
                 'owner' => $us->getID(),
             );
             $error = ContactRoomManager::isValidData($d);
-            if ($error == ErrorID::ContactRoom_CreateComplete) {
+            if ($error == -1) {
                 $room = ContactRoomManager::create($d);
             } else {
                 $c = false;
@@ -70,7 +70,7 @@ if ($firstName != null && $lastName != null && $eMail != null && $topic != null 
                 'roomID' => $room->getID(),
             );
             $error = ContactMessageManager::isValidData($d);
-            if ($error == ErrorID::ContactMessage_CreateComplete) {
+            if ($error == -1) {
                 ContactMessageManager::create($d);
             } else {
                 $c = false;

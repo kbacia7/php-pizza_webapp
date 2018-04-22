@@ -21,12 +21,13 @@ if ($msg != null) {
                 'roomID' => $roomID,
             );
             $error = ContactMessageManager::isValidData($settings);
-            if ($error == ErrorID::ContactMessage_CreateComplete) {
+            if ($error == -1) {
                 $response['object'] = ContactMessageManager::create($settings);
                 $response['complete'] = true;
-                ErrorHandler::createFromTemplate($error);
-            }
-            ErrorHandler::createFromTemplate($error);
+                ErrorHandler::createFromTemplate(ErrorID::ContactMessage_CreateComplete);
+			}
+			else
+            	ErrorHandler::createFromTemplate($error);
         }
     } catch (Exception $e) {
         $response['complete'] = false;

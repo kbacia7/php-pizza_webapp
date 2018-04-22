@@ -15,12 +15,14 @@ if ($ID != null) {
             "ID" => $ID,
         );
         $error = MenuCategoryManager::isValidData($d);
-        if ($error == ErrorID::MenuCategory_UpdateComplete) {
+        if ($error == -1) {
             $response['allowed'] = true;
             $loadedMenuCategory = MenuCategoryManager::load(($ID !== "*") ? $ID : null);
             $response['complete'] = true;
-            $response['objects'] = ($loadedMenuCategory);
-        }
+			$response['objects'] = ($loadedMenuCategory);
+		}
+		else 
+			ErrorHandler::createFromTemplate($error);
     } catch (Exception $e) {
         $response['complete'] = false;
     }

@@ -20,7 +20,7 @@ if ($ID != null && $data != null) {
                 'ID' => $ID,
             );
             $error = MenuItemManager::isValidData($d);
-            if ($error == ErrorID::MenuItem_CreateComplete) {
+            if ($error == -1) {
                 $response['complete'] = MenuItemManager::update($data, $ID);
                 $response['allowed'] = true;
                 ErrorHandler::createFromTemplate(ErrorID::MenuItem_UpdateComplete);

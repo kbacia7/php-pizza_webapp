@@ -24,13 +24,14 @@ if($firstName != null && $lastName != null && $login != null && $p != null && $i
 				'admin' => $isAdmin
 			);
 			$error = UserManager::isValidData($d);
-			if($error == ErrorID::User_CreateComplete)
+			if($error == -1)
 			{
 				$response['object'] = UserManager::create($d);
 				$response['complete'] = true;
-				ErrorHandler::createFromTemplate($error);
+				ErrorHandler::createFromTemplate(ErrorID::User_CreateComplete);
 			}
-			ErrorHandler::createFromTemplate($error);
+			else
+				ErrorHandler::createFromTemplate($error);
 		}
 	}
 	catch(Exception $e) {

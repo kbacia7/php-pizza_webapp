@@ -20,12 +20,14 @@ if ($path != null && $gID != null) {
                 'galleryID' => $gID,
             );
             $error = GalleryManager::isValidData($settings);
-            if ($error == ErrorID::Gallery_AddComplete) {
+            if ($error == -1) {
                 $response['allowed'] = true;
                 $response['object'] = GalleryManager::create($settings);
-                $response['complete'] = true;
-            }
-            ErrorHandler::createFromTemplate($error);
+				$response['complete'] = true;
+				ErrorHandler::createFromTemplate(ErrorID::Gallery_AddComplete);
+			}
+			else
+            	ErrorHandler::createFromTemplate($error);
         }
     } catch (Exception $e) {
         $response['complete'] = false;

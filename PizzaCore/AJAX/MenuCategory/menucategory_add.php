@@ -18,11 +18,13 @@ if ($title != null) {
                 'title' => $title,
             );
             $error = MenuCategoryManager::isValidData($settings);
-            if ($error == ErrorID::MenuCategory_UpdateComplete) {
+            if ($error == -1) {
                 $response['object'] = MenuCategoryManager::create($settings);
-                $response['complete'] = true;
-            }
-            ErrorHandler::createFromTemplate(ErrorID::MenuCategory_CreateComplete);
+				$response['complete'] = true;
+				ErrorHandler::createFromTemplate(ErrorID::MenuCategory_CreateComplete);
+			}
+			else
+            	ErrorHandler::createFromTemplate($error);
         }
     } catch (Exception $e) {
         $response['complete'] = false;

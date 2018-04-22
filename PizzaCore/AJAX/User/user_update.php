@@ -26,12 +26,12 @@ if ($ID != null && $data != null) {
             );
 
             $error = UserManager::isValidData($d);
-            if ($error == ErrorID::User_CreateComplete) {
+            if ($error == -1) {
                 $response['complete'] = UserManager::update($data, $ID);
                 $response['allowed'] = true;
-                ErrorHandler::createFromTemplate($error);
-            }
-            ErrorHandler::createFromTemplate($error);
+			}
+			else
+            	ErrorHandler::createFromTemplate($error);
 
         }
     } catch (Exception $e) {

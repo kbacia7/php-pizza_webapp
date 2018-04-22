@@ -23,12 +23,13 @@ if ($title != null && $price != null && $parent != null) {
                 'parent' => $parent,
             );
             $error = MenuItemManager::isValidData($settings);
-            if ($error == ErrorID::MenuItem_CreateComplete) {
+            if ($error == -1) {
                 $response['object'] = MenuItemManager::create($settings);
                 $response['complete'] = true;
                 ErrorHandler::createFromTemplate(ErrorID::MenuItem_CreateComplete);
-            }
-            ErrorHandler::createFromTemplate($error);
+			}
+			else
+            	ErrorHandler::createFromTemplate($error);
         }
     } catch (Exception $e) {
         $response['complete'] = false;

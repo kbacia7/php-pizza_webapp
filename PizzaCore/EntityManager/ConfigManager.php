@@ -80,11 +80,11 @@ class ConfigManager implements IEntityManager {
 				return (ErrorID::Config_LongCurrency);
 		}
 
-		if(strlen($data['descriptionGallery1']) <= 0 && array_key_exists("descriptionGallery1", $data))
+		if(array_key_exists("descriptionGallery1", $data) && strlen($data['descriptionGallery1']) <= 0)
 			return (ErrorID::Config_EmptyGalleryOne);
-		else if(strlen($data['descriptionGallery2']) <= 0 && array_key_exists("descriptionGallery2", $data))
+		else if(array_key_exists("descriptionGallery2", $data) && strlen($data['descriptionGallery2']) <= 0)
 			return (ErrorID::Config_EmptyGalleryTwo);
-		return ErrorID::Config_UpdateComplete;
+		return -1;
 	}
 }
 ?>
