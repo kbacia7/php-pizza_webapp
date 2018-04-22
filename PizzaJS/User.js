@@ -66,7 +66,7 @@ function userLoad(o) {
     $(eTab).attr("aria-controls", "v-pills-user" + o["ID"]);
     $(eTab)
       .find("span.user-tab-title")
-      .text(o["login"] + " (#" + o["ID"] + ")");
+      .text(userFormatTabTitle(o["login"], o["ID"]));
     $(eTab).attr("data-roomID", o["ID"]);
 
     $(tPane).attr("id", "v-pills-user" + o["ID"]);
@@ -142,6 +142,7 @@ function userUpdate(form) {
   };
   let e = userIsValid(d);
   if (e == undefined) {
+    $("#v-pills-user-tab" + ID).text(userFormatTabTitle(login, ID));
     userAjaxUpdate(ID, d);
     $("input#inputUserPassword").val("");
     contactRoomReload();
@@ -150,6 +151,10 @@ function userUpdate(form) {
   }
 }
 
+function userFormatTabTitle(login, ID)
+{
+  return (login + " (#" + ID + ")");
+}
 function userRemove(tab) {
   let id = $(tab).attr("data-roomid");
   $("#v-pills-user" + id).remove();
