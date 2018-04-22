@@ -31,24 +31,10 @@
 
    
     <!-- Modals -->
-    <!-- Wait Modal -->
-    <div class="modal" id="waitDialog" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p>Ładowanie...</p>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="block1">
         <div class="container-fluid h-100">
-        
             <div class="row  h-100 justify-content-center align-items-center">
+            
             <div class="col-10">
                 <div class="card">
                     <div class="card-header">
@@ -78,7 +64,9 @@
                     </div>
                     <div class="card-body" style="max-height: 400px; overflow-y: auto">
                         <div class="container">
-                            <div class="row">
+                            <div class="row main-place">
+                            <img src='/images/loading.gif' class='loading d-block mx-auto'/>
+                            <div class="d-none"id="global-loading-hide">
                                 <div class="col-12" id="main_start">
                                     <div id="home" class="active_element"> <!-- Strona Główna-->
                                         <h4 class="text-center">Panel administracyjny</h4>
@@ -102,6 +90,7 @@
                                     <div id="notification_manager"></div>
                                 </div>
                             </div>
+                            </div>
                         </div>
                     </div>      
                 </div>  
@@ -118,7 +107,6 @@
 		$("#user_manager").load("admin_user.php");
         $("#mail_manager").load("admin_contact.php");
         $("#notification_manager").load("admin_notification.php");
-        $("#waitDialog").modal('show');
         errorsTemplatesAjaxLoad().then(function (templates) {
             errorsTemplates = templates;
             errorsLoopInit();
@@ -132,26 +120,28 @@
             contactRoomHandle();
             configAjaxLoad().then(function (o) {
                 configSetForm(o);
-            });
-            menuCategoryHandle().then(function() {
-                $("#waitDialog").modal('hide');
-                paginatorInit({
-                    "globalselector": ".global-menu-root:has([data-categoryid])",
-                    "globalselectorname": ".global-menu-root",
-                    "visiblesel": "[data-categoryid]:visible",
-                    "nextpage": ".paginator-next-page",
-                    "prevpage": ".paginator-prev-page",
-                    "element": "[data-categoryid]"
-                });
-                
-                $(".list-cards-links .nav-link").on("click", function() {
-                    subsite_change($(this).attr("data-redirect"));
-                });
+                menuCategoryHandle().then(function() {
+                    $("#waitDialog").modal('hide');
+                    paginatorInit({
+                        "globalselector": ".global-menu-root:has([data-categoryid])",
+                        "globalselectorname": ".global-menu-root",
+                        "visiblesel": "[data-categoryid]:visible",
+                        "nextpage": ".paginator-next-page",
+                        "prevpage": ".paginator-prev-page",
+                        "element": "[data-categoryid]"
+                    });
+                    
+                    $(".list-cards-links .nav-link").on("click", function() {
+                        subsite_change($(this).attr("data-redirect"));
+                    });
 
-                $("body").on('change', ".menu-price-input, .menu-name-input, .menu-title-position-input", function() {
-                    $(this).attr("value", $(this).val());
+                    $("body").on('change', ".menu-price-input, .menu-name-input, .menu-title-position-input", function() {
+                        $(this).attr("value", $(this).val());
+                    });
+                    globalLoadingScreenRemove();
                 });
             });
+            
         });
     });
 
@@ -184,6 +174,16 @@
         $(input).val($(input).attr('data-prev_value'));
     }
 
-    </script>
+    function globalLoadingScreenRemove() 
+    {
+        return new Promise(function(resolve) {
+        $(".loading").fadeOut(1200, function() {
+            $(".loading").remove();
+            $("#global-loading-hide").contents().appendTo($(".main-place"));
+            resolve();
+        });
+        });
+    }
+    </script> 
 </body>
 </html>

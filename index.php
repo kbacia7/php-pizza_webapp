@@ -3,60 +3,6 @@
 
 <head>
     <meta charset="utf-8" />
-    <style>
-        [data-dialog="true"] label,
-        input {
-            display: block;
-        }
-
-        [data-dialog="true"] input.text {
-            margin-bottom: 12px;
-            width: 95%;
-            padding: .4em;
-        }
-
-        [data-dialog="true"] fieldset {
-            padding: 0;
-            border: 0;
-        }
-
-        [data-dialog="true"] h1 {
-            font-size: 1.2em;
-            margin: .6em 0;
-        }
-
-        [data-dialog="true"] div#users-contain {
-            width: 350px;
-            margin: 20px 0;
-        }
-
-        [data-dialog="true"] div#users-contain table {
-            margin: 1em 0;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        [data-dialog="true"]div#users-contain table td,
-        div#users-contain table th {
-            border: 1px solid #eee;
-            padding: .6em 10px;
-            text-align: left;
-        }
-
-        [data-dialog="true"] .ui-dialog .ui-state-error {
-            padding: .3em;
-        }
-
-        [data-dialog="true"] .validateTips {
-            border: 1px solid transparent;
-            padding: 0.3em;
-        }
-
-        [data-dialog="true"] .error {
-            color: #FF0000;
-            font-weight: bold;
-        }
-    </style>
     <link rel="icon" href="images/pizzaicon.png">
     <link rel="stylesheet" href="PizzaFonts/fonts.css"/>
     <link rel="stylesheet" href="style.css" />
@@ -82,6 +28,10 @@
 </head>
 
 <body>
+    <div id="special-loading-place">
+        <img src='/images/loading.gif' class='loading'/>
+    </div>
+    <div id="hide-all-loading">
     <div class="block1">
         <div class="header">
             <h1 id="header-title">Ładowanie...</h1>
@@ -201,6 +151,7 @@
             </fieldset>
         </form>
     </div>
+    </div>
 
     <script type="text/javascript">
         var secGallImg = 3;
@@ -256,6 +207,12 @@
                         if(e.which == 76)
                             loginFormOpen();
                     });
+
+                    $("#special-loading-place").fadeTo(1500, 0.0, function() {
+                        $("#special-loading-place").remove();
+                        $("#hide-all-loading").contents().appendTo($("body"));
+                    });
+
                 });
             });
 

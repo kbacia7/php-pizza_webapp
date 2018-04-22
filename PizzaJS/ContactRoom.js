@@ -98,8 +98,9 @@ function contactRoomReload() {
       savedAuthorsByID = {};
       $("#mail_manager > #hide-all-to-loading").load("admin_contact.php", function() {
         contactRoomLoadAll().then(function() {
-          $(".loading").remove();
-          $("#hide-all-to-loading").contents().appendTo($("#mail_manager"));
+          contactRoomRemoveLoading().then(function() {
+            $("#hide-all-to-loading").contents().appendTo($("#mail_manager"));
+          });
         });
       });
 }
@@ -107,6 +108,15 @@ function contactRoomReload() {
 function contactRoomSetLoading() {
   let loadingHtml = "<img src='/images/loading.gif' class='loading d-block mx-auto'/>";
   $("#mail_manager").append(loadingHtml);
+}
+
+function contactRoomRemoveLoading() {
+  return new Promise(function(resolve) {
+    $(".loading").fadeOut(1200, function() {
+      $(".loading").remove();
+      resolve();
+    });
+  });
 }
 
 /* AJAX */
