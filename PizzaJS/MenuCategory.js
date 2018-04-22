@@ -198,6 +198,12 @@ function menuCategoryIsValid(object) {
   return undefined;
 }
 
+function menuReload() {
+  $("#menu_manager").empty();
+  $("#menu_manager").load("admin_menu.php");
+  menuLoadAll();
+}
+
 /* ajax */
 function menuCategoryAjaxAdd(
   data,

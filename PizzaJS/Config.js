@@ -1,4 +1,5 @@
 let allowedImgTypes = ["image/png"];
+var globalCurrency = "$";
 /* MAIN */
 function configHandle() {
   $("body").on("click", "#configSaveButton", function() {
@@ -17,6 +18,7 @@ function configSetForm(configObject) {
   $("#inputGallery1").val(configObject["descriptionGallery1"]);
   $("#inputGallery2").val(configObject["descriptionGallery2"]);
   document.title = configObject["title"];
+  globalCurrency = configObject["cashChar"];
 }
 
 function configSetData(configObject) {
@@ -35,6 +37,7 @@ function configSetData(configObject) {
   $("#header-title").text(configObject["title"]);
   $("#contact-number").text(configObject["contactNumber"]);
   document.title = configObject["title"];
+  globalCurrency = configObject["cashChar"];
   $.ajax({
     url:
       "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
@@ -75,6 +78,7 @@ function configSave() {
   else {
     configAjaxUpdate(d);
     configSetForm(d);
+    menuReload();
     if (file_data !== undefined) {
       let iconErrors = configIsValidIcon(file_data);
       if (iconErrors != undefined) displayError(iconErrors);
@@ -119,11 +123,11 @@ function configIsValidIcon(iconData) {
 }
 
 function configIsValidLocation(location) {
-  return /^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/.test(text);
+  return /^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/.test(location);
 }
 
 function configIsValidTelephone(tel) {
-  return /^\(\d{2}\)\ ?\d{3}-?\d{3}-?\d{3}$/.test(text);
+  return /^\(\d{2}\)\ ?\d{3}-?\d{3}-?\d{3}$/.test(tel);
 }
 
 /*AJAX*/

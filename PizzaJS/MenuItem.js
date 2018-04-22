@@ -65,7 +65,7 @@ function menuItemLoad(parent, id) {
 
       $(e)
         .find(".menu-price > .badge")
-        .text(this["price"] + "$");
+        .text(this["price"] + globalCurrency);
       $(e).attr("data-itemID", this["ID"]);
     });
   });
@@ -87,7 +87,7 @@ function menuItemSaveEdit(item) {
   if (e == undefined) {
     $(parentRoot)
       .find(".badge")
-      .text(newPrice + "$");
+      .text(newPrice + globalCurrency);
     menuItemAjaxUpdate($(parentRoot).attr("data-itemID"), d);
     menuItemCancelEdit(item, false);
   } else displayError(e);
