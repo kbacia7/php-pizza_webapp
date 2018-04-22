@@ -167,8 +167,9 @@
             });
             loadMenuItems().then(function () {    
                     configAjaxLoad().then(function(o) {
-                        configSetData(o);
-                        mapLoad(o['title'], o['position'].split(","));
+                        let obj = o["objects"];
+                        configSetData(o['objects'], o['appID'], o['mapKey']);
+                        mapLoad(obj['title'], obj['position'].split(","));
                     });
                     galleryLoadAllHome().then(function(imgs) {
                     $(".never-used-gallery-slot-g1").remove();

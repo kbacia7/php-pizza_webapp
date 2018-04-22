@@ -120,7 +120,7 @@
             userHandle();
             contactRoomHandle();
             configAjaxLoad().then(function (o) {
-                configSetForm(o);
+                configSetForm(o['objects']);
                 menuCategoryHandle().then(function() {
                     $("#waitDialog").modal('hide');
                     paginatorInit({

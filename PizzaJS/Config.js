@@ -21,11 +21,11 @@ function configSetForm(configObject) {
   globalCurrency = configObject["cashChar"];
 }
 
-function configSetData(configObject) {
+function configSetData(configObject, appID, mapKey) {
   var OneSignal = window.OneSignal || [];
   OneSignal.push(function() {
     OneSignal.init({
-      appId: "a5e6cf68-890a-4add-94b6-97f470fa200d",
+      appId: appID,
       autoRegister: false,
       notifyButton: {
         enable: true
@@ -42,7 +42,7 @@ function configSetData(configObject) {
     url:
       "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
       configObject["position"].trim() +
-      "&key=AIzaSyBSsAa2ivZ1xAMJgfAMBlvCtcLjEAdiWb4",
+      "&key=" + mapKey,
     type: "GET",
     complete: function(jData) {
       let jsonRealData = JSON.parse(jData["responseText"]);
@@ -140,7 +140,7 @@ function configAjaxLoad() {
         var jsonRealData = JSON.parse(jData["responseText"]);
         if (jsonRealData["alllowed"] === false) userAjaxIsAdmin();
         else {
-          resolve(jsonRealData["objects"]);
+          resolve(jsonRealData);
         }
       }
     });

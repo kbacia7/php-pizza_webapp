@@ -26,6 +26,10 @@ smtpAuthorName: Pan Pomocnik #Names in email send to user
 googleRESiteKey: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
 googleRESecretKey: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
 
+#Google Maps (Geocode)
+#If you want working with Google Maps you must paste here key from Google API with Geolocalization
+googleMapAPIKey: ~
+
 #Format Email
 #Here you can edit email content which user get when send email by form on home page
 #firstEmailRegisterContent:

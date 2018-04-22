@@ -6,14 +6,20 @@ RequirePath::include_();
 $response = array(
     'complete' => false,
     'allowed' => false,
-    'objects' => array(),
+	'objects' => array(),
+	'appID' => "",
+	'mapKey' => ""
 );
 
 try {
     $response['allowed'] = true;
     $config = ConfigManager::load(null);
-    $response['complete'] = true;
-    $response['objects'] = ($config);
+	$response['complete'] = true;
+	$response['objects'] = ($config);
+	$configL = new ConfigLoader();
+	$cData = $configL->GetConfig();
+	$response['appID'] = $cData['oneSignalAppID'];
+	$response['mapKey'] = $cData['googleMapAPIKey'];
 } catch (Exception $e) {
     $response['complete'] = false;
 }
