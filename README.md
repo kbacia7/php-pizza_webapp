@@ -11,6 +11,7 @@ Aplikację można przetestować pod http://80.211.223.245
 * [php-yaml](http://php.net/manual/en/book.yaml.php) do interpretowania plików YAML
 * Konto w usłudze [Google ReCaptcha](https://www.google.com/recaptcha/intro/android.html)
 * Konto w [OneSignal](https://onesignal.com/)
+* Konto w usłudze [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key) ale aby całośc działała należy włączyć Geolokalizację w [Konsoli Google API](https://console.developers.google.com/apis/dashboard?) i zezwolić na geolokalizację. Więcej o tym [tutaj](https://developers.google.com/maps/documentation/geolocation/intro)
 
 Dodatkowo, Google ReCaptcha oraz OneSignal przypisane są do domeny, zakładając konto w tych usługach należy pamiętać aby ustawić odpowiednią domenę (np. http://localhost/)
 
