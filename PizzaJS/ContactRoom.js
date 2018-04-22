@@ -1,5 +1,6 @@
 /* MAIN */
 function contactRoomHandle() {
+  return new Promise(function(resolve) {
   $("body").on("click", ".contact-remove-conversation", function() {
     contactRoomRemove(
       $(this)
@@ -16,7 +17,14 @@ function contactRoomHandle() {
       .find("#inputContact")
       .val("");
   });
-  contactRoomLoadAll();
+
+  $("body").on("click", "#contact-reload", function() {
+    contactRoomReload();
+  });
+  contactRoomLoadAll().then(function() {
+    resolve();
+  });
+  });
 }
 
 function contactRoomLoadAll() {
@@ -81,6 +89,24 @@ function contactRoomRemove(element) {
 
   $("div.tab-pane[aria-labelledby$='" + aID + "']").remove();
   $(element).remove();
+}
+
+function contactRoomReload() {
+    $("#mail_manager").empty();
+    $("#mail_manager").append("<div class='d-none' id='hide-all-to-loading'></div>");
+    contactRoomSetLoading();
+      savedAuthorsByID = {};
+      $("#mail_manager > #hide-all-to-loading").load("admin_contact.php", function() {
+        contactRoomLoadAll().then(function() {
+          $(".loading").remove();
+          $("#hide-all-to-loading").contents().appendTo($("#mail_manager"));
+        });
+      });
+}
+
+function contactRoomSetLoading() {
+  let loadingHtml = "<img src='/images/loading.gif' class='loading d-block mx-auto'/>";
+  $("#mail_manager").append(loadingHtml);
 }
 
 /* AJAX */

@@ -144,6 +144,7 @@ function userUpdate(form) {
   if (e == undefined) {
     userAjaxUpdate(ID, d);
     $("input#inputUserPassword").val("");
+    contactRoomReload();
   } else {
     displayError(e);
   }
