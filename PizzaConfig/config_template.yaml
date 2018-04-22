@@ -26,6 +26,23 @@ smtpAuthorName: Pan Pomocnik #Names in email send to user
 googleRESiteKey: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
 googleRESecretKey: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
 
+#Format Email
+#Here you can edit email content which user get when send email by form on home page
+#firstEmailRegisterContent:
+# Content when user first time use contact form
+# %s - First Name
+# %s - Last Name
+# %s - Site URL
+# %s - Special key
+
+#nextEmailContent
+# Content when user have account and use contact form
+# %s - First Name
+# %s - Last Name
+firstEmailRegisterContent: "Dziękujemy za kontakt %s %s. Postaramy się jak najszybciej odpowiedzieć, rozmowy prowadzone z nami jak i odpowiedzi wysyłaj proszę z <a href='%s/user.php?key=%s'>tego</a> miejsca. <b>Link ten służy automatycznie do zalogowania się i umożliwia przeglądanie wszystkich twoich rozmów z nami,  nie podawaj go NIKOMU oraz ZAPISZ GO</b>"
+nextEmailContent: "Dziękujemy za kontakt %s %s. Postaramy się jak najszybciej odpowiedzieć, rozmowy prowadzone z nami jak i odpowiedzi wysyłaj proszę ze specjalnego linka który otrzymałeś za pierwszym razem."
+
+
 #Special salt for passwords
 accSalt: ChangeItPlease! #Change it necessarily!
 ---
