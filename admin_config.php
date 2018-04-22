@@ -1,5 +1,5 @@
 <h4 class="text-center">Konfiguracja</h4>
-<p class="m-0 text-center">W tym miejscu możesz skonfigurować swoją aplikację internetową! Do dzieła!</p>
+<p class="m-0 text-center">W zakładce <b>Konfiguracja</b> można ustalić najważniejsze elementy, takie jak: nazwa pizzerii, współrzędne geograficzne (do pobrania m.in <a href="https://www.google.pl/maps">stąd</a>), dane kontaktowe czy walutę wyświetlaną przy menu a także opisy galerii oraz ikonkę stron</p>
 <form id="configSaveForm">
   <div class="form-group row">
     <label for="inputName" class="col-sm-2 col-form-label">Nazwa pizzeri</label>

@@ -1,5 +1,5 @@
 <h4 class="text-center">Użytkownicy</h4>
-<p class="m-0 text-center">Lista użytkowników portalu z możliwością nadawania uprawnień administratora i tworzeniem kont</p>
+<p class="m-0 text-center">Zakładka <b>Użytkownicy</b> jest miejscem gdzie można dodawać nowych administratorów lub aktualizować istniejących użytkowników. Trzeba pamiętać że jeśli zmienimy użytkownikowi zwykłemu login bądź hasło jego <b>dynamiczny link do logowania nie będzie działał</b></p>
 <div class="text-center">
 	<button type="button" id="create-user" class="btn btn-success">+</button>
 </div>

@@ -53,7 +53,7 @@
 </div>
 
 <h4 class="text-center">Galerie</h4>
-<p class="m-0 text-center">Zakładka ta służy do konfigurowania galerii, na stronie znajdują się dwie galerie, obiema możesz dynamicznie zarządzać tutaj. Opisy dla galerii można edytować w zakładce <b>Konfiguracja</b></p>
+<p class="m-0 text-center">Miejsce to służy do dodawnia nowych zdjęć do galerii. Na stronie głównej aplikacji istnieją dwie galerie, ich zawartość należy edytować z tego miejsca. Wgrywając zdjęcie należy postarać się aby było wysokiej rozdzielczości, ponieważ zdjęcie jest skalowane do różnych rozdzielczości dla różnych urządzeń, <b>za male zdjęcie zostanie źle przeskalowane</b></p>
 <div class="col-12 mt-3 mb-3">
   <div class="text-center">
     <div class="btn-group" role="group" aria-label="Galerie">

@@ -1,5 +1,5 @@
 <h4 class="text-center">Powiadomienia</h4>
-<p class="m-0 text-center">Zakładka <b>Powiadomienia</b> umożliwia wysyłać powiadomienia Push do wszystkich przeglądarek i użytkowników którzy wyrazili zgodę na otrzymywanie powiadomień. Należy pamiętać że wysyłanie wielu powiadomień na raz może zezłościć użytkowników, a źli użytkownicy to <del>groźni</del> użytkownicy</p>
+<p class="m-0 text-center">Wypełniając poniższy formularz wyślesz powiadomienie PUSH do wszystkich użytkowników którzy wyrazili na to zgodę</p>
 <form>
   <div class="form-group">
     <label for="inputNotificationTitle" class="col-form-label">Tytuł powiadomienia</label>

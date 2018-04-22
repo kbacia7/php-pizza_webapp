@@ -1,5 +1,5 @@
 <h4 class="text-center">Wiadomości</h4>
-<p class="m-0 text-center">Czytaj i odpowiadaj na maile z tego miejsca!</p>
+<p class="m-0 text-center">Miejsce w którym składowane są wszystkie wiadomości wysłane przez formularz kontaktowy. Aby sprawdzić czy dostępne są nowe wiadomości należy przeładować zakładkiem specjalnym do tego linkiem wyświetlanym niżej</p>
 <div class="mt-4">
 <div class="col-12">
   <div class="row">

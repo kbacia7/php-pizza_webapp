@@ -70,17 +70,18 @@
                                 <div class="col-12" id="main_start">
                                     <div id="home" class="active_element"> <!-- Strona Główna-->
                                         <h4 class="text-center">Panel administracyjny</h4>
-                                        <p class="m-0">W panelu administratora można:</p>
+                                        <p class="m-0">Panel administracyjny jest "sercem" aplikacji, można tutaj zarządzać całą aplikacją i jej elementami, są to takie rzeczy jak: </p>
                                         <div class="ml-4">
                                             <ul>
-                                                <li>Zarządzać menu</li>
-                                                <li>Zarządzać galerią</li>
-                                                <li>Odpowiadać na maile</li>
-                                                <li>Wysyłać szybkie powiadomienia</li>
-                                                <li>I wiele innych...!</li>
+                                                <li>Zarządzanie główną konfiguracją strony, dodawanie ikonek, aktualizowanie aktualnej konfiguracji</li>
+                                                <li>Zarządzanie menu poprzez ustawianie cen, nazw elementów czy tworzenie nowych menu</li>
+                                                <li>Zarządzanie galeriom poprzez dodawanie zdjęć (które sa automatycznie skalowane)</li>
+                                                <li>Tworzenie nowych użytkowników, nadawanie im uprawnień administratora lub usuwanie istniejących z całą ich zawartością</li>
+                                                <li>Odpisywanie na maile użytkowników</li>
+                                                <li>Wysyłanie powiadomień PUSH</li>
                                             </ul>
                                         </div>
-                                        <p>Ponadto cała komunikacja odbywa się poprzez AJAX, toteż nie jest wymagane przeładowywanie strony!</p>
+                                        <p>Wszystkie te rzeczy tworzone są dynamicznie w tle, administrator <b>nie musi</b> przeładowywać panelu administracyjnego aby zauważyć dynamicznie zmieniającą się zawartość</p>
                                     </div>
                                     <div id="menu_manager"> <!-- MENU --> </div>
                                     <div id="config_manager"></div>

@@ -1,5 +1,5 @@
 <h4 class="text-center">Menu</h4>
-<p class="m-0 text-center">W tym miejscu możesz zarządzać menu, zmieniać elementy menu, aktualizować i usuwać!</p>
+<p class="m-0 text-center">Zakładka służy do aktualizowania menu pizzerii. W miejscu tym jak i na stronie głównej na bieżąco wyświetlane są po trzy karty menu, karty te można przewijać strzałkami, natomiast na stronie głównej służy do tego gest przesunięcia</p>
 <div class="row">
     <div class="col-4 mt-3 global-menu-root menu-category-hidden" style="display: none">
         <ul class="list-group">
