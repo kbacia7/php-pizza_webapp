@@ -137,7 +137,7 @@ function menuItemEditMode(item) {
     .first();
   let aPrice = $(badgePrice)
     .text()
-    .slice(0, -1);
+    .slice(0, -(globalCurrency.length));
   let inputTitleMenu = $(parentRoot).find(".menu-name-input");
   let aTitle = $(inputTitleMenu).val();
 
@@ -178,7 +178,7 @@ function menuItemAdd(parent, ajaxSupport) {
       price: $(cloneNewMenu)
         .find(".badge")
         .text()
-        .slice(0, -1),
+        .slice(0, -(globalCurrency.length)),
       parent: $(parent).attr("data-categoryID")
     };
     menuItemAjaxAdd(dataAdd, function(data) {
@@ -190,7 +190,7 @@ function menuItemAdd(parent, ajaxSupport) {
 
 /* Validation */
 function menuItemIsValidTitle(title) {
-  return XRegExp("^[\\p{L},' ']+$").test(title);
+  return XRegExp(/^[\s\p{L}]+$/u).test(title);
 }
 
 function menuItemIsValidPrice(price) {

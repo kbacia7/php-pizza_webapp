@@ -24,8 +24,9 @@ if ($ID != null && $data != null) {
                 $response['complete'] = MenuItemManager::update($data, $ID);
                 $response['allowed'] = true;
                 ErrorHandler::createFromTemplate(ErrorID::MenuItem_UpdateComplete);
-            }
-            ErrorHandler::createFromTemplate($error);
+			}
+			else
+            	ErrorHandler::createFromTemplate($error);
         }
     } catch (Exception $e) {
         $response['complete'] = false;

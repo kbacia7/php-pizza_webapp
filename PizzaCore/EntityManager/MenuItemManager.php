@@ -69,7 +69,7 @@ class MenuItemManager implements IEntityManager
             return ErrorID::MenuItem_EmptyParent;
         } else if (array_key_exists("price", $data) && !preg_match("/^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/", $data['price'])) {
             return ErrorID::MenuItem_InvalidPrice;
-        } else if (array_key_exists("title", $data) && !preg_match("/^[\\p{L},' ']+$/", $data['title'])) {
+        } else if (array_key_exists("title", $data) && !preg_match("/^[\s\p{L}]+$/u", $data['title'])) {
             return ErrorID::MenuItem_InvalidTitle;
         }
 
