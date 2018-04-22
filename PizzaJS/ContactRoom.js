@@ -21,6 +21,11 @@ function contactRoomHandle() {
   $("body").on("click", "#contact-reload", function() {
     contactRoomReload();
   });
+
+  $("body").on("click", "#contact-reload-user", function() {
+    contactRoomReload("user");
+  });
+
   contactRoomLoadAll().then(function() {
     resolve();
   });
@@ -91,12 +96,12 @@ function contactRoomRemove(element) {
   $(element).remove();
 }
 
-function contactRoomReload() {
+function contactRoomReload(who = "admin") {
     $("#mail_manager").empty();
     $("#mail_manager").append("<div class='d-none' id='hide-all-to-loading'></div>");
     contactRoomSetLoading();
       savedAuthorsByID = {};
-      $("#mail_manager > #hide-all-to-loading").load("admin_contact.php", function() {
+      $("#mail_manager > #hide-all-to-loading").load(who + "_contact.php", function() {
         contactRoomLoadAll().then(function() {
           contactRoomRemoveLoading().then(function() {
             $("#hide-all-to-loading").contents().appendTo($("#mail_manager"));

@@ -1,7 +1,7 @@
 /* Main */
 function userHandle() {
   $("body").on("click", "#sendEmail", function() {
-    userGuestCreate();
+    userRegister();
   });
 
   $("body").on("click", "#userSaveButton", function() {
@@ -157,7 +157,7 @@ function userRemove(tab) {
   userAjaxRemove(id);
 }
 
-function userGuestCreate() {
+function userRegister() {
   let d = {
     firstName: $("#firstName").val(),
     lastName: $("#lastName").val(),
@@ -166,9 +166,9 @@ function userGuestCreate() {
     message: $("#message_form").val(),
     captcharesponse: $(".g-recaptcha-response").val()
   };
+  $("form")[0].reset();
   userAjaxRegister(d)
     .then(function(jData) {
-      $("form")[0].reset();
       $("#insert-errors-here").text(
         "Dziękujemy za kontakt, sprawdź swoja skrzynkę email!"
       );
@@ -253,7 +253,7 @@ function userAjaxRemove(ID) {
 function userAjaxAdd(data) {
   return new Promise(function(resolve, reject) {
     $.ajax({
-      url: "PizzaCore/AJAX/User/user_create_admin.php",
+      url: "PizzaCore/AJAX/User/user_create.php",
       type: "POST",
       data: data,
       complete: function(jData) {
@@ -268,7 +268,7 @@ function userAjaxAdd(data) {
 function userAjaxRegister(data) {
   return new Promise(function(resolve, reject) {
     $.ajax({
-      url: "PizzaCore/AJAX/User/user_create.php",
+      url: "PizzaCore/AJAX/User/user_register.php",
       type: "POST",
       data: data,
       complete: function(jData) {
@@ -283,7 +283,7 @@ function userAjaxRegister(data) {
 function userAjaxLogin(data) {
   return new Promise(function(resolve) {
     $.ajax({
-      url: "PizzaCore/AJAX/User/login_valid.php",
+      url: "PizzaCore/AJAX/Login/login_valid.php",
       type: "POST",
       data: data,
       complete: function(jData) {
@@ -328,7 +328,7 @@ function userAjaxLoad(ID) {
 
 function userAjaxIsAdmin() {
   $.ajax({
-    url: "PizzaCore/AJAX/User/login_allowed.php",
+    url: "PizzaCore/AJAX/Login/login_isadmin.php",
     type: "POST",
     data: { allowed: "check" },
     complete: function(jData) {

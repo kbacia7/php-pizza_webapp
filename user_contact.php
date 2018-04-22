@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="col-9">
-    <p class="float-right"><a href="#" id="contact-reload">Przeładuj rozmowy</a></p>
+    <p class="float-right"><a href="#" id="contact-reload-user">Przeładuj rozmowy</a></p>
       <div class="tab-content" id="v-pills-tabContent">
         <div class="tab-pane fade never-use-contact-tab-pane d-none" id="v-pills-conversation" role="tabpanel" aria-labelledby="v-pills-conversation-tab">
           <div class="messages-contact">

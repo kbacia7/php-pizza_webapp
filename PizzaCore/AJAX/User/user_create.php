@@ -5,75 +5,32 @@ RequirePath::include_(true);
 
 $firstName = isset($_POST['firstName']) ? ($_POST['firstName']) : null;
 $lastName = isset($_POST['lastName']) ? ($_POST['lastName']) : null;
-$eMail = isset($_POST['eMail']) ? ($_POST['eMail']) : null;
-$topic = isset($_POST['topic']) ? ($_POST['topic']) : null;
-$message = isset($_POST['message']) ? ($_POST['message']) : null;
-$captcha = isset($_POST['captcharesponse']) ? ($_POST['captcharesponse']) : null;
+$login = isset($_POST['login']) ? ($_POST['login']) : null;
+$p = isset($_POST['password']) ? ($_POST['password']) : null;
+$isAdmin = isset($_POST['admin']) ? ($_POST['admin']) : null;
 $response = array(
-	'complete' => false
+	'complete' => false,
+	'object' => null
 );
-$validated = false;
-if($firstName != null && $lastName != null && $eMail != null && $topic != null && $message != null 
-	&& $captcha != null)
+if($firstName != null && $lastName != null && $login != null && $p != null && $isAdmin != null)
 {
 	try {
-		$validated = CaptchaValidator::validate($captcha);
-		$c = true;
-		if($validated) {
-			$userExists = UserManager::load(array("login" => $eMail));
-			$us = null;
-			$bodyMsg = "";
-				$r = new RandomString();
-				$p = $r->Random(30);
-				$d = array(
-					'login' => $eMail,
-					'firstName' => $firstName,
-					'lastName' => $lastName,
-					'password' => $p,
-					'admin' => 0
-				);
-				$error = UserManager::isValidData($d);
-				if($error == ErrorID::User_CreateComplete) {
-					if($userExists == null)
-					{
-						$us = UserManager::create($d);
-						$sKey = base64_encode(sprintf("%s|%s", $p, $eMail));
-						$bodyMsg = sprintf("<html><head><meta charset='utf=8'/></head><body>Dziękujemy za kontakt %s %s. Postaramy się jak najszybciej odpowiedzieć, rozmowy prowadzone z nami jak i odpowiedzi wysyłaj proszę z <a href='%s/user.php?key=%s'>tego</a> miejsca. <b>Proszę, link ten umożliwia automatycznie przeglądanie wszystkich twoich rozmów z nami,  nie podawaj go NIKOMU</b></body></html>", $firstName, $lastName,$_SERVER['SERVER_NAME'], $sKey);
-						MailSender::send($eMail, "Kontakt z pizzerią", $bodyMsg, sprintf("%s %s", $firstName, $lastName));
-					}
-					else 
-					{
-						$us = $userExists[0];
-						$bodyMsg = sprintf("<html><head><meta charset='utf=8'/></head><body>Dziękujemy za kontakt %s %s. Postaramy się jak najszybciej odpowiedzieć, rozmowy prowadzone z nami jak i odpowiedzi wysyłaj proszę ze specjalnego linka który otrzymałeś za pierwszym razem.</body></html>", $firstName, $lastName);
-						MailSender::send($eMail, "Kontakt z pizzerią", $bodyMsg, sprintf("%s %s", $firstName, $lastName));
-					}
-				}
-				else
-					$c = false;
-
-				$d = array(
-					'title' => $topic,
-					'owner' => $us->getID()
-				);
-				$error = ContactRoomManager::isValidData($d);
-				if($error == ErrorID::ContactRoom_CreateComplete) {
-					$room = ContactRoomManager::create($d);
-				}
-				else 
-					$c = false;
-
-				$d = array(
-					'message' => $message,
-					'author' => $us->getID(),
-					'roomID' =>	$room->getID()
-				);
-				$error = ContactMessageManager::isValidData($d);
-				if($error == ErrorID::ContactMessage_CreateComplete) {
-					ContactMessageManager::create($d);
-				}
-				else
-					$c = false;
-				$response['complete'] = $c;
+		if(LoginGuard::isAdmin()) {
+			$d = array(
+				'login' => $login,
+				'firstName' => $firstName,
+				'lastName' => $lastName,
+				'password' => $p,
+				'admin' => $isAdmin
+			);
+			$error = UserManager::isValidData($d);
+			if($error == ErrorID::User_CreateComplete)
+			{
+				$response['object'] = UserManager::create($d);
+				$response['complete'] = true;
+				ErrorHandler::createFromTemplate($error);
+			}
+			ErrorHandler::createFromTemplate($error);
 		}
 	}
 	catch(Exception $e) {
