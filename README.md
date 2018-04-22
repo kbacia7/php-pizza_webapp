@@ -6,6 +6,7 @@ Cała aplikacja była pisana na PHP 7.2.4 (NTS) w [Visual Studio Code](https://c
 Aplikację można przetestować pod http://80.211.223.245
 ## Wymagania
 * PHP5 bądź najlepiej PHP7
+* Zwiększony limit dla uploadu zdjęć, ponieważ aplikacja skaluje zdjęcia do odpowiednich rozdzielczości na podstawie jednego dużego zdjęcia (o wadze np. 7 MB)
 * [php-mysql](http://php.net/manual/en/ref.pdo-mysql.php) do obsługi połączenia z bazą danych MySQL
 * [php-gd](http://php.net/manual/en/book.image.php) do działania na zdjęciach
 * [php-yaml](http://php.net/manual/en/book.yaml.php) do interpretowania plików YAML
