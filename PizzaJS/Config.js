@@ -117,7 +117,7 @@ function configIsValidObject(cObj) {
 function configIsValidIcon(iconData) {
   if (allowedImgTypes.indexOf(iconData.type) == -1)
     return errorsTemplates[errorsId.Config_InvalidIconEx];
-  else if (iconData.size > 10 * 1024)
+  else if (iconData.size > 100 * 1024)
     return errorsTemplates[errorsId.Config_InvalidIconSize];
   return undefined;
 }
